@@ -1,0 +1,14 @@
+Node3D
+MeleeWeapon
+CollisionShape3D
+Area3D
+HitboxComponent
+Label3D      - Matches the "text" keyword.
+MeshInstance3D
+CharacterBody3D
+RigidBody3D
+AnimationPlayer
+RayCast3D
+AudioStreamPlayer3D
+DirectionalLight3D
+StaticBody3D

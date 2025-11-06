@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2yg5w2tl8klu"]
+
+[ext_resource type="Script" uid="uid://etitetj0g0n" path="res://Components/weapon_manager/weapon_resource.gd" id="1_yxopc"]
+
+[node name="WeaponRessource" type="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6, 0.6, -0.1)
+script = ExtResource("1_yxopc")

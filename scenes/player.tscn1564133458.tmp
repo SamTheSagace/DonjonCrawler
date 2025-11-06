@@ -1,0 +1,56 @@
+[gd_scene load_steps=5 format=3 uid="uid://bi7cm43d6twr3"]
+
+[ext_resource type="Script" uid="uid://c7fnc3hcppvg1" path="res://scripts/player.gd" id="1_fcaap"]
+[ext_resource type="PackedScene" uid="uid://c1tdw8tv4ntro" path="res://assets/Models/disguise-glasses.glb" id="2_ox2ha"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_b2lo0"]
+radius = 0.502238
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_wslvs"]
+
+[node name="player" type="CharacterBody3D"]
+script = ExtResource("1_fcaap")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01059, 0)
+shape = SubResource("CapsuleShape3D_b2lo0")
+
+[node name="WorldModel" type="Node3D" parent="."]
+
+[node name="body" type="MeshInstance3D" parent="WorldModel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_wslvs")
+skeleton = NodePath("../..")
+
+[node name="disguise-glasses" parent="WorldModel" instance=ExtResource("2_ox2ha")]
+transform = Transform3D(-2.235, 0, -3.37476e-07, 0, 2.235, 0, 3.37476e-07, 0, -2.235, 0, 1.19644, -0.0652966)
+
+[node name="head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.979575, 0.201078, 0, -0.201078, 0.979575, 0, 1.5, 0)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="head"]
+transform = Transform3D(1, 0, 0, 0, 1, 1.49012e-08, 0, -1.49012e-08, 1, 0, 0, 0)
+spring_length = 2.0
+margin = 0.5
+
+[node name="CameraSmooth" type="Node3D" parent="head/SpringArm3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, -1.49012e-08, 0, 1.49012e-08, 1, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="head/SpringArm3D/CameraSmooth"]
+unique_name_in_owner = true
+cull_mask = 1048573
+
+[node name="StairsAheadRayCast3D" type="RayCast3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.476576, -0.656893)
+target_position = Vector3(0, -0.55, 0)
+
+[node name="StairsBelowRayCast3D" type="RayCast3D" parent="."]
+unique_name_in_owner = true
+target_position = Vector3(0, -0.75, 0)
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

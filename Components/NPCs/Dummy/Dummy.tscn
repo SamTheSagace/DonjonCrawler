@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://pi12nha5o2yq"]
+
+[ext_resource type="Script" uid="uid://ddgi7w5lbg2k3" path="res://Components/NPCs/Dummy/dummy.gd" id="1_ti8cp"]
+[ext_resource type="PackedScene" uid="uid://bkcotb4wiqh2g" path="res://Components/HitboxComponent.tscn" id="2_0n3s4"]
+[ext_resource type="PackedScene" uid="uid://bu866va6wl0v0" path="res://Components/HealthComponent.tscn" id="3_1sesn"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1sesn"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0n3s4"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_lhpcd"]
+
+[node name="Dummy" type="CharacterBody3D" node_paths=PackedStringArray("health")]
+script = ExtResource("1_ti8cp")
+health = NodePath("HealthComponent")
+
+[node name="FloorColision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_1sesn")
+
+[node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("2_0n3s4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitboxComponent"]
+shape = SubResource("CapsuleShape3D_0n3s4")
+
+[node name="HealthComponent" parent="." instance=ExtResource("3_1sesn")]
+Max_health = 200
+
+[node name="WorldModel" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WorldModel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_lhpcd")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1692958, 0)
+pixel_size = 0.009
+text = "eeeeeeeeeeeeeeeee"

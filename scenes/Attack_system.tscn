@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://cukd2y30jd7sc"]
+
+[ext_resource type="PackedScene" uid="uid://bi7cm43d6twr3" path="res://Components/player/Player.tscn" id="1_lsdtl"]
+[ext_resource type="PackedScene" uid="uid://i34kvjjehl1e" path="res://Components/weapon_manager/sword/sword.tscn" id="2_yi36d"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_i4t7f"]
+size = Vector3(60, 2, 60)
+
+[sub_resource type="BoxMesh" id="BoxMesh_lsdtl"]
+size = Vector3(60, 2, 60)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Ground" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+shape = SubResource("BoxShape3D_i4t7f")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+mesh = SubResource("BoxMesh_lsdtl")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 13.1, 0)
+shadow_enabled = true
+
+[node name="Player" parent="." instance=ExtResource("1_lsdtl")]
+
+[node name="Sword" parent="." instance=ExtResource("2_yi36d")]
+transform = Transform3D(1, 0, 0, 0, 0.49999997, -0.86602545, 0, 0.86602545, 0.49999997, 0, 0.3, -4.6)
