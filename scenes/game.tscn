@@ -1,26 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://yl23rid523r3"]
+[gd_scene load_steps=10 format=3 uid="uid://yl23rid523r3"]
 
-[ext_resource type="PackedScene" uid="uid://bi7cm43d6twr3" path="res://Components/player/Player.tscn" id="1_m7e2g"]
+[ext_resource type="PackedScene" uid="uid://bi7cm43d6twr3" path="res://Components/Characters/player/Player.tscn" id="1_m7e2g"]
+[ext_resource type="Script" uid="uid://d3c3cro84wvpb" path="res://scenes/game.gd" id="1_p57ef"]
+[ext_resource type="PackedScene" uid="uid://cjp58634du344" path="res://Components/Objects/Upgrades/Upgrade.tscn" id="4_lbhrr"]
+[ext_resource type="Resource" uid="uid://cwwovcfxr5kig" path="res://Components/Objects/Upgrades/GhostArm/GhostArm.tres" id="6_p57ef"]
 [ext_resource type="PackedScene" uid="uid://cvlbkmc4ia8ci" path="res://scenes/parkour_testV1.tscn" id="9_0tnpc"]
-[ext_resource type="PackedScene" uid="uid://pi12nha5o2yq" path="res://Components/NPCs/Dummy/Dummy.tscn" id="10_vtaks"]
-
-[sub_resource type="GDScript" id="GDScript_lnu2h"]
-script/source = "extends Node3D
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
-func _input(event):
-	if Input.is_action_just_pressed(\"escape\"):
-		get_tree().quit()
-"
+[ext_resource type="PackedScene" uid="uid://pi12nha5o2yq" path="res://Components/Characters/NPCs/Dummy/Dummy.tscn" id="10_vtaks"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_b54tr"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -36,7 +21,7 @@ tonemap_mode = 2
 glow_enabled = true
 
 [node name="game" type="Node3D"]
-script = SubResource("GDScript_lnu2h")
+script = ExtResource("1_p57ef")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
@@ -53,3 +38,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.346376, 4.56948, -4.59373)
 
 [node name="Dummy" parent="." instance=ExtResource("10_vtaks")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -12.01987, 3.2144299, -5.3425508)
+
+[node name="Upgrade" parent="." instance=ExtResource("4_lbhrr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.657654, 3.86053, -6.2668333)
+upgrade = ExtResource("6_p57ef")

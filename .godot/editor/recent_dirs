@@ -1,7 +1,5 @@
-res://Components/weapon_manager/sword
-res://Components/weapon_manager
-res://Components/player
-res://Components/weapon_manager/Sword
+res://Components/Objects/Upgrades/GhostArm
+res://Components/Objects/Upgrades
 res://assets/Materials
 res://scenes
 C:/Program Files (x86)/Steam/steamapps/common/Blender

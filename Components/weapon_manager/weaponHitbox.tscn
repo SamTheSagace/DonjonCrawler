@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://clwgv660wr2ck"]
-
-[ext_resource type="Script" uid="uid://cpdd7k3m6cnq4" path="res://Components/weapon_manager/weapon_hitbox.gd" id="1_lc77g"]
-
-[node name="WeaponHitbox" type="Area3D"]
-script = ExtResource("1_lc77g")
-
-[connection signal="area_entered" from="." to="." method="_on_collision_area_entered"]

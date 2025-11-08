@@ -1,0 +1,183 @@
+[gd_scene load_steps=18 format=3 uid="uid://bi7cm43d6twr3"]
+
+[ext_resource type="Script" uid="uid://djkjlkey0c5xp" path="res://Components/Characters/player/player.gd" id="1_fcaap"]
+[ext_resource type="PackedScene" uid="uid://bkcotb4wiqh2g" path="res://Components/Characters/HitboxComponent.tscn" id="2_bkrd4"]
+[ext_resource type="PackedScene" uid="uid://c1tdw8tv4ntro" path="res://assets/Models/disguise-glasses.glb" id="2_ox2ha"]
+[ext_resource type="PackedScene" uid="uid://3s7hon3kcce0" path="res://Components/Objects/weapon_manager/WeaponManager.tscn" id="3_6m33q"]
+[ext_resource type="PackedScene" uid="uid://bu866va6wl0v0" path="res://Components/Characters/HealthComponent.tscn" id="3_6r5ir"]
+[ext_resource type="Resource" uid="uid://c73x0ieajhcws" path="res://Components/Objects/weapon_manager/sword/sword.tres" id="3_ancfq"]
+[ext_resource type="PackedScene" uid="uid://pj2jrig5rx6h" path="res://Components/Objects/weapon_manager/sword/sword.glb" id="4_eef07"]
+[ext_resource type="Script" uid="uid://dmlgkbxt4c6mn" path="res://Components/Objects/weapon_manager/Animations/model_anim.gd" id="6_6r5ir"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bkrd4"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_wslvs"]
+
+[sub_resource type="Animation" id="Animation_bkrd4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.2617994, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_gxfno"]
+resource_name = "sword_slash"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.2617994, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-0.2617994, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6r5ir"]
+_data = {
+&"RESET": SubResource("Animation_bkrd4"),
+&"sword_slash": SubResource("Animation_gxfno")
+}
+
+[sub_resource type="Animation" id="Animation_eef07"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.2617994, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_jb0uy"]
+resource_name = "sword_slash"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.2617994, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(-0.2617994, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gxfno"]
+_data = {
+&"RESET": SubResource("Animation_eef07"),
+&"sword_slash": SubResource("Animation_jb0uy")
+}
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6r5ir"]
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_fcaap")
+
+[node name="WeaponManager" parent="." node_paths=PackedStringArray("character", "view_model_container", "world_model_container") instance=ExtResource("3_6m33q")]
+character = NodePath("..")
+weapon_resource = ExtResource("3_ancfq")
+view_model_container = NodePath("../Head/SpringArm3D/CameraSmooth/Camera3D/ViewModel")
+world_model_container = NodePath("../WorldModel/body/Hand")
+
+[node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("2_bkrd4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitboxComponent"]
+shape = SubResource("CapsuleShape3D_bkrd4")
+
+[node name="HealthComponent" parent="." instance=ExtResource("3_6r5ir")]
+
+[node name="WorldModel" type="Node3D" parent="."]
+unique_name_in_owner = true
+
+[node name="body" type="MeshInstance3D" parent="WorldModel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_wslvs")
+skeleton = NodePath("../..")
+
+[node name="Hand" type="Node3D" parent="WorldModel/body"]
+transform = Transform3D(1, 0, 0, 0, 0.9659255, 0.25881895, 0, -0.25881895, 0.9659255, 0.5, 0, -0.5)
+
+[node name="WorldModelAnimation" type="AnimationPlayer" parent="WorldModel/body/Hand" node_paths=PackedStringArray("player", "weaponManager")]
+libraries = {
+&"": SubResource("AnimationLibrary_6r5ir")
+}
+script = ExtResource("6_6r5ir")
+player = NodePath("../../../..")
+weaponManager = NodePath("../../../../WeaponManager")
+
+[node name="sword" parent="WorldModel/body/Hand" instance=ExtResource("4_eef07")]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
+visible = false
+
+[node name="disguise-glasses" parent="WorldModel" instance=ExtResource("2_ox2ha")]
+transform = Transform3D(-2.235, 0, -3.37476e-07, 0, 2.235, 0, 3.37476e-07, 0, -2.235, 0, 1.19644, -0.0652966)
+
+[node name="Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 1.49012e-08, 0, -1.49012e-08, 1, 0, 0, 0)
+spring_length = 2.0
+margin = 0.5
+
+[node name="CameraSmooth" type="Node3D" parent="Head/SpringArm3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, -1.49012e-08, 0, 1.49012e-08, 1, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Head/SpringArm3D/CameraSmooth"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 1.49012e-08, 0, 0, 1, 0, 0, 0)
+cull_mask = 1048573
+
+[node name="Bullet RayCast3D" type="RayCast3D" parent="Head/SpringArm3D/CameraSmooth/Camera3D"]
+target_position = Vector3(0, 0, -999)
+
+[node name="ViewModel" type="Node3D" parent="Head/SpringArm3D/CameraSmooth/Camera3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.9659255, 0.25881895, 0, -0.25881895, 0.9659255, 0.5, -0.5, -0.5)
+
+[node name="ViewModelAnim" type="AnimationPlayer" parent="Head/SpringArm3D/CameraSmooth/Camera3D/ViewModel" node_paths=PackedStringArray("player", "weaponManager")]
+libraries = {
+&"": SubResource("AnimationLibrary_gxfno")
+}
+script = ExtResource("6_6r5ir")
+player = NodePath("../../../../../..")
+weaponManager = NodePath("../../../../../../WeaponManager")
+
+[node name="sword" parent="Head/SpringArm3D/CameraSmooth/Camera3D/ViewModel" instance=ExtResource("4_eef07")]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
+visible = false
+
+[node name="StairsAheadRayCast3D" type="RayCast3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.476576, -0.656893)
+target_position = Vector3(0, -0.55, 0)
+
+[node name="StairsBelowRayCast3D" type="RayCast3D" parent="."]
+unique_name_in_owner = true
+target_position = Vector3(0, -0.75, 0)
+
+[node name="FloorColision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_6r5ir")

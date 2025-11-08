@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://clwgv660wr2ck"]
+
+[ext_resource type="Script" uid="uid://c4bgop16uw5v5" path="res://Components/Objects/weapon_manager/weapon_hurtbox.gd" id="1_1nsk6"]
+
+[node name="WeaponHurtbox" type="Area3D"]
+script = ExtResource("1_1nsk6")
+
+[connection signal="area_entered" from="." to="." method="_on_collision_area_entered"]

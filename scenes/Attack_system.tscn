@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cukd2y30jd7sc"]
 
-[ext_resource type="PackedScene" uid="uid://bi7cm43d6twr3" path="res://Components/player/Player.tscn" id="1_lsdtl"]
-[ext_resource type="PackedScene" uid="uid://i34kvjjehl1e" path="res://Components/weapon_manager/sword/sword.tscn" id="2_yi36d"]
+[ext_resource type="PackedScene" uid="uid://bi7cm43d6twr3" path="res://Components/Characters/player/Player.tscn" id="1_lsdtl"]
+[ext_resource type="PackedScene" uid="uid://i34kvjjehl1e" path="res://Components/Objects/weapon_manager/sword/sword.tscn" id="2_yi36d"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_i4t7f"]
 size = Vector3(60, 2, 60)

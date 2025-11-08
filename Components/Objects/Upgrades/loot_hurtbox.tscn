@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cklixvcxj1gie"]
+
+[ext_resource type="Script" uid="uid://c4hls2rqqsetm" path="res://Components/Objects/Upgrades/lootHurtbox.gd" id="1_uj4pw"]
+
+[node name="LootHurtbox" type="Area3D"]
+script = ExtResource("1_uj4pw")
+
+[connection signal="area_entered" from="." to="." method="_on_collision_area_entered"]

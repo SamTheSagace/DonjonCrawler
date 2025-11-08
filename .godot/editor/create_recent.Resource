@@ -1,2 +1,4 @@
+GhostFormUpgrade
+BaseUpgrade
 WeaponResource
 Resource

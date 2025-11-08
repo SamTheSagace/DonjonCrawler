@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://3s7hon3kcce0"]
-
-[ext_resource type="Script" uid="uid://c1ickvb3qvdfl" path="res://Components/weapon_manager/weapon_manager.gd" id="1_mpcs4"]
-
-[node name="WeaponManager" type="Node3D"]
-script = ExtResource("1_mpcs4")
-
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
