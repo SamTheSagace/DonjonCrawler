@@ -1,5 +1,4 @@
-res://Components/Objects/Upgrades/Upgrade.tscn
-res://Components/Objects/Upgrades/GhostArm/GhostArm.tscn
-res://Components/Characters/player/Player.tscn
-res://Components/Objects/Upgrades/GhostArm/ghost_arm.gd
-res://Components/Objects/Upgrades/GhostArm/ghostarm_upgrade.gd
+res://scenes/game.tscn
+res://scenes/game.gd
+res://scenes/parkour_testV1.tscn
+res://Components/Characters/NPCs/Dummy/Dummy.tscn

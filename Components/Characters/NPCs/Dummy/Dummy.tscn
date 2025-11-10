@@ -26,7 +26,7 @@ health_component = NodePath("../HealthComponent")
 shape = SubResource("CapsuleShape3D_0n3s4")
 
 [node name="HealthComponent" parent="." instance=ExtResource("3_1sesn")]
-Max_health = 200
+Max_health = 400
 
 [node name="WorldModel" type="Node3D" parent="."]
 

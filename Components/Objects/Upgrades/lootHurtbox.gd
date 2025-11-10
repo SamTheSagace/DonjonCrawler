@@ -9,4 +9,4 @@ func _on_collision_area_entered(area):
 		var character = area.get_parent()
 		if character is Player:
 			emit_signal("loot_hurtbox",character)
-	 # Replace with function body.
+		self.queue_free()
