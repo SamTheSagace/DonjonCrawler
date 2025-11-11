@@ -5,15 +5,23 @@ extends CharacterBody3D
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
-
+@export var Regeneration := 2
 func _ready():
 	if health:
-		$Label3D.text = var_to_str(health.health)
+		%Health.text = var_to_str(health.health)
 
 
 func _process(delta):
 	if health:
-		$Label3D.text = var_to_str(health.health)
+		%Health.text = var_to_str(health.health)
+		if health.health < health.Max_health:
+			var dif = health.Max_health - health.health
+			if  dif > Regeneration:
+				print("Regenerating", health.health, health.Max_health)
+				health.health += Regeneration
+			else :
+				print("should complete")
+				health.health += dif
 		
 func _physics_process(delta):
 	# Add the gravity.

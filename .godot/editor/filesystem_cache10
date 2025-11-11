@@ -1,5 +1,5 @@
 63f7b34db8d8cdea90c76aacccf841ec
-::res://::1762761648
+::res://::1762868651
 icon.svg::CompressedTexture2D/CompressedTexture2D::104514268326768639::1715762581::1760609788::1::::<><><>0<>0<>04f5e83fa1676c94ab4b0f6ea76618ad<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
 README.md::TextFile::-1::1762422162::0::1::::<><><>0<>0<><>::
 ::res://addons/::1761244826
@@ -16,9 +16,9 @@ health_component.gd::GDScript::5887639429561990644::1760820007::0::1::::HealthCo
 HitboxComponent.tscn::PackedScene::3093321941898054072::1762425402::0::1::::<><><>0<>0<><>::uid://yb5whel1ctfm::::res://Components/Characters/hitbox_component.gd
 hitbox_component.gd::GDScript::1688457796693042450::1760815917::0::1::::HitboxComponent<>Node3D<><>0<>0<><>::
 ::res://Components/Characters/NPCs/::1760884410
-::res://Components/Characters/NPCs/Dummy/::1762425402
+::res://Components/Characters/NPCs/Dummy/::1762780694
 dummy.gd::GDScript::7382758932224076412::1760820231::0::1::::<>CharacterBody3D<><>0<>0<><>::
-Dummy.tscn::PackedScene::1070975228508179388::1762425402::0::1::::<><><>0<>0<><>::uid://ddgi7w5lbg2k3::::res://Components/Characters/NPCs/Dummy/dummy.gd<>uid://bkcotb4wiqh2g::::res://Components/Characters/HitboxComponent.tscn<>uid://bu866va6wl0v0::::res://Components/Characters/HealthComponent.tscn
+Dummy.tscn::PackedScene::1070975228508179388::1762780694::0::1::::<><><>0<>0<><>::uid://ddgi7w5lbg2k3::::res://Components/Characters/NPCs/Dummy/dummy.gd<>uid://bkcotb4wiqh2g::::res://Components/Characters/HitboxComponent.tscn<>uid://bu866va6wl0v0::::res://Components/Characters/HealthComponent.tscn
 ::res://Components/Characters/player/::1762622493
 movement.gd::GDScript::1947715111572525197::1762444807::0::1::::MovementController<>Node<><>0<>0<><>::
 player.gd::GDScript::7812172050566736181::1762621429::0::1::::Player<>CharacterBody3D<><>0<>0<><>::
@@ -50,9 +50,9 @@ model_anim.gd::GDScript::8024618578881990433::1762447296::0::1::::<>AnimationPla
 sword.glb::PackedScene::1073068390875648553::1760627709::1762425410::1::::<><><>0<>0<>aa9f8085e0a168930b85a368dcc4bfcf<>res://.godot/imported/sword.glb-e7bf9eda23158a09681f08668e970050.scn::
 sword.tres::Resource/WeaponResource::7078128502976487246::1762445791::0::1::::<><><>0<>0<><>::uid://etitetj0g0n::::res://Components/Objects/weapon_manager/weapon_resource.gd<>uid://pj2jrig5rx6h::::res://Components/Objects/weapon_manager/sword/sword.glb<>uid://i34kvjjehl1e::::res://Components/Objects/weapon_manager/sword/sword.tscn
 sword.tscn::PackedScene::621093094255354876::1762446401::0::1::::<><><>0<>0<><>::uid://pj2jrig5rx6h::::res://Components/Objects/weapon_manager/sword/sword.glb<>uid://bcv7ts0prtkio::::res://Components/Objects/weapon_manager/weapon.gd<>uid://clwgv660wr2ck::::res://Components/Objects/weapon_manager/weaponHurtbox.tscn
-::res://scenes/::1762446911
+::res://scenes/::1762780670
 Attack_system.tscn::PackedScene::6197493690064174382::1762425409::0::1::::<><><>0<>0<><>::uid://bi7cm43d6twr3::::res://Components/Characters/player/Player.tscn<>uid://i34kvjjehl1e::::res://Components/Objects/weapon_manager/sword/sword.tscn
 CSGStairMaker3D.tscn::PackedScene::2409088790253143204::1761245567::0::1::::<><><>0<>0<><>::
-game.gd::GDScript::9130382991900826739::1762439665::0::1::::<>Node3D<><>0<>0<><>::
-game.tscn::PackedScene::1708930669074344678::1762446911::0::1::::<><><>0<>0<><>::uid://bi7cm43d6twr3::::res://Components/Characters/player/Player.tscn<>uid://d3c3cro84wvpb::::res://scenes/game.gd<>uid://cjp58634du344::::res://Components/Objects/Upgrades/Upgrade.tscn<>uid://cwwovcfxr5kig::::res://Components/Objects/Upgrades/GhostArm/GhostArm.tres<>uid://cvlbkmc4ia8ci::::res://scenes/parkour_testV1.tscn<>uid://pi12nha5o2yq::::res://Components/Characters/NPCs/Dummy/Dummy.tscn
-parkour_testV1.tscn::PackedScene::6269594448709521904::1760717446::0::1::::<><><>0<>0<><>::uid://bak8ltrhbmlv5::::res://scenes/CSGStairMaker3D.tscn<>uid://djsckjlg62bvl::::res://assets/Materials/testing.tres
+game.gd::GDScript::9130382991900826739::1762780430::0::1::::<>Node3D<><>0<>0<><>::
+game.tscn::PackedScene::1708930669074344678::1762780670::0::1::::<><><>0<>0<><>::uid://bi7cm43d6twr3::::res://Components/Characters/player/Player.tscn<>uid://d3c3cro84wvpb::::res://scenes/game.gd<>uid://cjp58634du344::::res://Components/Objects/Upgrades/Upgrade.tscn<>uid://cwwovcfxr5kig::::res://Components/Objects/Upgrades/GhostArm/GhostArm.tres<>uid://cvlbkmc4ia8ci::::res://scenes/parkour_testV1.tscn<>uid://pi12nha5o2yq::::res://Components/Characters/NPCs/Dummy/Dummy.tscn
+parkour_testV1.tscn::PackedScene::6269594448709521904::1762780654::0::1::::<><><>0<>0<><>::uid://bak8ltrhbmlv5::::res://scenes/CSGStairMaker3D.tscn<>uid://djsckjlg62bvl::::res://assets/Materials/testing.tres

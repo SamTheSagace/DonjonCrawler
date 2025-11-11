@@ -1,4 +1,8 @@
-res://scenes/game.tscn
-res://scenes/game.gd
-res://scenes/parkour_testV1.tscn
 res://Components/Characters/NPCs/Dummy/Dummy.tscn
+res://Components/Characters/health_component.gd
+res://Components/Characters/NPCs/Dummy/dummy.gd
+res://Components/Characters/NPCs/Ennemy1/Ennemy1.tscn
+res://Components/Characters/NPCs/Ennemy1/ennemy_1.gd
+res://scenes/game.tscn
+res://Components/Objects/weapon_manager/Animations/model_anim.gd
+res://scenes/game.gd
