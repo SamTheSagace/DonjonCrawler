@@ -38,10 +38,10 @@ use_collision = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.511, 0, 8.651)
 
 [node name="Dummy" parent="." instance=ExtResource("10_vtaks")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -17.799, 0, 3.365)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -19.234, 0, 6.621)
 
 [node name="Upgrade" parent="." instance=ExtResource("4_lbhrr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.944503, 2.6498623, -5.764915)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.855737, 0.24022675, 4.467176)
 upgrade = ExtResource("6_p57ef")
 
 [node name="Ennemy1" parent="." instance=ExtResource("7_u5sy4")]

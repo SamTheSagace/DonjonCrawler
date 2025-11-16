@@ -1,6 +1,6 @@
+AnimationPlayer
 CharacterBody3D
 CollisionShape3D
-AnimationPlayer
 Label3D      - Matches the "text" keyword.
 Node3D
 MeshInstance3D

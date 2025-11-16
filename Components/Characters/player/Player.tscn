@@ -118,12 +118,11 @@ skeleton = NodePath("../..")
 [node name="Hand" type="Node3D" parent="WorldModel/body"]
 transform = Transform3D(1, 0, 0, 0, 0.9659255, 0.25881895, 0, -0.25881895, 0.9659255, 0.5, 0, -0.5)
 
-[node name="WorldModelAnimation" type="AnimationPlayer" parent="WorldModel/body/Hand" node_paths=PackedStringArray("player", "weaponManager")]
+[node name="WorldModelAnimation" type="AnimationPlayer" parent="WorldModel/body/Hand" node_paths=PackedStringArray("weaponManager")]
 libraries = {
 &"": SubResource("AnimationLibrary_6r5ir")
 }
 script = ExtResource("6_6r5ir")
-player = NodePath("../../../..")
 weaponManager = NodePath("../../../../WeaponManager")
 
 [node name="sword" parent="WorldModel/body/Hand" instance=ExtResource("4_eef07")]
@@ -157,12 +156,11 @@ target_position = Vector3(0, 0, -999)
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 0.9659255, 0.25881895, 0, -0.25881895, 0.9659255, 0.5, -0.5, -0.5)
 
-[node name="ViewModelAnim" type="AnimationPlayer" parent="Head/SpringArm3D/CameraSmooth/Camera3D/ViewModel" node_paths=PackedStringArray("player", "weaponManager")]
+[node name="ViewModelAnim" type="AnimationPlayer" parent="Head/SpringArm3D/CameraSmooth/Camera3D/ViewModel" node_paths=PackedStringArray("weaponManager")]
 libraries = {
 &"": SubResource("AnimationLibrary_gxfno")
 }
 script = ExtResource("6_6r5ir")
-player = NodePath("../../../../../..")
 weaponManager = NodePath("../../../../../../WeaponManager")
 
 [node name="sword" parent="Head/SpringArm3D/CameraSmooth/Camera3D/ViewModel" instance=ExtResource("4_eef07")]

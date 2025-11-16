@@ -7,9 +7,14 @@ func _ready() -> void:
 	pass
 
 func _on_attackInput(weapon_resource: WeaponResource):
-		if(weapon_resource.weapon_type == WeaponType.Type.MELEE):
+		var type := weapon_resource.weapon_type  
+		var expectType := WeaponType.Type
+		if( type == expectType.MELEE):
 			play("sword_slash")
-			
+		if( type == expectType.RANGED):
+			print("ranged")
+		else:
+			play("sword_slash")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

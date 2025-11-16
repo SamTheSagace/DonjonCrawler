@@ -27,10 +27,6 @@ var _snapped_to_stairs_last_frame := false
 var _last_frame_was_on_floor = -INF
 
 
-@export var view_model_anim : AnimationPlayer
-@export var world_model_anim : AnimationPlayer
-
-
 @onready var head = $Head
 @onready var spring_arm = $Head/SpringArm3D
 @onready var camera = %Camera3D

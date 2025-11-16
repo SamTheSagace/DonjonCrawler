@@ -1,8 +1,11 @@
-res://Components/Characters/NPCs/Dummy/Dummy.tscn
-res://Components/Characters/health_component.gd
-res://Components/Characters/NPCs/Dummy/dummy.gd
-res://Components/Characters/NPCs/Ennemy1/Ennemy1.tscn
-res://Components/Characters/NPCs/Ennemy1/ennemy_1.gd
 res://scenes/game.tscn
+res://Components/Characters/NPCs/Ennemy1/Ennemy1.tscn
+res://Components/Characters/NPCs/Dummy/Dummy.tscn
+res://Components/Characters/NPCs/Ennemy1/ennemy_1.gd
+res://Components/Characters/player/Player.tscn
+res://Components/Objects/weapon_manager/weapon_manager.gd
+res://Components/Objects/Upgrades/GhostArm/GhostArm.tscn
 res://Components/Objects/weapon_manager/Animations/model_anim.gd
-res://scenes/game.gd
+res://Components/Objects/Upgrades/GhostArm/ghostarm_upgrade.gd
+res://Components/Objects/Upgrades/GhostArm/GhostArm.tres
+res://Components/Objects/Upgrades/GhostArm/ghostSword.tscn

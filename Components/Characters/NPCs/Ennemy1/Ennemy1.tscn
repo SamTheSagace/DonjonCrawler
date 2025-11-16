@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cqgk0gsohmovx"]
+[gd_scene load_steps=18 format=3 uid="uid://cqgk0gsohmovx"]
 
 [ext_resource type="PackedScene" uid="uid://bu866va6wl0v0" path="res://Components/Characters/HealthComponent.tscn" id="1_4fqi0"]
 [ext_resource type="Script" uid="uid://dae8ptut3nr76" path="res://Components/Characters/NPCs/Ennemy1/ennemy_1.gd" id="1_4h2bd"]
@@ -7,6 +7,7 @@
 [ext_resource type="Resource" uid="uid://c73x0ieajhcws" path="res://Components/Objects/weapon_manager/sword/sword.tres" id="4_4h2bd"]
 [ext_resource type="Script" uid="uid://dmlgkbxt4c6mn" path="res://Components/Objects/weapon_manager/Animations/model_anim.gd" id="5_5ya66"]
 [ext_resource type="PackedScene" uid="uid://pj2jrig5rx6h" path="res://Components/Objects/weapon_manager/sword/sword.glb" id="6_4h2bd"]
+[ext_resource type="Script" uid="uid://2ger1cq2sfsm" path="res://Components/Characters/NPCs/Dummy/body_animation.gd" id="8_1v2vy"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1v2vy"]
 
@@ -50,6 +51,67 @@ _data = {
 }
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4fqi0"]
+
+[sub_resource type="Animation" id="Animation_6klwy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_0qu2q"]
+resource_name = "damageTaken"
+length = 0.27
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.27),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.06607816, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.27),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, -0.108848214), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_panqs"]
+_data = {
+&"RESET": SubResource("Animation_6klwy"),
+&"damageTaken": SubResource("Animation_0qu2q")
+}
 
 [node name="Ennemy1" type="CharacterBody3D" node_paths=PackedStringArray("health")]
 script = ExtResource("1_4h2bd")
@@ -103,3 +165,11 @@ visible = false
 [node name="FloorColision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_4fqi0")
+
+[node name="BodyAnimation" type="AnimationPlayer" parent="." node_paths=PackedStringArray("health")]
+root_node = NodePath("../WorldModel/MeshInstance3D")
+libraries = {
+&"": SubResource("AnimationLibrary_panqs")
+}
+script = ExtResource("8_1v2vy")
+health = NodePath("../HealthComponent")

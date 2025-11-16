@@ -9,7 +9,7 @@ extends Node3D
 
 var model_instance : Weapon
 
-signal attack_Animation(new_value)
+signal attack_Animation(weapon_ressource)
 
 func update_weapon_model() -> void:
 	if weapon_resource != null:
@@ -17,7 +17,7 @@ func update_weapon_model() -> void:
 			view_model_container.add_child(weapon_resource.view_model.instantiate())
 		if world_model_container and weapon_resource.world_model:
 			model_instance = weapon_resource.world_model.instantiate()
-			model_instance.hit_Hitbox.connect(attack)
+			model_instance.hit_Hitbox.connect(attack_Hit)
 			world_model_container.add_child(model_instance)
 
 func _ready() -> void:
@@ -29,7 +29,7 @@ func _process(delta):
 	
 	pass
 
-func attack(hitbox):
+func attack_Hit(hitbox):
 	var attack = Attack.new()
 	attack.attack_Damage = weapon_resource.damage
 	hitbox.damage(attack)

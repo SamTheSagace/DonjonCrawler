@@ -1,14 +1,76 @@
-[gd_scene load_steps=7 format=3 uid="uid://pi12nha5o2yq"]
+[gd_scene load_steps=11 format=3 uid="uid://pi12nha5o2yq"]
 
 [ext_resource type="Script" uid="uid://ddgi7w5lbg2k3" path="res://Components/Characters/NPCs/Dummy/dummy.gd" id="1_ti8cp"]
 [ext_resource type="PackedScene" uid="uid://bkcotb4wiqh2g" path="res://Components/Characters/HitboxComponent.tscn" id="2_0n3s4"]
 [ext_resource type="PackedScene" uid="uid://bu866va6wl0v0" path="res://Components/Characters/HealthComponent.tscn" id="3_1sesn"]
+[ext_resource type="Script" uid="uid://2ger1cq2sfsm" path="res://Components/Characters/NPCs/Dummy/body_animation.gd" id="4_6klwy"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1sesn"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0n3s4"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_lhpcd"]
+
+[sub_resource type="Animation" id="Animation_6klwy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_0qu2q"]
+resource_name = "damageTaken"
+length = 0.27
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.27),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.06607816, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.27),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, -0.108848214), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_panqs"]
+_data = {
+&"RESET": SubResource("Animation_6klwy"),
+&"damageTaken": SubResource("Animation_0qu2q")
+}
 
 [node name="Dummy" type="CharacterBody3D" node_paths=PackedStringArray("health")]
 script = ExtResource("1_ti8cp")
@@ -39,3 +101,11 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1692958, 0)
 pixel_size = 0.009
 text = "eeeeeeeeeeeeeeeee"
+
+[node name="BodyAnimation" type="AnimationPlayer" parent="." node_paths=PackedStringArray("health")]
+root_node = NodePath("../WorldModel/MeshInstance3D")
+libraries = {
+&"": SubResource("AnimationLibrary_panqs")
+}
+script = ExtResource("4_6klwy")
+health = NodePath("../HealthComponent")
