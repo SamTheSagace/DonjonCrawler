@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://d1ooy1p6tsu5u"]
+
+[ext_resource type="Script" uid="uid://bcv7ts0prtkio" path="res://Components/Objects/weapon_manager/MeleeWeapon.gd" id="1_s84ao"]
+[ext_resource type="PackedScene" uid="uid://1rqcg2dcpvsw" path="res://Components/Objects/weapon_manager/Bow/bow.glb" id="2_dlt0m"]
+[ext_resource type="PackedScene" uid="uid://clwgv660wr2ck" path="res://Components/Objects/weapon_manager/weaponHurtbox.tscn" id="3_u2som"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rspo1"]
+size = Vector3(0.03, 2.3, 0.2)
+
+[node name="Bow" type="Node3D"]
+script = ExtResource("1_s84ao")
+
+[node name="bow_model" parent="." instance=ExtResource("2_dlt0m")]
+
+[node name="WeaponHitbox" parent="." instance=ExtResource("3_u2som")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WeaponHitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35, 0)
+shape = SubResource("BoxShape3D_rspo1")

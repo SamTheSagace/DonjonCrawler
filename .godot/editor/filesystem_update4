@@ -1,11 +1,9 @@
-res://scenes/game.tscn
-res://Components/Characters/NPCs/Ennemy1/Ennemy1.tscn
-res://Components/Characters/NPCs/Dummy/Dummy.tscn
-res://Components/Characters/NPCs/Ennemy1/ennemy_1.gd
 res://Components/Characters/player/Player.tscn
+res://Components/Characters/player/movement.gd
+res://Components/Characters/player/old_player.gd
+res://Components/Objects/Upgrades/base_upgrade.gd
 res://Components/Objects/weapon_manager/weapon_manager.gd
 res://Components/Objects/Upgrades/GhostArm/GhostArm.tscn
-res://Components/Objects/weapon_manager/Animations/model_anim.gd
+res://Components/Objects/weapon_manager/weapon_resource.gd
 res://Components/Objects/Upgrades/GhostArm/ghostarm_upgrade.gd
-res://Components/Objects/Upgrades/GhostArm/GhostArm.tres
-res://Components/Objects/Upgrades/GhostArm/ghostSword.tscn
+res://Components/Objects/Upgrades/GhostArm/ghost_arm.gd

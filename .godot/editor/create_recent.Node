@@ -1,8 +1,8 @@
+Node3D
 AnimationPlayer
 CharacterBody3D
 CollisionShape3D
 Label3D      - Matches the "text" keyword.
-Node3D
 MeshInstance3D
 Area3D
 HitboxComponent

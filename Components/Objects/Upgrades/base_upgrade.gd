@@ -7,5 +7,4 @@ extends Resource
 @export var level: int = 1
 
 func apply_upgrade(player: Player):
-		# This does nothing by default
 	pass

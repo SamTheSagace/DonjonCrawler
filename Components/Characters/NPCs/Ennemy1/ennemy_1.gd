@@ -1,10 +1,14 @@
-extends CharacterBody3D
+class_name Ennemy
+extends Character
 
+enum EnemyState {
+	IDLE,
+	CHASE,
+	ATTACK,
+	HURT
+}
 
-@export var SPEED = 5.0
-@export var JUMP_VELOCITY = 4.5
-signal attackInput()
-@export var health : HealthComponent
+var current_state = EnemyState.IDLE
 
 func _ready():
 	if health:
@@ -34,5 +38,27 @@ func _physics_process(delta):
 
 
 func _process(delta):
+	#match(current_state):
+		#EnemyState.IDLE: _idle_state()
+		#EnemyState.CHASE: _chase_state()
+		#EnemyState.ATTACK: _attack_state()
 	if health:
 		%Health.text = var_to_str(health.health)
+
+#func _idle_state():
+	#$AnimationPlayer.play("idle")
+		#target = find_target()
+	#if target != null:
+		#current_state = EnemyState.CHASE
+		#return
+		#
+#func find_target():
+	#pass
+#
+#func _chase_state():
+	#pass
+	#
+#func _attack_state():
+	#pass
+	#
+#

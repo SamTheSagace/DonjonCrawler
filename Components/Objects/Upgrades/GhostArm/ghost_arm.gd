@@ -1,6 +1,5 @@
-extends CharacterBody3D
+extends Character
 
-signal attackInput()
 var time_in_seconds = .2
 
 func _on_player_attack():

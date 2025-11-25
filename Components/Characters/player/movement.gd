@@ -2,14 +2,14 @@ class_name MovementController
 extends Node
 
 # --- Player reference ---
-var player: CharacterBody3D
+@export var player: Player
 
 # --- Movement tuning ---
 @export var auto_bhop := true
-@export var sneak_SPEED := 2.5
-@export var walk_SPEED := 5.0
-@export var sprint_SPEED := 8.0
-@export var JUMP_VELOCITY := 7.0
+@export var sneak_SPEED := 0.5
+@export var sprint_SPEED := 0.75
+var walk_SPEED := 5.0
+var JUMP_VELOCITY := 5.0
 
 @export var air_cap := 1.0
 @export var air_accel := 800.0
@@ -26,9 +26,9 @@ var wish_dir := Vector3.ZERO
 var snapped_to_stairs_last_frame := false
 var last_frame_was_on_floor := -INF
 
-func setup(body: CharacterBody3D):
-	player = body
-
+func _ready() :
+	walk_SPEED=player.SPEED
+	JUMP_VELOCITY=player.JUMP_VELOCITY
 # -----------------------------
 # PHYSICS HANDLER
 # -----------------------------
@@ -58,6 +58,7 @@ func handle_physics(delta: float):
 func _handle_ground_physics(delta: float):
 	player.velocity.x = wish_dir.x * _get_move_speed()
 	player.velocity.z = wish_dir.z * _get_move_speed()
+	_headbob_effect(delta)
 
 func _handle_air_physics(delta: float):
 	player.velocity.y -= ProjectSettings.get_setting("physics/3d/default_gravity") * delta
@@ -71,9 +72,9 @@ func _handle_air_physics(delta: float):
 
 func _get_move_speed() -> float:
 	if Input.is_action_pressed("sprint"):
-		return sprint_SPEED
+		return walk_SPEED*sprint_SPEED
 	elif Input.is_action_pressed("sneak"):
-		return sneak_SPEED
+		return walk_SPEED*sneak_SPEED
 	else:
 		return walk_SPEED
 
@@ -94,7 +95,7 @@ func _run_body_test_motion(from: Transform3D, motion: Vector3, result = null) ->
 func _snap_down_to_stairs_check() -> void:
 	var did_snap := false
 	%StairsBelowRayCast3D.force_raycast_update()
-	var floor_below := %StairsBelowRayCast3D.is_colliding() 
+	var floor_below : bool = %StairsBelowRayCast3D.is_colliding() \
 		and not is_surface_too_steep(%StairsBelowRayCast3D.get_collision_normal())
 	var was_on_floor_last_frame := Engine.get_physics_frames() == last_frame_was_on_floor
 

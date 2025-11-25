@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bi7cm43d6twr3"]
+[gd_scene load_steps=19 format=3 uid="uid://bi7cm43d6twr3"]
 
 [ext_resource type="Script" uid="uid://djkjlkey0c5xp" path="res://Components/Characters/player/player.gd" id="1_fcaap"]
 [ext_resource type="PackedScene" uid="uid://bkcotb4wiqh2g" path="res://Components/Characters/HitboxComponent.tscn" id="2_bkrd4"]
@@ -8,6 +8,7 @@
 [ext_resource type="Resource" uid="uid://c73x0ieajhcws" path="res://Components/Objects/weapon_manager/sword/sword.tres" id="3_ancfq"]
 [ext_resource type="PackedScene" uid="uid://pj2jrig5rx6h" path="res://Components/Objects/weapon_manager/sword/sword.glb" id="4_eef07"]
 [ext_resource type="Script" uid="uid://dmlgkbxt4c6mn" path="res://Components/Objects/weapon_manager/Animations/model_anim.gd" id="6_6r5ir"]
+[ext_resource type="Script" uid="uid://20qt3k6lqvx2" path="res://Components/Characters/player/movement.gd" id="9_305y5"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bkrd4"]
 
@@ -89,8 +90,9 @@ _data = {
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6r5ir"]
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("movement_controller")]
 script = ExtResource("1_fcaap")
+movement_controller = NodePath("Movement")
 
 [node name="WeaponManager" parent="." node_paths=PackedStringArray("character", "view_model_container", "world_model_container") instance=ExtResource("3_6m33q")]
 character = NodePath("..")
@@ -179,3 +181,7 @@ target_position = Vector3(0, -0.75, 0)
 [node name="FloorColision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_6r5ir")
+
+[node name="Movement" type="Node3D" parent="." node_paths=PackedStringArray("player")]
+script = ExtResource("9_305y5")
+player = NodePath("..")

@@ -21,7 +21,7 @@ func apply_upgrade(player: Player):
 			ghostWeaponManager = child
 	player.attackInput.connect(Callable(ghost, "_on_player_attack"))
 	ghostWeaponManager.weapon_resource =  weaponManager.weapon_resource.duplicate()
-	ghostWeaponManager.weapon_resource.damage = weaponManager.weapon_resource.damage * .5
+	ghostWeaponManager.weapon_resource.damage = weaponManager.weapon_resource.damage * 0.5
 	if ghostWeaponManager.weapon_resource.weapon_type == WeaponType.Type.MELEE:
 		ghostWeaponManager.weapon_resource.world_model = ghostSword
 	player.add_child(ghost)
