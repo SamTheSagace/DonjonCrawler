@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cqgk0gsohmovx"]
+[gd_scene load_steps=19 format=3 uid="uid://cqgk0gsohmovx"]
 
 [ext_resource type="PackedScene" uid="uid://bu866va6wl0v0" path="res://Components/Characters/HealthComponent.tscn" id="1_4fqi0"]
 [ext_resource type="Script" uid="uid://dae8ptut3nr76" path="res://Components/Characters/NPCs/Ennemy1/enemy_base.gd" id="1_4h2bd"]
@@ -7,6 +7,7 @@
 [ext_resource type="Resource" uid="uid://c73x0ieajhcws" path="res://Components/Objects/weapon_manager/sword/sword.tres" id="4_4h2bd"]
 [ext_resource type="Script" uid="uid://dmlgkbxt4c6mn" path="res://Components/Objects/weapon_manager/Animations/model_anim.gd" id="5_5ya66"]
 [ext_resource type="PackedScene" uid="uid://pj2jrig5rx6h" path="res://Components/Objects/weapon_manager/sword/sword.glb" id="6_4h2bd"]
+[ext_resource type="PackedScene" uid="uid://c1tdw8tv4ntro" path="res://assets/Models/disguise-glasses.glb" id="6_o0vjk"]
 [ext_resource type="Script" uid="uid://2ger1cq2sfsm" path="res://Components/Characters/NPCs/Dummy/body_animation.gd" id="8_1v2vy"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1v2vy"]
@@ -127,13 +128,13 @@ health_component = NodePath("../HealthComponent")
 shape = SubResource("CapsuleShape3D_1v2vy")
 
 [node name="Name" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2900643, 0)
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 2.2900643, 0)
 pixel_size = 0.009
 text = "Ennemy"
 
 [node name="Info" type="Label3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.9901574, 0)
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 2.9901574, 0)
 pixel_size = 0.009
 text = "eee
 e
@@ -149,6 +150,9 @@ world_model_container = NodePath("../WorldModel/MeshInstance3D/Hand")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="WorldModel"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("CapsuleMesh_0gpf4")
+
+[node name="disguise-glasses" parent="WorldModel/MeshInstance3D" instance=ExtResource("6_o0vjk")]
+transform = Transform3D(-1.7250003, 0, 1.508043e-07, 0, 1.7250003, 0, -1.508043e-07, 0, -1.7250003, 0, 0.21632385, -0.16323447)
 
 [node name="Hand" type="Node3D" parent="WorldModel/MeshInstance3D"]
 transform = Transform3D(1, 0, 0, 0, 0.9659255, 0.25881895, 0, -0.25881895, 0.9659255, 0.5, 0, -0.5)

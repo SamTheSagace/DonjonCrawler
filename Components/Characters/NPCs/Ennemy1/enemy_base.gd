@@ -17,6 +17,7 @@ var current_state = EnemyState.IDLE
 var text_info := ''
 var next_nav_point = null
 var dir_global : Vector3
+var target_rotation :float
 
 func _ready():
 	player = get_node(player_path)
@@ -26,12 +27,15 @@ func _physics_process(delta):
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 	var direction = input_dir
+	self.rotation.y = lerp_angle(self.rotation.y, target_rotation, SPEED*delta)
 	if direction:
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
+	
+	
 	move_and_slide()
 
 func _process(delta):
@@ -61,6 +65,7 @@ func find_target():
 
 func _chase_state():
 	input_dir = (next_nav_point - self.global_position).normalized()
+	target_rotation = atan2(-input_dir.x, -input_dir.z)
 	if abs(nav_agent.distance_to_target()) < 2:
 		input_dir = Vector3(0,0,0)
 		current_state = EnemyState.ATTACK
@@ -68,6 +73,8 @@ func _chase_state():
 	pass
 
 func _attack_state():
+	var target = (next_nav_point - self.global_position).normalized()
+	target_rotation = atan2(-target.x, -target.z)
 	if abs(nav_agent.distance_to_target()) > 5:
 		current_state = EnemyState.CHASE
 	pass
