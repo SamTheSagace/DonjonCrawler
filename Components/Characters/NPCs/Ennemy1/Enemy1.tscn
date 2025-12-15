@@ -1,7 +1,7 @@
 [gd_scene load_steps=18 format=3 uid="uid://cqgk0gsohmovx"]
 
 [ext_resource type="PackedScene" uid="uid://bu866va6wl0v0" path="res://Components/Characters/HealthComponent.tscn" id="1_4fqi0"]
-[ext_resource type="Script" uid="uid://dae8ptut3nr76" path="res://Components/Characters/NPCs/Ennemy1/ennemy_1.gd" id="1_4h2bd"]
+[ext_resource type="Script" uid="uid://dae8ptut3nr76" path="res://Components/Characters/NPCs/Ennemy1/enemy_base.gd" id="1_4h2bd"]
 [ext_resource type="PackedScene" uid="uid://bkcotb4wiqh2g" path="res://Components/Characters/HitboxComponent.tscn" id="2_310ak"]
 [ext_resource type="PackedScene" uid="uid://3s7hon3kcce0" path="res://Components/Objects/weapon_manager/WeaponManager.tscn" id="3_5ya66"]
 [ext_resource type="Resource" uid="uid://c73x0ieajhcws" path="res://Components/Objects/weapon_manager/sword/sword.tres" id="4_4h2bd"]
@@ -113,7 +113,7 @@ _data = {
 &"damageTaken": SubResource("Animation_0qu2q")
 }
 
-[node name="Ennemy1" type="CharacterBody3D" node_paths=PackedStringArray("health")]
+[node name="Enemy1" type="CharacterBody3D" node_paths=PackedStringArray("health")]
 script = ExtResource("1_4h2bd")
 health = NodePath("HealthComponent")
 
@@ -127,15 +127,17 @@ health_component = NodePath("../HealthComponent")
 shape = SubResource("CapsuleShape3D_1v2vy")
 
 [node name="Name" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5681844, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2900643, 0)
 pixel_size = 0.009
 text = "Ennemy"
 
-[node name="Health" type="Label3D" parent="."]
+[node name="Info" type="Label3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1692958, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.9901574, 0)
 pixel_size = 0.009
-text = "11111"
+text = "eee
+e
+e"
 
 [node name="WeaponManager" parent="." node_paths=PackedStringArray("character", "world_model_container") instance=ExtResource("3_5ya66")]
 character = NodePath("..")
@@ -173,3 +175,7 @@ libraries = {
 }
 script = ExtResource("8_1v2vy")
 health = NodePath("../HealthComponent")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+debug_enabled = true
+debug_use_custom = true
