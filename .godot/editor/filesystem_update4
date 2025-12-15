@@ -1,1 +1,6 @@
+res://Components/Characters/NPCs/Ennemy1/Ennemy1.tscn
+res://Components/Characters/NPCs/Ennemy1/ennemy_base.gd
+res://scenes/game.tscn
+res://scenes/parkour_testV1.tscn
 res://Components/Characters/NPCs/Ennemy1/Enemy1.tscn
+res://Components/Characters/NPCs/Ennemy1/enemy_base.gd
