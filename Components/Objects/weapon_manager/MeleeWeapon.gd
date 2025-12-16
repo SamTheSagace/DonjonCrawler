@@ -1,5 +1,5 @@
 class_name MeleeWeapon
-extends Weapon
+extends WeaponBase
 
 #var weapon_data : WeaponResource 
 @onready var hurtbox : WeaponHurtbox = $WeaponHitbox

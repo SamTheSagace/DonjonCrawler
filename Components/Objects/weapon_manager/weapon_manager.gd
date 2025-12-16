@@ -8,11 +8,11 @@ extends Node3D
 @export var world_model_container: Node3D
 
 var melee_instance : MeleeWeapon
-var ranged_instance : Weapon
+var ranged_instance : WeaponBase
 
 signal attack_Animation(weapon_ressource)
 
-func update_weapon_model(weapon: Weapon) -> void:
+func update_weapon_model(weapon: WeaponBase) -> void:
 	if weapon_resource != null:
 		if view_model_container and weapon_resource.view_model:
 			view_model_container.add_child(weapon_resource.view_model.instantiate())

@@ -1,4 +1,0 @@
-GhostFormUpgrade
-BaseUpgrade
-WeaponResource
-Resource

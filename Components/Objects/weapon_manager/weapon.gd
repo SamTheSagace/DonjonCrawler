@@ -1,5 +1,5 @@
 extends Node
-class_name Weapon
+class_name WeaponBase
 
 signal hit_Hitbox(target)
 

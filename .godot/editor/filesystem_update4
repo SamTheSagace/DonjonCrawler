@@ -1,5 +1,0 @@
-res://Components/Characters/player/Player.tscn
-res://Components/Objects/weapon_manager/Weapon.gd
-res://Components/Objects/weapon_manager/MeleeWeapon.gd
-res://Components/Characters/NPCs/Ennemy1/Enemy1.tscn
-res://Components/Characters/NPCs/Ennemy1/enemy_base.gd
