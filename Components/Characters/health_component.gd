@@ -12,6 +12,3 @@ func _ready():
 func damage(attack: Attack):
 	emit_signal('damageTaken',attack.attack_Damage)
 	health -= attack.attack_Damage
-	
-	if health <= 0:
-		get_parent().queue_free()

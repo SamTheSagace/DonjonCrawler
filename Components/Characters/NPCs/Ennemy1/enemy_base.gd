@@ -57,6 +57,9 @@ func _process(delta):
 		EnemyState.IDLE: _idle_state()
 		EnemyState.CHASE: _chase_state()
 		EnemyState.ATTACK: _attack_state()
+	if health.health <= 0:
+		self.queue_free()
+
 
 func _idle_state():
 	#$AnimationPlayer.play("idle")
