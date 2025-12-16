@@ -48,7 +48,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.855737, 0.24022675, 4.467
 upgrade = ExtResource("6_p57ef")
 
 [node name="Enemy1" parent="." instance=ExtResource("7_u5sy4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.218605, 0.000998497, -1.5954828)
+transform = Transform3D(-0.96387726, 0, -0.2663469, 0, 1, 0, 0.2663469, 0, -0.96387726, -25.218605, 0.000998497, -1.5954828)
 player_path = NodePath("../Player")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
