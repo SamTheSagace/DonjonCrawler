@@ -45,6 +45,11 @@ func _process(delta):
 			nav_agent.distance_to_target(),
 			current_state
 		]
+		#%Info.text = "Health: %s\nDif: %s\nRotation: %s" % [
+			#health.health,
+			#abs(target_rotation - self.rotation.y),
+			#self.rotation.y,
+		#]
 	nav_agent.set_target_position(player.global_position)
 	next_nav_point = nav_agent.get_next_path_position()
 	dir_global= (next_nav_point - global_position).normalized()
@@ -69,12 +74,13 @@ func _chase_state():
 	if abs(nav_agent.distance_to_target()) < 2:
 		input_dir = Vector3(0,0,0)
 		current_state = EnemyState.ATTACK
-	#print(nav_agent.distance_to_target())
 	pass
 
 func _attack_state():
 	var target = (next_nav_point - self.global_position).normalized()
 	target_rotation = atan2(-target.x, -target.z)
+	if abs(target_rotation-self.rotation.y) <=.1:
+		emit_signal("attackInput")
 	if abs(nav_agent.distance_to_target()) > 5:
 		current_state = EnemyState.CHASE
 	pass

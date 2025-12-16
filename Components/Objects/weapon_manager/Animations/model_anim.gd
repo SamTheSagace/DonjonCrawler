@@ -1,4 +1,5 @@
 extends AnimationPlayer
+class_name WorldHandAnimation
 
 @export var weaponManager : WeaponManager
 # Called when the node enters the scene tree for the first time.
@@ -16,6 +17,9 @@ func _on_attackInput(weapon_resource: WeaponResource):
 		else:
 			play("sword_slash")
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _on_animation_finished(anim_name: StringName) -> void:
+	pass # Replace with function body.
+
+
 func _process(delta: float) -> void:
 	pass

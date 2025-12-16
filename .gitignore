@@ -1,0 +1,7 @@
+# Godot editor cache (DO NOT COMMIT)
+.godot/
+
+# Godot build artifacts
+*.import
+.export/
+.export_presets.cfg
