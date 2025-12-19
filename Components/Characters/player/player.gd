@@ -90,7 +90,6 @@ func _slide_camera_smooth_back_to_origin(delta):
 	if %CameraSmooth.position.y == 0:
 		_saved_camera_global_pos = null
 
-
 func add_upgrade(upgrade: BasePlayerUpgrade):
 	upgrades.append(upgrade)
 	upgrade.apply_upgrade(self)

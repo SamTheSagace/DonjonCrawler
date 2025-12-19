@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bi7cm43d6twr3"]
+[gd_scene load_steps=21 format=3 uid="uid://bi7cm43d6twr3"]
 
 [ext_resource type="Script" uid="uid://djkjlkey0c5xp" path="res://Components/Characters/player/player.gd" id="1_fcaap"]
 [ext_resource type="PackedScene" uid="uid://bkcotb4wiqh2g" path="res://Components/Characters/HitboxComponent.tscn" id="2_bkrd4"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://pj2jrig5rx6h" path="res://Components/Objects/weapon_manager/sword/sword.glb" id="4_eef07"]
 [ext_resource type="Script" uid="uid://dmlgkbxt4c6mn" path="res://Components/Objects/weapon_manager/Animations/model_anim.gd" id="6_6r5ir"]
 [ext_resource type="Script" uid="uid://20qt3k6lqvx2" path="res://Components/Characters/player/movement.gd" id="9_305y5"]
+[ext_resource type="Script" uid="uid://bupf3pckd3pvo" path="res://Components/Characters/player/HUD.gd" id="10_2g87s"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bkrd4"]
 
@@ -92,9 +93,10 @@ _data = {
 
 [sub_resource type="QuadMesh" id="QuadMesh_305y5"]
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("movement_controller")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("movement_controller", "health")]
 script = ExtResource("1_fcaap")
 movement_controller = NodePath("Movement")
+health = NodePath("HealthComponent")
 
 [node name="WeaponManager" parent="." node_paths=PackedStringArray("character", "view_model_container", "world_model_container") instance=ExtResource("3_6m33q")]
 character = NodePath("..")
@@ -186,11 +188,22 @@ shape = SubResource("CapsuleShape3D_6r5ir")
 script = ExtResource("9_305y5")
 player = NodePath("..")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="HUD" type="CanvasLayer" parent="." node_paths=PackedStringArray("health")]
+script = ExtResource("10_2g87s")
+health = NodePath("../HealthComponent")
 
-[node name="Node2D" type="Node2D" parent="CanvasLayer"]
+[node name="Node2D" type="Node2D" parent="HUD"]
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="CanvasLayer/Node2D"]
+[node name="HealthBar" type="ProgressBar" parent="HUD/Node2D"]
+unique_name_in_owner = true
+offset_right = 557.0
+offset_bottom = 113.0
+value = 60.0
+show_percentage = false
+
+[node name="Heatlhbar" type="MeshInstance2D" parent="HUD/Node2D"]
+unique_name_in_owner = true
+visible = false
 position = Vector2(164.24998, 26.75)
 scale = Vector2(329.49997, 54.5)
 mesh = SubResource("QuadMesh_305y5")
