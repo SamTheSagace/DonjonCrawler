@@ -72,9 +72,8 @@ _data = {
 &"damageTaken": SubResource("Animation_0qu2q")
 }
 
-[node name="Dummy" type="CharacterBody3D" node_paths=PackedStringArray("health")]
+[node name="Dummy" type="CharacterBody3D"]
 script = ExtResource("1_ti8cp")
-health = NodePath("HealthComponent")
 
 [node name="FloorColision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -88,7 +87,6 @@ health_component = NodePath("../HealthComponent")
 shape = SubResource("CapsuleShape3D_0n3s4")
 
 [node name="HealthComponent" parent="." instance=ExtResource("3_1sesn")]
-Max_health = 400
 
 [node name="WorldModel" type="Node3D" parent="."]
 
@@ -102,10 +100,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1692958, 0)
 pixel_size = 0.009
 text = "eeeeeeeeeeeeeeeee"
 
-[node name="BodyAnimation" type="AnimationPlayer" parent="." node_paths=PackedStringArray("health")]
+[node name="BodyAnimation" type="AnimationPlayer" parent="."]
 root_node = NodePath("../WorldModel/MeshInstance3D")
 libraries = {
 &"": SubResource("AnimationLibrary_panqs")
 }
 script = ExtResource("4_6klwy")
-health = NodePath("../HealthComponent")

@@ -20,6 +20,7 @@ var dir_global : Vector3
 var target_rotation :float
 
 func _ready():
+	super._ready()
 	player = get_node(player_path)
 
 func _physics_process(delta):
@@ -39,9 +40,9 @@ func _physics_process(delta):
 	move_and_slide()
 
 func _process(delta):
-	if health:
+	if HEALTH_COMPONENT:
 		%Info.text = "Health: %s\nDistance: %s\nState: %s" % [
-			health.health,
+			HEALTH_COMPONENT.health,
 			nav_agent.distance_to_target(),
 			current_state
 		]
@@ -57,7 +58,7 @@ func _process(delta):
 		EnemyState.IDLE: _idle_state()
 		EnemyState.CHASE: _chase_state()
 		EnemyState.ATTACK: _attack_state()
-	if health.health <= 0:
+	if HEALTH_COMPONENT.health <= 0:
 		self.queue_free()
 
 

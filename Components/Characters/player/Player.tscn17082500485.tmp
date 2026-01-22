@@ -1,6 +1,6 @@
 [gd_scene load_steps=23 format=3 uid="uid://bi7cm43d6twr3"]
 
-[ext_resource type="Script" uid="uid://di4amo7t35u2y" path="res://Components/Characters/state_machine.gd" id="1_2h2ij"]
+[ext_resource type="Script" uid="uid://djkjlkey0c5xp" path="res://Components/Characters/player/player.gd" id="1_fcaap"]
 [ext_resource type="PackedScene" uid="uid://dwi3cx56ehejn" path="res://Components/Characters/state_machine.tscn" id="2_2h2ij"]
 [ext_resource type="PackedScene" uid="uid://bkcotb4wiqh2g" path="res://Components/Characters/HitboxComponent.tscn" id="2_bkrd4"]
 [ext_resource type="PackedScene" uid="uid://c1tdw8tv4ntro" path="res://assets/Models/disguise-glasses.glb" id="2_ox2ha"]
@@ -97,12 +97,13 @@ _data = {
 [sub_resource type="LabelSettings" id="LabelSettings_2g87s"]
 font_size = 83
 
-[node name="Player" type="CharacterBody3D"]
-script = ExtResource("1_2h2ij")
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("movement_controller", "HEALTH_COMPONENT")]
+script = ExtResource("1_fcaap")
+movement_controller = NodePath("Movement")
+MAX_HEALTH = 70
+HEALTH_COMPONENT = NodePath("HealthComponent")
 
-[node name="StateMachineCombat" parent="." instance=ExtResource("2_2h2ij")]
-
-[node name="StateMachineMovement" parent="." instance=ExtResource("2_2h2ij")]
+[node name="StateMachine" parent="." instance=ExtResource("2_2h2ij")]
 
 [node name="WeaponManager" parent="." node_paths=PackedStringArray("character", "view_model_container", "world_model_container") instance=ExtResource("3_6m33q")]
 character = NodePath("..")

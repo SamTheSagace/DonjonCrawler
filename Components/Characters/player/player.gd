@@ -2,13 +2,15 @@ class_name Player
 extends Character
 
 @export var sensitivity: float = 5.0
-@export var SENSITIVITY := sensitivity * 0.001
+
 @export var movement_controller : MovementController
 
 @onready var head = $Head
 @onready var spring_arm = $Head/SpringArm3D
 @onready var camera = %Camera3D
 
+
+var SENSITIVITY := sensitivity * 0.001
 const SPRING_LENGTH_1 := 0
 const SPRING_LENGTH_2 := 5
 
@@ -17,6 +19,7 @@ var _saved_camera_global_pos = null
 var upgrades : Array[BasePlayerUpgrade] = []
 
 func _ready():
+	super._ready()
 	spring_arm.spring_length = SPRING_LENGTH_1
 	_set_layers()
 
@@ -93,3 +96,6 @@ func _slide_camera_smooth_back_to_origin(delta):
 func add_upgrade(upgrade: BasePlayerUpgrade):
 	upgrades.append(upgrade)
 	upgrade.apply_upgrade(self)
+
+func _process(delta: float) -> void:
+	pass
