@@ -1,6 +1,8 @@
 # Godot editor cache (DO NOT COMMIT)
 .godot/
 
+.vscode
+
 # Godot build artifacts
 *.import
 .export/
