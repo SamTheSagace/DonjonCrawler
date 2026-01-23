@@ -1,13 +1,14 @@
-[gd_scene load_steps=23 format=3 uid="uid://bi7cm43d6twr3"]
+[gd_scene load_steps=24 format=3 uid="uid://bi7cm43d6twr3"]
 
-[ext_resource type="Script" uid="uid://di4amo7t35u2y" path="res://Components/Characters/state_machine.gd" id="1_2h2ij"]
-[ext_resource type="PackedScene" uid="uid://dwi3cx56ehejn" path="res://Components/Characters/state_machine.tscn" id="2_2h2ij"]
+[ext_resource type="Script" uid="uid://djkjlkey0c5xp" path="res://Components/Characters/player/player.gd" id="1_2h2ij"]
 [ext_resource type="PackedScene" uid="uid://bkcotb4wiqh2g" path="res://Components/Characters/HitboxComponent.tscn" id="2_bkrd4"]
 [ext_resource type="PackedScene" uid="uid://c1tdw8tv4ntro" path="res://assets/Models/disguise-glasses.glb" id="2_ox2ha"]
 [ext_resource type="PackedScene" uid="uid://3s7hon3kcce0" path="res://Components/Objects/weapon_manager/WeaponManager.tscn" id="3_6m33q"]
 [ext_resource type="PackedScene" uid="uid://bu866va6wl0v0" path="res://Components/Characters/HealthComponent.tscn" id="3_6r5ir"]
 [ext_resource type="Resource" uid="uid://c73x0ieajhcws" path="res://Components/Objects/weapon_manager/sword/sword.tres" id="3_ancfq"]
+[ext_resource type="Script" uid="uid://dwcj5rig36ply" path="res://Components/Characters/player/state_machine_combat.gd" id="3_dsj48"]
 [ext_resource type="PackedScene" uid="uid://pj2jrig5rx6h" path="res://Components/Objects/weapon_manager/sword/sword.glb" id="4_eef07"]
+[ext_resource type="Script" uid="uid://c4kpkspvywtdj" path="res://Components/Characters/player/initial_state.gd" id="4_fl5x8"]
 [ext_resource type="Script" uid="uid://dmlgkbxt4c6mn" path="res://Components/Objects/weapon_manager/Animations/model_anim.gd" id="6_6r5ir"]
 [ext_resource type="Script" uid="uid://20qt3k6lqvx2" path="res://Components/Characters/player/movement.gd" id="9_305y5"]
 [ext_resource type="Script" uid="uid://bupf3pckd3pvo" path="res://Components/Characters/player/HUD.gd" id="10_2g87s"]
@@ -97,15 +98,32 @@ _data = {
 [sub_resource type="LabelSettings" id="LabelSettings_2g87s"]
 font_size = 83
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("HEALTH_COMPONENT", "MOVEMENT_COMPONENT")]
 script = ExtResource("1_2h2ij")
+HEALTH_COMPONENT = NodePath("HealthComponent")
+MOVEMENT_COMPONENT = NodePath("Movement")
 
-[node name="StateMachineCombat" parent="." instance=ExtResource("2_2h2ij")]
+[node name="Movement" type="Node3D" parent="." node_paths=PackedStringArray("player")]
+script = ExtResource("9_305y5")
+player = NodePath("..")
 
-[node name="StateMachineMovement" parent="." instance=ExtResource("2_2h2ij")]
+[node name="StateMachineCombat" type="Node" parent="."]
+script = ExtResource("3_dsj48")
+initial_state = NodePath("Idle")
 
-[node name="WeaponManager" parent="." node_paths=PackedStringArray("character", "view_model_container", "world_model_container") instance=ExtResource("3_6m33q")]
-character = NodePath("..")
+[node name="Parry" type="Node" parent="StateMachineCombat"]
+script = ExtResource("4_fl5x8")
+
+[node name="Cast" type="Node" parent="StateMachineCombat"]
+script = ExtResource("4_fl5x8")
+
+[node name="Idle" type="Node" parent="StateMachineCombat"]
+script = ExtResource("4_fl5x8")
+
+[node name="Attack" type="Node" parent="StateMachineCombat"]
+script = ExtResource("4_fl5x8")
+
+[node name="WeaponManager" parent="." node_paths=PackedStringArray("view_model_container", "world_model_container") instance=ExtResource("3_6m33q")]
 weapon_resource = ExtResource("3_ancfq")
 view_model_container = NodePath("../Head/SpringArm3D/CameraSmooth/Camera3D/ViewModel")
 world_model_container = NodePath("../WorldModel/body/Hand")
@@ -190,10 +208,6 @@ target_position = Vector3(0, -0.75, 0)
 [node name="FloorColision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_6r5ir")
-
-[node name="Movement" type="Node3D" parent="." node_paths=PackedStringArray("player")]
-script = ExtResource("9_305y5")
-player = NodePath("..")
 
 [node name="HUD" type="CanvasLayer" parent="." node_paths=PackedStringArray("HEALTH_COMPONENT")]
 script = ExtResource("10_2g87s")

@@ -12,14 +12,17 @@ func _ready():
 	character = owner as Character
 	assert(character != null)
 	# Cache child states
+	child_state()
+	# Enter initial state
+	assert(initial_state != null)
+	transition_to(initial_state)
+
+func child_state():
 	for child in get_children():
 		if child is State:
 			states[child.name] = child
 			child.character = character
 			child.state_machine = self
-	# Enter initial state
-	if initial_state != NodePath():
-		transition_to(get_node(initial_state).name)
 
 func transition_to(state_name: String, msg := {}):
 	if not states.has(state_name):
