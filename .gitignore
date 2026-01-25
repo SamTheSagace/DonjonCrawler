@@ -4,7 +4,7 @@
 .vscode
 .vscode/
 *.vscode
-
+.vscode/settings.json
 
 # Godot build artifacts
 *.import
