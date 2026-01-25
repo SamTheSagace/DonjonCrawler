@@ -1,4 +1,4 @@
-class_name MovementController
+class_name MovementComponent
 extends Node
 
 # --- Player reference ---
@@ -6,9 +6,9 @@ extends Node
 
 # --- Movement tuning ---
 @export var auto_bhop := true
-@export var sneak_SPEED := 0.5
-@export var sprint_SPEED := 0.75
-var walk_SPEED := 5.0
+var SNEAK_SPEED := 0.5
+var SPRINT_SPEED := 1.5
+var WALK_SPEED := 5.0
 var JUMP_VELOCITY := 5.0
 
 @export var air_cap := 1.0
@@ -27,29 +27,33 @@ var snapped_to_stairs_last_frame := false
 var last_frame_was_on_floor := -INF
 
 func _ready() :
-	walk_SPEED=player.SPEED
-	JUMP_VELOCITY=player.JUMP_VELOCITY
-# -----------------------------
+	player = owner as Player
+
+func set_stats(walk:float, jump:float, sneak:float, sprint:float):
+	WALK_SPEED=walk
+	JUMP_VELOCITY= jump
+	SNEAK_SPEED= sneak
+	SPRINT_SPEED = sprint
+
 # PHYSICS HANDLER
-# -----------------------------
 func handle_physics(delta: float):
 	if player.is_on_floor():
 		last_frame_was_on_floor = Engine.get_physics_frames()
-
 	var input_dir = Input.get_vector("left", "right", "forward", "backward").normalized()
 	wish_dir = player.global_transform.basis * Vector3(input_dir.x, 0, input_dir.y)
-
 	if player.is_on_floor() or snapped_to_stairs_last_frame:
-		if Input.is_action_pressed("jump") or (auto_bhop and Input.is_action_pressed("jump")):
-			player.velocity.y = JUMP_VELOCITY
-		_handle_ground_physics(delta)
+		if auto_bhop:
+			if Input.is_action_pressed("jump"):
+				player.velocity.y = JUMP_VELOCITY
+		else:
+			if Input.is_action_just_pressed("jump"):
+				player.velocity.y = JUMP_VELOCITY
+				_handle_ground_physics(delta)
 	else:
 		_handle_air_physics(delta)
-
 	if not _snap_up_stairs_check(delta):
 		player.move_and_slide()
 		_snap_down_to_stairs_check()
-
 	_headbob_effect(delta)
 
 # -----------------------------
@@ -58,7 +62,6 @@ func handle_physics(delta: float):
 func _handle_ground_physics(delta: float):
 	player.velocity.x = wish_dir.x * _get_move_speed()
 	player.velocity.z = wish_dir.z * _get_move_speed()
-	_headbob_effect(delta)
 
 func _handle_air_physics(delta: float):
 	player.velocity.y -= ProjectSettings.get_setting("physics/3d/default_gravity") * delta
@@ -72,15 +75,13 @@ func _handle_air_physics(delta: float):
 
 func _get_move_speed() -> float:
 	if Input.is_action_pressed("sprint"):
-		return walk_SPEED*sprint_SPEED
+		return WALK_SPEED*SPRINT_SPEED
 	elif Input.is_action_pressed("sneak"):
-		return walk_SPEED*sneak_SPEED
+		return WALK_SPEED*SNEAK_SPEED
 	else:
-		return walk_SPEED
+		return WALK_SPEED
 
-# -----------------------------
 # STAIRS / STEP HANDLING
-# -----------------------------
 func is_surface_too_steep(normal: Vector3) -> bool:
 	return normal.angle_to(Vector3.UP) > player.floor_max_angle
 
@@ -133,9 +134,7 @@ func _snap_up_stairs_check(delta) -> bool:
 			return true
 	return false
 
-# -----------------------------
 # HEADBOB
-# -----------------------------
 func _headbob_effect(delta):
 	headbob_time += delta * player.velocity.length()
 	player.spring_arm.transform.origin = Vector3(

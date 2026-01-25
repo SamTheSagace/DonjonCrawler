@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cqgk0gsohmovx"]
+[gd_scene load_steps=20 format=3 uid="uid://cqgk0gsohmovx"]
 
 [ext_resource type="PackedScene" uid="uid://bu866va6wl0v0" path="res://Components/Characters/HealthComponent.tscn" id="1_4fqi0"]
 [ext_resource type="Script" uid="uid://dae8ptut3nr76" path="res://Components/Characters/NPCs/Ennemy1/enemy_base.gd" id="1_4h2bd"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://pj2jrig5rx6h" path="res://Components/Objects/weapon_manager/sword/sword.glb" id="6_4h2bd"]
 [ext_resource type="PackedScene" uid="uid://c1tdw8tv4ntro" path="res://assets/Models/disguise-glasses.glb" id="6_o0vjk"]
 [ext_resource type="Script" uid="uid://2ger1cq2sfsm" path="res://Components/Characters/NPCs/Dummy/body_animation.gd" id="8_1v2vy"]
+[ext_resource type="PackedScene" uid="uid://dwi3cx56ehejn" path="res://Components/Characters/state_machine.tscn" id="10_2l0qy"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1v2vy"]
 
@@ -114,9 +115,10 @@ _data = {
 &"damageTaken": SubResource("Animation_0qu2q")
 }
 
-[node name="Enemy1" type="CharacterBody3D" node_paths=PackedStringArray("health")]
+[node name="Enemy1" type="CharacterBody3D" node_paths=PackedStringArray("HEALTH_COMPONENT")]
 script = ExtResource("1_4h2bd")
-health = NodePath("HealthComponent")
+SPEED = 4.0
+HEALTH_COMPONENT = NodePath("HealthComponent")
 
 [node name="HealthComponent" parent="." instance=ExtResource("1_4fqi0")]
 
@@ -158,6 +160,7 @@ transform = Transform3D(-1.7250003, 0, 1.508043e-07, 0, 1.7250003, 0, -1.508043e
 transform = Transform3D(1, 0, 0, 0, 0.9659255, 0.25881895, 0, -0.25881895, 0.9659255, 0.5, 0, -0.5)
 
 [node name="WorldModelAnimation" type="AnimationPlayer" parent="WorldModel/MeshInstance3D/Hand" node_paths=PackedStringArray("weaponManager")]
+unique_name_in_owner = true
 libraries = {
 &"": SubResource("AnimationLibrary_6r5ir")
 }
@@ -172,14 +175,15 @@ visible = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_4fqi0")
 
-[node name="BodyAnimation" type="AnimationPlayer" parent="." node_paths=PackedStringArray("health")]
+[node name="BodyAnimation" type="AnimationPlayer" parent="."]
 root_node = NodePath("../WorldModel/MeshInstance3D")
 libraries = {
 &"": SubResource("AnimationLibrary_panqs")
 }
 script = ExtResource("8_1v2vy")
-health = NodePath("../HealthComponent")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 debug_enabled = true
 debug_use_custom = true
+
+[node name="StateMachine" parent="." instance=ExtResource("10_2l0qy")]

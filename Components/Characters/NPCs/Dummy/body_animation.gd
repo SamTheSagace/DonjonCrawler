@@ -1,9 +1,10 @@
 extends AnimationPlayer
 
-@export var health : HealthComponent
+@export var HEALTH_COMPONENT : HealthComponent
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	health.damageTaken.connect(_on_damage_taken)
+	if(HEALTH_COMPONENT):
+		HEALTH_COMPONENT.damageTaken.connect(_on_damage_taken)
 	pass
 
 func _on_damage_taken(dmg):

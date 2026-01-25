@@ -1,27 +1,27 @@
 extends CharacterBody3D
 
-@export var health : HealthComponent
+@export var HEALTH_COMPONENT : HealthComponent
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 @export var Regeneration := 2
 func _ready():
-	if health:
-		health.damageTaken.connect(_on_damage_taken)
-		%Health.text = var_to_str(health.health)
+	if HEALTH_COMPONENT:
+		HEALTH_COMPONENT.damageTaken.connect(_on_damage_taken)
+		%Health.text = var_to_str(HEALTH_COMPONENT.health)
 
 func _on_damage_taken(dmg):
 	print(dmg)
 
 func _process(delta):
-	if health:
-		%Health.text = var_to_str(health.health)
-		if health.health < health.Max_health:
-			var dif = health.Max_health - health.health
+	if HEALTH_COMPONENT:
+		%Health.text = var_to_str(HEALTH_COMPONENT.health)
+		if HEALTH_COMPONENT.health < HEALTH_COMPONENT.Max_health:
+			var dif = HEALTH_COMPONENT.Max_health - HEALTH_COMPONENT.health
 			if  dif > Regeneration:
-				health.health += Regeneration
+				HEALTH_COMPONENT.health += Regeneration
 			else :
-				health.health += dif
+				HEALTH_COMPONENT.health += dif
 		
 func _physics_process(delta):
 	# Add the gravity.
