@@ -2,6 +2,9 @@
 .godot/
 
 .vscode
+.vscode/
+*.vscode
+
 
 # Godot build artifacts
 *.import
