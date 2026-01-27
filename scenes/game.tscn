@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://yl23rid523r3"]
+[gd_scene format=3 uid="uid://yl23rid523r3"]
 
 [ext_resource type="PackedScene" uid="uid://bi7cm43d6twr3" path="res://Components/Characters/player/Player.tscn" id="1_m7e2g"]
 [ext_resource type="Script" uid="uid://d3c3cro84wvpb" path="res://scenes/game.gd" id="1_p57ef"]
@@ -27,32 +27,33 @@ polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(0, 3, 2), PackedInt32Arr
 cell_size = 0.1
 cell_height = 0.1
 
-[node name="game" type="Node3D"]
+[node name="game" type="Node3D" unique_id=1474354210]
 script = ExtResource("1_p57ef")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=354420660]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
 shadow_enabled = true
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=241512863]
 environment = SubResource("Environment_pr20v")
 
-[node name="Player" parent="." instance=ExtResource("1_m7e2g")]
+[node name="Player" parent="." unique_id=791995048 instance=ExtResource("1_m7e2g")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.113739, 0, 7.2112103)
 
-[node name="Dummy" parent="." instance=ExtResource("10_vtaks")]
+[node name="Dummy" parent="." unique_id=27938221 instance=ExtResource("10_vtaks")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -19.234, 0, 6.621)
 
-[node name="Upgrade" parent="." instance=ExtResource("4_lbhrr")]
+[node name="Upgrade" parent="." unique_id=1110834986 instance=ExtResource("4_lbhrr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.855737, 0.24022675, 4.467176)
 upgrade = ExtResource("6_p57ef")
 
-[node name="Enemy1" parent="." instance=ExtResource("7_u5sy4")]
+[node name="Enemy1" parent="." unique_id=139551759 instance=ExtResource("7_u5sy4")]
 transform = Transform3D(-0.96387726, 0, -0.2663469, 0, 1, 0, 0.2663469, 0, -0.96387726, -25.218605, 0.000998497, -1.5954828)
 player_path = NodePath("../Player")
+MAX_HEALTH = 99
 
-[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1603518999]
 navigation_mesh = SubResource("NavigationMesh_u5sy4")
 
-[node name="parkour" parent="NavigationRegion3D" instance=ExtResource("9_0tnpc")]
+[node name="parkour" parent="NavigationRegion3D" unique_id=1587507195 instance=ExtResource("9_0tnpc")]
 use_collision = true

@@ -115,6 +115,7 @@ player = NodePath("..")
 [node name="StateMachineCombat" type="Node" parent="." unique_id=1660029610 node_paths=PackedStringArray("WEAPON_MANAGER")]
 script = ExtResource("3_dsj48")
 WEAPON_MANAGER = NodePath("../WeaponManager")
+initial_state = NodePath("CombatIdle")
 
 [node name="Parry" type="Node" parent="StateMachineCombat" unique_id=917185237]
 script = ExtResource("4_mikml")

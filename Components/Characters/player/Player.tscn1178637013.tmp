@@ -104,6 +104,12 @@ font_size = 83
 
 [node name="Player" type="CharacterBody3D" unique_id=31202077 node_paths=PackedStringArray("HEALTH_COMPONENT", "MOVEMENT_COMPONENT", "SMC")]
 script = ExtResource("1_2h2ij")
+sensitivity = null
+SPEED = null
+JUMP_VELOCITY = null
+SNEAK_SPEED = null
+SPRINT_SPEED = null
+MAX_HEALTH = null
 HEALTH_COMPONENT = NodePath("HealthComponent")
 MOVEMENT_COMPONENT = NodePath("Movement")
 SMC = NodePath("StateMachineCombat")
@@ -115,6 +121,7 @@ player = NodePath("..")
 [node name="StateMachineCombat" type="Node" parent="." unique_id=1660029610 node_paths=PackedStringArray("WEAPON_MANAGER")]
 script = ExtResource("3_dsj48")
 WEAPON_MANAGER = NodePath("../WeaponManager")
+initial_state = NodePath("CombatIdle")
 
 [node name="Parry" type="Node" parent="StateMachineCombat" unique_id=917185237]
 script = ExtResource("4_mikml")

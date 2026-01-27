@@ -8,7 +8,7 @@ func _ready() -> void:
 	pass
 
 func _on_attackInput(weapon_resource: WeaponResource):
-		var type := weapon_resource.weapon_type  
+		var type := weapon_resource.weapon_type
 		var expectType := WeaponType.Type
 		if( type == expectType.MELEE):
 			play("sword_slash")

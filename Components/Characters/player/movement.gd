@@ -30,9 +30,9 @@ func _ready() :
 	player = owner as Player
 
 func set_stats(walk:float, jump:float, sneak:float, sprint:float):
-	WALK_SPEED=walk
-	JUMP_VELOCITY= jump
-	SNEAK_SPEED= sneak
+	WALK_SPEED = walk
+	JUMP_VELOCITY = jump
+	SNEAK_SPEED = sneak
 	SPRINT_SPEED = sprint
 
 # PHYSICS HANDLER
@@ -41,6 +41,7 @@ func handle_physics(delta: float):
 		last_frame_was_on_floor = Engine.get_physics_frames()
 	var input_dir = Input.get_vector("left", "right", "forward", "backward").normalized()
 	wish_dir = player.global_transform.basis * Vector3(input_dir.x, 0, input_dir.y)
+	_handle_ground_physics(delta)
 	if player.is_on_floor() or snapped_to_stairs_last_frame:
 		if auto_bhop:
 			if Input.is_action_pressed("jump"):

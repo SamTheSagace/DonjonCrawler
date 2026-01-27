@@ -13,7 +13,8 @@ const SPRING_LENGTH_2 := 5
 
 var _saved_camera_global_pos = null
 
-var upgrades : Array[BasePlayerUpgrade] = []
+var upgrades: Array[BasePlayerUpgrade] = []
+
 
 func _ready():
 	super._ready()
@@ -62,7 +63,7 @@ func _camera_change():
 		for child in %ViewModel.find_children("*", "VisualInstance3D", true, false):
 			child.set_layer_mask_value(1, true)
 
-func _physics_process(delta:float):
+func _physics_process(delta: float):
 	MOVEMENT_COMPONENT.handle_physics(delta)
 
 # Optional smooth-camera helper
@@ -94,4 +95,6 @@ func camera_auto_switch():
 			child.set_layer_mask_value(1, true)
 
 func _process(delta: float) -> void:
+	wants_to_attack = Input.is_action_pressed("left_click")
+	if(wants_to_attack):print("should attack")
 	camera_auto_switch()

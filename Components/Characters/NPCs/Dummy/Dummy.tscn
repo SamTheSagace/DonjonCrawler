@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://pi12nha5o2yq"]
+[gd_scene format=3 uid="uid://pi12nha5o2yq"]
 
 [ext_resource type="Script" uid="uid://ddgi7w5lbg2k3" path="res://Components/Characters/NPCs/Dummy/dummy.gd" id="1_ti8cp"]
 [ext_resource type="PackedScene" uid="uid://bkcotb4wiqh2g" path="res://Components/Characters/HitboxComponent.tscn" id="2_0n3s4"]
@@ -72,37 +72,38 @@ _data = {
 &"damageTaken": SubResource("Animation_0qu2q")
 }
 
-[node name="Dummy" type="CharacterBody3D"]
+[node name="Dummy" type="CharacterBody3D" unique_id=1217072217 node_paths=PackedStringArray("HEALTH_COMPONENT")]
 script = ExtResource("1_ti8cp")
+Regeneration = 10
+MAX_HEALTH = 500
+HEALTH_COMPONENT = NodePath("HealthComponent")
 
-[node name="FloorColision" type="CollisionShape3D" parent="."]
+[node name="FloorColision" type="CollisionShape3D" parent="." unique_id=729384208]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_1sesn")
 
-[node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("2_0n3s4")]
+[node name="HitboxComponent" parent="." unique_id=1292673440 node_paths=PackedStringArray("health_component") instance=ExtResource("2_0n3s4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 health_component = NodePath("../HealthComponent")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="HitboxComponent"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitboxComponent" unique_id=1204164068]
 shape = SubResource("CapsuleShape3D_0n3s4")
 
-[node name="HealthComponent" parent="." instance=ExtResource("3_1sesn")]
+[node name="HealthComponent" parent="." unique_id=1447225298 instance=ExtResource("3_1sesn")]
 
-[node name="WorldModel" type="Node3D" parent="."]
+[node name="WorldModel" type="Node3D" parent="." unique_id=768614380]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="WorldModel"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WorldModel" unique_id=1021256635]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("CapsuleMesh_lhpcd")
 
-[node name="Health" type="Label3D" parent="."]
+[node name="Health" type="Label3D" parent="." unique_id=2114132884]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1692958, 0)
 pixel_size = 0.009
 text = "eeeeeeeeeeeeeeeee"
 
-[node name="BodyAnimation" type="AnimationPlayer" parent="."]
+[node name="BodyAnimation" type="AnimationPlayer" parent="." unique_id=12522827]
 root_node = NodePath("../WorldModel/MeshInstance3D")
-libraries = {
-&"": SubResource("AnimationLibrary_panqs")
-}
+libraries/ = SubResource("AnimationLibrary_panqs")
 script = ExtResource("4_6klwy")

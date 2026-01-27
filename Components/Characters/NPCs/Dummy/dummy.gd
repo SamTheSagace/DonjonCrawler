@@ -1,9 +1,5 @@
-extends CharacterBody3D
+extends Character
 
-@export var HEALTH_COMPONENT : HealthComponent
-
-const SPEED = 5.0
-const JUMP_VELOCITY = 4.5
 @export var Regeneration := 2
 func _ready():
 	if HEALTH_COMPONENT:
@@ -22,7 +18,7 @@ func _process(delta):
 				HEALTH_COMPONENT.health += Regeneration
 			else :
 				HEALTH_COMPONENT.health += dif
-		
+
 func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
