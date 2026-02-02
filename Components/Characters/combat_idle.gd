@@ -2,8 +2,9 @@ extends StateCombat
 
 func update(delta):
 	if character.wants_to_attack:
-		print("attacking")
 		state_machine.transition_to(StateMachineCombat.CombatState.CHARGE)
+	if character.wants_to_parry && weapon_manager.weapon_resource.weapon_type == WeaponType.Type.MELEE:
+		state_machine.transition_to(StateMachineCombat.CombatState.PARRY)
 
 func enter(msg := {}):
 	print("is now idle")

@@ -7,7 +7,9 @@ extends Node3D
 @export var world_model_container: Node3D
 var world_hand_anim: WorldHandAnimation
 
-signal attack_Animation(weapon_resource:WeaponResource)
+signal attack_animation(weapon_resource:WeaponResource)
+signal parry_animation(weapon_resource:WeaponResource)
+signal reset_animation()
 signal attacking_state_changed(is_attacking: bool)
 
 var melee_weapon: MeleeWeapon
@@ -46,18 +48,24 @@ func clean_up_weapon():
 	if world_model_container.has_node("RangedWeapon"):
 		world_model_container.get_node("RangedWeapon").queue_free()
 
+func go_to_idle():
+	if(weapon_resource):
+		emit_signal("reset_animation")
 
 func start_attack():
 	attack_finished = false
 	if(weapon_resource):
 		emit_signal("attacking_state_changed", true)
-		emit_signal("attack_Animation", weapon_resource)
+		emit_signal("attack_animation", weapon_resource)
 
 func finish_attack(value:String):
 	attack_finished = true
 	print(value)
 	emit_signal("attacking_state_changed", false)
 
+func start_parry():
+	if(weapon_resource):
+		emit_signal("parry_animation", weapon_resource)
 
 func attack_Hit(hitbox):
 	var attack = Attack.new()

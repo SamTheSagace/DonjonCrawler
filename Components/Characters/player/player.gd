@@ -96,5 +96,5 @@ func camera_auto_switch():
 
 func _process(delta: float) -> void:
 	wants_to_attack = Input.is_action_pressed("left_click")
-	if(wants_to_attack):print("should attack")
+	wants_to_parry = Input.is_action_pressed("right_clic")
 	camera_auto_switch()

@@ -8,7 +8,7 @@ signal damageTaken(dmg)
 
 func _ready():
 	health = Max_health
-	
+
 func set_max_health(value: int):
 	Max_health = value
 	health = value

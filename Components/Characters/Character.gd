@@ -12,6 +12,7 @@ extends CharacterBody3D
 @export var SMC: StateMachineCombat
 
 var wants_to_attack := false
+var wants_to_parry := false
 
 signal attackInput()
 
