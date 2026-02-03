@@ -1,9 +1,8 @@
 [gd_scene format=3 uid="uid://cw52heitjln8m"]
 
-[ext_resource type="PackedScene" uid="uid://i34kvjjehl1e" path="res://Components/Objects/weapon_manager/sword/sword.tscn" id="1_0igo3"]
 [ext_resource type="PackedScene" uid="uid://3s7hon3kcce0" path="res://Components/Objects/weapon_manager/WeaponManager.tscn" id="1_1ujru"]
 [ext_resource type="Script" uid="uid://dnpoeosrpr3s8" path="res://Components/Objects/Upgrades/GhostArm/ghost_arm.gd" id="1_34j08"]
-[ext_resource type="PackedScene" uid="uid://dy0x8vcl0gqrq" path="res://Components/Objects/weapon_manager/world_model_animation.tscn" id="3_fnie5"]
+[ext_resource type="PackedScene" uid="uid://b1d7vo8xmj4pk" path="res://Components/Characters/Animation/HandAnimation.tscn" id="3_34j08"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_fnie5"]
 size = Vector3(0.235, 0.2, 1.03)
@@ -14,23 +13,15 @@ radius = 0.20990731
 [node name="GhostArm" type="CharacterBody3D" unique_id=1580302188]
 script = ExtResource("1_34j08")
 
-[node name="WeaponManager" parent="." unique_id=99890068 node_paths=PackedStringArray("world_model_container", "world_hand_anim") instance=ExtResource("1_1ujru")]
-world_model_container = NodePath("../Arm/Hand")
-world_hand_anim = NodePath("../Arm/Hand/WorldModelAnimation")
+[node name="WeaponManager" parent="." unique_id=99890068 node_paths=PackedStringArray("hand_anim") instance=ExtResource("1_1ujru")]
+hand_anim = NodePath("")
 
-[node name="Arm" type="MeshInstance3D" parent="." unique_id=1132623860]
-transform = Transform3D(0.9322138, -0.18479903, 0.31116992, 0.029723154, 0.89599365, 0.44307137, -0.36068526, -0.40378815, 0.8407506, 1.0237008, 1.655751, -0.61668575)
+[node name="arm" type="MeshInstance3D" parent="." unique_id=1132623860]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.96592593, 0.2588191, 0, -0.25881907, 0.96592605, 1.0237008, 1.655751, -0.61668575)
 mesh = SubResource("BoxMesh_fnie5")
 
-[node name="Hand" type="Node3D" parent="Arm" unique_id=1393150451]
-transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 0, 0.00088992715, -0.41162392)
-
-[node name="WorldModelAnimation" parent="Arm/Hand" unique_id=1719906836 node_paths=PackedStringArray("weaponManager") instance=ExtResource("3_fnie5")]
-unique_name_in_owner = true
-weaponManager = NodePath("../../../WeaponManager")
-
-[node name="Sword" parent="Arm/Hand" unique_id=1898779915 instance=ExtResource("1_0igo3")]
-visible = false
+[node name="HandAnimation" parent="arm" unique_id=351774857 instance=ExtResource("3_34j08")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.17812288, -0.4770778)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=315685811]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.30066, 0)
