@@ -1,11 +1,10 @@
 class_name WeaponManager
 extends Node3D
 
-@export var SMC: StateMachineCombat
 @export var weapon_resource: WeaponResource
 @export var view_model_container: Node3D
 @export var world_model_container: Node3D
-var world_hand_anim: WorldHandAnimation
+@export var world_hand_anim: WorldHandAnimation
 
 signal attack_animation(weapon_resource:WeaponResource)
 signal parry_animation(weapon_resource:WeaponResource)
@@ -15,9 +14,10 @@ signal attacking_state_changed(is_attacking: bool)
 var melee_weapon: MeleeWeapon
 var ranged_weapon: WeaponBase
 var attack_finished:= true
+
 func _ready() -> void:
-	world_hand_anim = %WorldModelAnimation
-	world_hand_anim.animation_finished.connect(finish_attack)
+	if (world_hand_anim):
+		world_hand_anim.animation_finished.connect(finish_attack)
 	if weapon_resource != null:
 		weapon_match()
 

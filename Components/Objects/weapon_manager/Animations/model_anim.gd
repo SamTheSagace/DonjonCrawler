@@ -10,14 +10,15 @@ func _ready() -> void:
 	pass
 
 func _on_attackInput(weapon_resource: WeaponResource):
-		var type := weapon_resource.weapon_type
-		var expectType := WeaponType.Type
-		if( type == expectType.MELEE):
-			play("sword_slash")
-		if( type == expectType.RANGED):
-			print("ranged")
-		else:
-			play("sword_slash")
+	print(weapon_resource)
+	var type := weapon_resource.weapon_type
+	var expectType := WeaponType.Type
+	if( type == expectType.MELEE):
+		play("sword_slash")
+	if( type == expectType.RANGED):
+		print("ranged")
+	else:
+		play("sword_slash")
 
 func _on_parryInput(weapon_resource: WeaponResource):
 	var type := weapon_resource.weapon_type

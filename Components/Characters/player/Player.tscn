@@ -6,16 +6,16 @@
 [ext_resource type="PackedScene" uid="uid://3s7hon3kcce0" path="res://Components/Objects/weapon_manager/WeaponManager.tscn" id="3_6m33q"]
 [ext_resource type="PackedScene" uid="uid://bu866va6wl0v0" path="res://Components/Characters/HealthComponent.tscn" id="3_6r5ir"]
 [ext_resource type="Resource" uid="uid://c73x0ieajhcws" path="res://Components/Objects/weapon_manager/sword/sword.tres" id="3_ancfq"]
-[ext_resource type="Script" uid="uid://dwcj5rig36ply" path="res://Components/Characters/player/state_machine_combat.gd" id="3_dsj48"]
+[ext_resource type="Script" path="res://Components/Characters/player/state_machine_combat.gd" id="3_dsj48"]
 [ext_resource type="Script" uid="uid://50og77v5isdf" path="res://Components/Characters/charge.gd" id="4_dsj48"]
 [ext_resource type="PackedScene" uid="uid://pj2jrig5rx6h" path="res://Components/Objects/weapon_manager/sword/sword.glb" id="4_eef07"]
-[ext_resource type="Script" uid="uid://c4kpkspvywtdj" path="res://Components/Characters/combat_idle.gd" id="4_fl5x8"]
-[ext_resource type="Script" uid="uid://cjvbat62s5t88" path="res://Components/Characters/parry.gd" id="4_mikml"]
-[ext_resource type="Script" uid="uid://c2m6y23faseph" path="res://Components/Characters/cast.gd" id="5_0k167"]
+[ext_resource type="Script" path="res://Components/Characters/combat_idle.gd" id="4_fl5x8"]
+[ext_resource type="Script" path="res://Components/Characters/parry.gd" id="4_mikml"]
+[ext_resource type="Script" path="res://Components/Characters/cast.gd" id="5_0k167"]
 [ext_resource type="Script" uid="uid://dmlgkbxt4c6mn" path="res://Components/Objects/weapon_manager/Animations/model_anim.gd" id="6_6r5ir"]
-[ext_resource type="Script" uid="uid://cjx5odish7rue" path="res://Components/Characters/attack.gd" id="6_o6wjn"]
+[ext_resource type="Script" path="res://Components/Characters/attack.gd" id="6_o6wjn"]
 [ext_resource type="Script" uid="uid://20qt3k6lqvx2" path="res://Components/Characters/player/movement.gd" id="9_305y5"]
-[ext_resource type="Script" uid="uid://bupf3pckd3pvo" path="res://Components/Characters/player/HUD.gd" id="10_2g87s"]
+[ext_resource type="Script" path="res://Components/Characters/player/HUD.gd" id="10_2g87s"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bkrd4"]
 
@@ -111,11 +111,11 @@ script = ExtResource("4_fl5x8")
 [node name="Attack" type="Node" parent="StateMachineCombat" unique_id=513149893]
 script = ExtResource("6_o6wjn")
 
-[node name="WeaponManager" parent="." unique_id=1262555556 node_paths=PackedStringArray("SMC", "view_model_container", "world_model_container") instance=ExtResource("3_6m33q")]
-SMC = NodePath("../StateMachineCombat")
+[node name="WeaponManager" parent="." unique_id=1262555556 node_paths=PackedStringArray("view_model_container", "world_model_container", "world_hand_anim") instance=ExtResource("3_6m33q")]
 weapon_resource = ExtResource("3_ancfq")
 view_model_container = NodePath("../Head/SpringArm3D/CameraSmooth/Camera3D/ViewModel")
 world_model_container = NodePath("../WorldModel/body/Hand")
+world_hand_anim = NodePath("")
 
 [node name="HitboxComponent" parent="." unique_id=1237130923 node_paths=PackedStringArray("health_component") instance=ExtResource("2_bkrd4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -136,13 +136,6 @@ skeleton = NodePath("../..")
 
 [node name="Hand" type="Node3D" parent="WorldModel/body" unique_id=1771513632]
 transform = Transform3D(0.99999994, 0, 0, 0, 0.96592546, 0.25881895, 0, -0.25881895, 0.96592546, 0.5, 0, -0.5)
-
-[node name="WorldModelAnimation" type="AnimationPlayer" parent="WorldModel/body/Hand" unique_id=477269549 node_paths=PackedStringArray("weaponManager")]
-unique_name_in_owner = true
-libraries/ = SubResource("AnimationLibrary_6r5ir")
-autoplay = &"RESET"
-script = ExtResource("6_6r5ir")
-weaponManager = NodePath("../../../../WeaponManager")
 
 [node name="sword" parent="WorldModel/body/Hand" unique_id=194654610 instance=ExtResource("4_eef07")]
 transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
@@ -171,6 +164,7 @@ cull_mask = 1048573
 [node name="ViewModel" type="Node3D" parent="Head/SpringArm3D/CameraSmooth/Camera3D" unique_id=323086161]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 0.9659255, 0.25881895, 0, -0.25881895, 0.9659255, 0.5, -0.5, -0.5)
+visible = false
 
 [node name="ViewModelAnim2" type="AnimationPlayer" parent="Head/SpringArm3D/CameraSmooth/Camera3D/ViewModel" unique_id=1069844729 node_paths=PackedStringArray("weaponManager")]
 unique_name_in_owner = true
@@ -224,5 +218,4 @@ offset_bottom = 23.0
 text = "60"
 label_settings = SubResource("LabelSettings_2g87s")
 
-[connection signal="animation_finished" from="WorldModel/body/Hand/WorldModelAnimation" to="WorldModel/body/Hand/WorldModelAnimation" method="_on_animation_finished"]
 [connection signal="animation_finished" from="Head/SpringArm3D/CameraSmooth/Camera3D/ViewModel/ViewModelAnim2" to="Head/SpringArm3D/CameraSmooth/Camera3D/ViewModel/ViewModelAnim2" method="_on_animation_finished"]
