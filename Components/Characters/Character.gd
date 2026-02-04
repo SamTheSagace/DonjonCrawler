@@ -1,5 +1,5 @@
-class_name Character
 extends CharacterBody3D
+class_name Character
 
 
 @export var MAX_HEALTH := 60

@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://cm86y4q16uj44"]
+
+[ext_resource type="Script" uid="uid://dwcj5rig36ply" path="res://Components/Characters/player/state_machine_combat.gd" id="1_3ojuw"]
+[ext_resource type="Script" path="res://Components/Characters/parry.gd" id="2_ng1ki"]
+[ext_resource type="Script" path="res://Components/Characters/cast.gd" id="3_6wiq6"]
+[ext_resource type="Script" uid="uid://50og77v5isdf" path="res://Components/Characters/charge.gd" id="4_14vfo"]
+[ext_resource type="Script" path="res://Components/Characters/combat_idle.gd" id="5_7a0wu"]
+[ext_resource type="Script" path="res://Components/Characters/attack.gd" id="6_20umb"]
+
+[node name="StateMachineCombat" type="Node" unique_id=1105521514]
+script = ExtResource("1_3ojuw")
+
+[node name="Parry" type="Node" parent="." unique_id=1752815977]
+script = ExtResource("2_ng1ki")
+
+[node name="Cast" type="Node" parent="." unique_id=1223853045]
+script = ExtResource("3_6wiq6")
+
+[node name="Charge" type="Node" parent="." unique_id=1835065339]
+script = ExtResource("4_14vfo")
+
+[node name="CombatIdle" type="Node" parent="." unique_id=1386336526]
+script = ExtResource("5_7a0wu")
+
+[node name="Attack" type="Node" parent="." unique_id=665494635]
+script = ExtResource("6_20umb")

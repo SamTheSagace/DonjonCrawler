@@ -4,7 +4,6 @@
 [ext_resource type="Script" uid="uid://d3c3cro84wvpb" path="res://scenes/game.gd" id="1_p57ef"]
 [ext_resource type="PackedScene" uid="uid://cjp58634du344" path="res://Components/Objects/Upgrades/Upgrade.tscn" id="4_lbhrr"]
 [ext_resource type="Resource" uid="uid://cwwovcfxr5kig" path="res://Components/Objects/Upgrades/GhostArm/GhostArm.tres" id="6_p57ef"]
-[ext_resource type="PackedScene" uid="uid://cqgk0gsohmovx" path="res://Components/Characters/NPCs/Ennemy1/Enemy1.tscn" id="7_u5sy4"]
 [ext_resource type="PackedScene" uid="uid://cvlbkmc4ia8ci" path="res://scenes/parkour_testV1.tscn" id="9_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://pi12nha5o2yq" path="res://Components/Characters/NPCs/Dummy/Dummy.tscn" id="10_vtaks"]
 
@@ -46,11 +45,6 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -19.
 [node name="Upgrade" parent="." unique_id=1110834986 instance=ExtResource("4_lbhrr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.855737, 0.24022675, 4.467176)
 upgrade = ExtResource("6_p57ef")
-
-[node name="Enemy1" parent="." unique_id=139551759 instance=ExtResource("7_u5sy4")]
-transform = Transform3D(-0.96387726, 0, -0.2663469, 0, 1, 0, 0.2663469, 0, -0.96387726, -25.218605, 0.000998497, -1.5954828)
-player_path = NodePath("../Player")
-MAX_HEALTH = 99
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1603518999]
 navigation_mesh = SubResource("NavigationMesh_u5sy4")

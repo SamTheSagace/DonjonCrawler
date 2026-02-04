@@ -7,7 +7,7 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_rspo1"]
 size = Vector3(0.03, 3, 0.2)
 
-[node name="ghostWeapon" type="Node3D" unique_id=1006676393]
+[node name="ghostSword" type="Node3D" unique_id=1006676393]
 script = ExtResource("1_qopsv")
 
 [node name="sword" parent="." unique_id=1042469950 instance=ExtResource("2_drqx1")]

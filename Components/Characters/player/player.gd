@@ -2,7 +2,7 @@ extends Character
 class_name Player
 
 @export var sensitivity: float = 5.0
-
+@export var skin : SkinContent
 @onready var head = $Head
 @onready var spring_arm = $Head/SpringArm3D
 @onready var camera = %Camera3D
@@ -23,12 +23,9 @@ func _ready():
 
 func _set_layers():
 	if spring_arm.spring_length == SPRING_LENGTH_1:
-		for child in %WorldModel.find_children("*", "VisualInstance3D", true, false):
+		for child in skin.find_children("*", "VisualInstance3D", true, false):
 			child.set_layer_mask_value(1, false)
 			child.set_layer_mask_value(2, true)
-		for child in %ViewModel.find_children("*", "VisualInstance3D", true, false):
-			child.set_layer_mask_value(1, true)
-			child.set_layer_mask_value(2, false)
 
 func _unhandled_input(event):
 	# Mouse capture toggle
@@ -52,16 +49,12 @@ func _unhandled_input(event):
 func _camera_change():
 	if spring_arm.spring_length == SPRING_LENGTH_1:
 		spring_arm.spring_length = SPRING_LENGTH_2
-		for child in $WorldModel.find_children("*", "VisualInstance3D", true, false):
+		for child in skin.find_children("*", "VisualInstance3D", true, false):
 			child.set_layer_mask_value(1, true)
-		for child in %ViewModel.find_children("*", "VisualInstance3D", true, false):
-			child.set_layer_mask_value(1, false)
 	else:
 		spring_arm.spring_length = SPRING_LENGTH_1
-		for child in $WorldModel.find_children("*", "VisualInstance3D", true, false):
+		for child in skin.find_children("*", "VisualInstance3D", true, false):
 			child.set_layer_mask_value(1, false)
-		for child in %ViewModel.find_children("*", "VisualInstance3D", true, false):
-			child.set_layer_mask_value(1, true)
 
 func _physics_process(delta: float):
 	MOVEMENT_COMPONENT.handle_physics(delta)
@@ -88,10 +81,10 @@ func add_upgrade(upgrade: BasePlayerUpgrade):
 
 func camera_auto_switch():
 	if spring_arm.get_hit_length() <= 1 and spring_arm.spring_length == SPRING_LENGTH_2:
-		for child in $WorldModel.find_children("*", "VisualInstance3D"):
+		for child in skin.find_children("*", "VisualInstance3D"):
 			child.set_layer_mask_value(1, false)
 	elif spring_arm.get_hit_length() >= 1 and spring_arm.spring_length == SPRING_LENGTH_2:
-		for child in $WorldModel.find_children("*", "VisualInstance3D"):
+		for child in skin.find_children("*", "VisualInstance3D"):
 			child.set_layer_mask_value(1, true)
 
 func _process(delta: float) -> void:

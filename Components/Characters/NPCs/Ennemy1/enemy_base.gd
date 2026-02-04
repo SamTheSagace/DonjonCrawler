@@ -1,5 +1,5 @@
-class_name Enemy
 extends Character
+class_name Enemy
 
 var player: Player = null
 var input_dir := Vector3(0,0,0)
@@ -10,7 +10,8 @@ enum EnemyState {
 	IDLE,
 	CHASE,
 	ATTACK,
-	HURT
+	HURT,
+	CHARGE
 }
 var target = null
 var current_state = EnemyState.IDLE
@@ -58,6 +59,7 @@ func _process(delta):
 		EnemyState.IDLE: _idle_state()
 		EnemyState.CHASE: _chase_state()
 		EnemyState.ATTACK: _attack_state()
+		EnemyState.CHARGE: _charge_state()
 	if HEALTH_COMPONENT.health <= 0:
 		self.queue_free()
 
@@ -77,14 +79,27 @@ func _chase_state():
 	target_rotation = atan2(-input_dir.x, -input_dir.z)
 	if abs(nav_agent.distance_to_target()) < 2:
 		input_dir = Vector3(0,0,0)
-		current_state = EnemyState.ATTACK
+		current_state = EnemyState.CHARGE
+	pass
+
+func _charge_state():
+	var target = (next_nav_point - self.global_position).normalized()
+	target_rotation = atan2(-target.x, -target.z)
+	if abs(target_rotation-self.rotation.y) <=.1:
+		wants_to_attack = true
+		await get_tree().create_timer(1).timeout
+		wants_to_attack=false
+	if abs(nav_agent.distance_to_target()) > 5:
+		wants_to_attack = false
+		current_state = EnemyState.CHASE
 	pass
 
 func _attack_state():
 	var target = (next_nav_point - self.global_position).normalized()
 	target_rotation = atan2(-target.x, -target.z)
 	if abs(target_rotation-self.rotation.y) <=.1:
-		emit_signal("attackInput")
+		wants_to_attack = true
 	if abs(nav_agent.distance_to_target()) > 5:
+		wants_to_attack = false
 		current_state = EnemyState.CHASE
 	pass
