@@ -1,7 +1,7 @@
 class_name MeleeWeapon
 extends WeaponBase
 
-#var weapon_data : WeaponResource 
+#var weapon_data : WeaponResource
 @onready var hurtbox : WeaponHurtbox = $WeaponHitbox
 
 func _ready() -> void:

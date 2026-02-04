@@ -5,13 +5,13 @@
 [ext_resource type="Script" uid="uid://dwcj5rig36ply" path="res://Components/Characters/player/state_machine_combat.gd" id="2_80bfm"]
 [ext_resource type="PackedScene" uid="uid://bkcotb4wiqh2g" path="res://Components/Characters/HitboxComponent.tscn" id="2_310ak"]
 [ext_resource type="PackedScene" uid="uid://3s7hon3kcce0" path="res://Components/Objects/weapon_manager/WeaponManager.tscn" id="3_5ya66"]
-[ext_resource type="Script" path="res://Components/Characters/parry.gd" id="3_6n3fv"]
+[ext_resource type="Script" uid="uid://cjvbat62s5t88" path="res://Components/Characters/parry.gd" id="3_6n3fv"]
 [ext_resource type="Resource" uid="uid://c73x0ieajhcws" path="res://Components/Objects/weapon_manager/sword/sword.tres" id="4_4h2bd"]
-[ext_resource type="Script" path="res://Components/Characters/cast.gd" id="4_lm3eu"]
+[ext_resource type="Script" uid="uid://c2m6y23faseph" path="res://Components/Characters/cast.gd" id="4_lm3eu"]
 [ext_resource type="Script" uid="uid://50og77v5isdf" path="res://Components/Characters/charge.gd" id="5_nta42"]
-[ext_resource type="Script" path="res://Components/Characters/combat_idle.gd" id="6_gqo3k"]
+[ext_resource type="Script" uid="uid://c4kpkspvywtdj" path="res://Components/Characters/combat_idle.gd" id="6_gqo3k"]
 [ext_resource type="PackedScene" uid="uid://c1tdw8tv4ntro" path="res://assets/Models/disguise-glasses.glb" id="6_o0vjk"]
-[ext_resource type="Script" path="res://Components/Characters/attack.gd" id="7_0quxv"]
+[ext_resource type="Script" uid="uid://cjx5odish7rue" path="res://Components/Characters/attack.gd" id="7_0quxv"]
 [ext_resource type="Script" uid="uid://2ger1cq2sfsm" path="res://Components/Characters/NPCs/Dummy/body_animation.gd" id="8_1v2vy"]
 [ext_resource type="PackedScene" uid="uid://b1d7vo8xmj4pk" path="res://Components/Characters/Animation/HandAnimation.tscn" id="13_dshi3"]
 
@@ -130,7 +130,7 @@ e"
 
 [node name="WeaponManager" parent="." unique_id=1395439372 node_paths=PackedStringArray("hand_anim") instance=ExtResource("3_5ya66")]
 weapon_resource = ExtResource("4_4h2bd")
-hand_anim = NodePath("")
+hand_anim = NodePath("../WorldModel/Body/HandAnimation")
 
 [node name="WorldModel" type="Node3D" parent="." unique_id=1489945488]
 

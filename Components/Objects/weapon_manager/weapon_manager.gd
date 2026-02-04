@@ -9,12 +9,16 @@ signal attacking_state_changed(is_attacking: bool)
 var melee_weapon: MeleeWeapon
 var ranged_weapon: WeaponBase
 var attack_finished:= true
+var hand: Node3D
 
 func _ready() -> void:
-	if hand_anim != null:
-		hand_anim.animation_finished.connect(finish_attack)
-	if weapon_resource != null:
-		weapon_match()
+	assert(hand_anim != null)
+	assert(weapon_resource != null)
+	hand_anim.animation_finished.connect(finish_attack)
+	await hand_anim.ready
+	hand = hand_anim.hand
+	weapon_match()
+
 func weapon_match():
 	if hand_anim and weapon_resource.world_model:
 		match(weapon_resource.weapon_type):
@@ -27,25 +31,26 @@ func update_melee_weapon():
 	melee_weapon = weapon_resource.world_model.instantiate()
 	melee_weapon.hit_Hitbox.connect(attack_Hit)
 	attacking_state_changed.connect(melee_weapon.set_attacking)
-	hand_anim.add_child(melee_weapon)
+	hand.add_child(melee_weapon)
 
 func update_ranged_weapon():
 	clean_up_weapon()
 	ranged_weapon = weapon_resource.world_model.instantiate()
-	hand_anim.add_child(ranged_weapon)
+	hand.add_child(ranged_weapon)
 
 func clean_up_weapon():
-	if hand_anim.has_node("MeleeWeapon"):
-		hand_anim.get_node("MeleeWeapon").queue_free()
-	if hand_anim.has_node("RangedWeapon"):
-		hand_anim.get_node("RangedWeapon").queue_free()
+	if hand.has_node("MeleeWeapon"):
+		hand.get_node("MeleeWeapon").queue_free()
+	if hand.has_node("RangedWeapon"):
+		hand.get_node("RangedWeapon").queue_free()
 
 func go_to_idle():
 	if(weapon_resource):
-		emit_signal("reset_animation")
+		hand_anim._on_idleInput()
 
 func start_charge():
-	pass
+	hand_anim._on_chargeInput(weapon_resource)
+
 func start_attack():
 	attack_finished = false
 	if(weapon_resource):
@@ -53,9 +58,9 @@ func start_attack():
 		hand_anim._on_attackInput(weapon_resource)
 
 func finish_attack(value:String):
-	attack_finished = true
-	print(value)
-	emit_signal("attacking_state_changed", false)
+	if value == "sword_slash":
+		attack_finished = true
+		emit_signal("attacking_state_changed", false)
 
 func start_parry():
 	if(weapon_resource):

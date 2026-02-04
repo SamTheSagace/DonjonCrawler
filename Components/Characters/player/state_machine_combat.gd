@@ -45,4 +45,3 @@ func transition_to(state_id: int, msg := {}):
 
 func enter_initial_state():
 	transition_to(initial_state)
-	

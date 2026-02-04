@@ -14,7 +14,7 @@ radius = 0.20990731
 script = ExtResource("1_34j08")
 
 [node name="WeaponManager" parent="." unique_id=99890068 node_paths=PackedStringArray("hand_anim") instance=ExtResource("1_1ujru")]
-hand_anim = NodePath("")
+hand_anim = NodePath("../arm/HandAnimation")
 
 [node name="arm" type="MeshInstance3D" parent="." unique_id=1132623860]
 transform = Transform3D(0.99999994, 0, 0, 0, 0.96592593, 0.2588191, 0, -0.25881907, 0.96592605, 1.0237008, 1.655751, -0.61668575)
