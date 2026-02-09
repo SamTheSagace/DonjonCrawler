@@ -1,11 +1,12 @@
 [gd_scene format=3 uid="uid://cm86y4q16uj44"]
 
-[ext_resource type="Script" uid="uid://dwcj5rig36ply" path="res://Components/Characters/player/state_machine_combat.gd" id="1_3ojuw"]
-[ext_resource type="Script" path="res://Components/Characters/parry.gd" id="2_ng1ki"]
-[ext_resource type="Script" path="res://Components/Characters/cast.gd" id="3_6wiq6"]
-[ext_resource type="Script" uid="uid://50og77v5isdf" path="res://Components/Characters/charge.gd" id="4_14vfo"]
-[ext_resource type="Script" path="res://Components/Characters/combat_idle.gd" id="5_7a0wu"]
-[ext_resource type="Script" path="res://Components/Characters/attack.gd" id="6_20umb"]
+[ext_resource type="Script" uid="uid://dwcj5rig36ply" path="res://Components/Characters/Player/state_machine_combat.gd" id="1_3ojuw"]
+[ext_resource type="Script" uid="uid://cjvbat62s5t88" path="res://Components/Characters/StateCombat/parry.gd" id="2_ng1ki"]
+[ext_resource type="Script" uid="uid://c2m6y23faseph" path="res://Components/Characters/StateCombat/cast.gd" id="3_6wiq6"]
+[ext_resource type="Script" uid="uid://50og77v5isdf" path="res://Components/Characters/StateCombat/charge.gd" id="4_14vfo"]
+[ext_resource type="Script" uid="uid://c4kpkspvywtdj" path="res://Components/Characters/StateCombat/combat_idle.gd" id="5_7a0wu"]
+[ext_resource type="Script" uid="uid://cjx5odish7rue" path="res://Components/Characters/Generics/attack.gd" id="6_20umb"]
+
 
 [node name="StateMachineCombat" type="Node" unique_id=1105521514]
 script = ExtResource("1_3ojuw")

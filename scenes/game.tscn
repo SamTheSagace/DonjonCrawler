@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://yl23rid523r3"]
 
-[ext_resource type="PackedScene" uid="uid://bi7cm43d6twr3" path="res://Components/Characters/player/Player.tscn" id="1_m7e2g"]
+[ext_resource type="PackedScene" uid="uid://bi7cm43d6twr3" path="res://Components/Characters/Player/Player.tscn" id="1_m7e2g"]
 [ext_resource type="Script" uid="uid://d3c3cro84wvpb" path="res://scenes/game.gd" id="1_p57ef"]
 [ext_resource type="PackedScene" uid="uid://cjp58634du344" path="res://Components/Objects/Upgrades/Upgrade.tscn" id="4_lbhrr"]
 [ext_resource type="Resource" uid="uid://cwwovcfxr5kig" path="res://Components/Objects/Upgrades/GhostArm/GhostArm.tres" id="6_p57ef"]

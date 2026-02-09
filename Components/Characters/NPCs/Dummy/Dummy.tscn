@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://pi12nha5o2yq"]
 
 [ext_resource type="Script" uid="uid://ddgi7w5lbg2k3" path="res://Components/Characters/NPCs/Dummy/dummy.gd" id="1_ti8cp"]
-[ext_resource type="PackedScene" uid="uid://bkcotb4wiqh2g" path="res://Components/Characters/HitboxComponent.tscn" id="2_0n3s4"]
-[ext_resource type="PackedScene" uid="uid://bu866va6wl0v0" path="res://Components/Characters/HealthComponent.tscn" id="3_1sesn"]
+[ext_resource type="PackedScene" uid="uid://bkcotb4wiqh2g" path="res://Components/Characters/Generics/HitboxComponent.tscn" id="2_0n3s4"]
+[ext_resource type="PackedScene" uid="uid://bu866va6wl0v0" path="res://Components/Characters/Generics/HealthComponent.tscn" id="3_1sesn"]
 [ext_resource type="Script" uid="uid://2ger1cq2sfsm" path="res://Components/Characters/NPCs/Dummy/body_animation.gd" id="4_6klwy"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1sesn"]

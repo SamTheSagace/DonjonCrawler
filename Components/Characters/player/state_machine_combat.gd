@@ -2,6 +2,10 @@ extends StateMachine
 class_name StateMachineCombat
 
 @export var WEAPON_MANAGER: WeaponManager
+@export var HEALTH_COMPONENT: HealthComponent
+
+func combat_state() -> StateCombat:
+	return current_state as StateCombat
 
 enum CombatState {
 	IDLE,
@@ -30,6 +34,7 @@ func child_state():
 		node.character = character
 		node.state_machine = self
 		node.weapon_manager = WEAPON_MANAGER
+		node.health_component = HEALTH_COMPONENT
 		states[state_id] = node
 
 func transition_to(state_id: int, msg := {}):
@@ -45,3 +50,7 @@ func transition_to(state_id: int, msg := {}):
 
 func enter_initial_state():
 	transition_to(initial_state)
+	
+func _resolve_attack(attack:Attack):
+	if combat_state():
+		combat_state().resolve_on_hit(attack)
