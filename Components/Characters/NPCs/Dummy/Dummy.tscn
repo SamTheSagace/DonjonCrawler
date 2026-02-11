@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bkcotb4wiqh2g" path="res://Components/Characters/Generics/HitboxComponent.tscn" id="2_0n3s4"]
 [ext_resource type="PackedScene" uid="uid://bu866va6wl0v0" path="res://Components/Characters/Generics/HealthComponent.tscn" id="3_1sesn"]
 [ext_resource type="Script" uid="uid://2ger1cq2sfsm" path="res://Components/Characters/NPCs/Dummy/body_animation.gd" id="4_6klwy"]
+[ext_resource type="Script" uid="uid://bk0yhpxltxuoq" path="res://Components/Characters/Generics/damage_receiver.gd" id="5_panqs"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1sesn"]
 
@@ -82,9 +83,8 @@ HEALTH_COMPONENT = NodePath("HealthComponent")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_1sesn")
 
-[node name="HitboxComponent" parent="." unique_id=1292673440 node_paths=PackedStringArray("health_component") instance=ExtResource("2_0n3s4")]
+[node name="HitboxComponent" parent="." unique_id=1292673440 instance=ExtResource("2_0n3s4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HitboxComponent" unique_id=1204164068]
 shape = SubResource("CapsuleShape3D_0n3s4")
@@ -107,3 +107,9 @@ text = "eeeeeeeeeeeeeeeee"
 root_node = NodePath("../WorldModel/MeshInstance3D")
 libraries/ = SubResource("AnimationLibrary_panqs")
 script = ExtResource("4_6klwy")
+
+[node name="DamageReceiver" type="Node" parent="." unique_id=618405065 node_paths=PackedStringArray("HITBOX", "HEALTH")]
+script = ExtResource("5_panqs")
+HITBOX = NodePath("../HitboxComponent")
+HEALTH = NodePath("../HealthComponent")
+metadata/_custom_type_script = "uid://bk0yhpxltxuoq"

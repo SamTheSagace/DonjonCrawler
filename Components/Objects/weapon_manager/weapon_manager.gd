@@ -67,6 +67,7 @@ func start_parry():
 		hand_anim._on_parryInput(weapon_resource)
 
 func attack_Hit(hitbox):
+	print("should damage")
 	var attack = Attack.new()
-	attack.attack_Damage = weapon_resource.damage
+	attack.base_damage = weapon_resource.damage
 	hitbox.damage(attack)

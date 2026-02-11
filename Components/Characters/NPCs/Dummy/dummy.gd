@@ -2,6 +2,7 @@ extends Character
 
 @export var Regeneration := 2
 func _ready():
+	super._ready()
 	if HEALTH_COMPONENT:
 		HEALTH_COMPONENT.damageTaken.connect(_on_damage_taken)
 		%Health.text = var_to_str(HEALTH_COMPONENT.health)

@@ -14,9 +14,9 @@
 [ext_resource type="Script" uid="uid://cjx5odish7rue" path="res://Components/Characters/Generics/attack.gd" id="6_o6wjn"]
 [ext_resource type="Script" uid="uid://20qt3k6lqvx2" path="res://Components/Characters/Player/movement.gd" id="9_305y5"]
 [ext_resource type="Script" uid="uid://bupf3pckd3pvo" path="res://Components/Characters/Player/HUD.gd" id="10_2g87s"]
+[ext_resource type="PackedScene" uid="uid://dvv0260ms1gqg" path="res://Components/Characters/Generics/character_damage_receiver.tscn" id="11_27ntm"]
 [ext_resource type="PackedScene" uid="uid://b1d7vo8xmj4pk" path="res://Components/Characters/Animation/HandAnimation.tscn" id="15_0k167"]
 [ext_resource type="Script" uid="uid://vb7ivc46yxav" path="res://Components/Characters/Player/skin.gd" id="15_mtylk"]
-[ext_resource type="Script" uid="uid://fc3gtu4ts5et" path="res://Components/Characters/Generics/character_damage_receiver.gd" id="17_27ntm"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bkrd4"]
 
@@ -64,10 +64,10 @@ script = ExtResource("6_o6wjn")
 weapon_resource = ExtResource("3_ancfq")
 hand_anim = NodePath("../WorldModel/body/HandAnimation")
 
-[node name="DamageReceiver" type="Node" parent="." unique_id=1248829507 node_paths=PackedStringArray("SMC")]
-script = ExtResource("17_27ntm")
+[node name="DamageReceiver" parent="." unique_id=787278926 node_paths=PackedStringArray("SMC", "HITBOX", "HEALTH") instance=ExtResource("11_27ntm")]
 SMC = NodePath("../StateMachineCombat")
-metadata/_custom_type_script = "uid://bk0yhpxltxuoq"
+HITBOX = NodePath("../HitboxComponent")
+HEALTH = NodePath("../HealthComponent")
 
 [node name="HitboxComponent" parent="." unique_id=1237130923 instance=ExtResource("2_bkrd4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -92,7 +92,7 @@ script = ExtResource("15_mtylk")
 transform = Transform3D(-2.235, 0, -3.37476e-07, 0, 2.235, 0, 3.37476e-07, 0, -2.235, 0, 0.19643998, -0.0652966)
 
 [node name="HandAnimation" parent="WorldModel/body" unique_id=351774857 instance=ExtResource("15_0k167")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6552247, -0.034609914, -0.39365065)
+transform = Transform3D(0.95265085, 0, 0.3040663, 0, 1, 0, -0.3040663, 0, 0.95265085, 0.500409, -0.18127716, -0.39365065)
 
 [node name="Head" type="Node3D" parent="." unique_id=1068558877]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)

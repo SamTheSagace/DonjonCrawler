@@ -119,7 +119,7 @@ animation = NodePath("Hand/WorldModelAnimation")
 
 [node name="Hand" type="Node3D" parent="." unique_id=571217086]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 0.9659251, 0.25881886, 0, -0.25881886, 0.9659251, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.96592504, 0.25881884, 0, -0.25881884, 0.96592504, 0, 0, 0)
 
 [node name="WorldModelAnimation" type="AnimationPlayer" parent="Hand" unique_id=570779569]
 unique_name_in_owner = true
@@ -131,7 +131,7 @@ transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
 visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Hand" unique_id=127770317]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.4, 0, -0.2781221, 0.06331158)
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 1.4901161e-08, 0, -1.4901161e-08, 0.4, 0, -0.13743487, 0.048431516)
 mesh = SubResource("BoxMesh_dcn3l")
 
 [connection signal="animation_finished" from="Hand/WorldModelAnimation" to="Hand/WorldModelAnimation" method="_on_animation_finished"]

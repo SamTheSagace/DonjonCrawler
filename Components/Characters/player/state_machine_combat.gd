@@ -33,8 +33,10 @@ func child_state():
 		assert(node is State, "%s must extend State" % node_name)
 		node.character = character
 		node.state_machine = self
+		
 		node.weapon_manager = WEAPON_MANAGER
 		node.health_component = HEALTH_COMPONENT
+		assert(node.weapon_manager !=null && node.health_component !=null)
 		states[state_id] = node
 
 func transition_to(state_id: int, msg := {}):

@@ -14,11 +14,18 @@ enum EnemyState {
 	CHARGE
 }
 var target = null
-var current_state = EnemyState.IDLE
-var text_info := ''
+var target_rotation :float
 var next_nav_point = null
 var dir_global : Vector3
-var target_rotation :float
+const FACING_EPSILON := 0.1
+const ATTACK_RANGE := 2.0
+const CHASE_LOST_RANGE := 5.0
+
+var current_state = EnemyState.IDLE
+var text_info := ''
+
+var charge_time := 1.0
+var charge_timer := 0.0
 
 func _ready():
 	super._ready()
@@ -36,8 +43,6 @@ func _physics_process(delta):
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
-
-
 	move_and_slide()
 
 func _process(delta):
@@ -45,14 +50,10 @@ func _process(delta):
 		%Info.text = "Health: %s\nDistance: %s\nState: %s" % [
 			HEALTH_COMPONENT.health,
 			nav_agent.distance_to_target(),
-			current_state
+			EnemyState.keys()[current_state]
 		]
-		#%Info.text = "Health: %s\nDif: %s\nRotation: %s" % [
-			#health.health,
-			#abs(target_rotation - self.rotation.y),
-			#self.rotation.y,
-		#]
-	nav_agent.set_target_position(player.global_position)
+	if current_state in [EnemyState.CHASE, EnemyState.CHARGE]:
+		nav_agent.set_target_position(player.global_position)
 	next_nav_point = nav_agent.get_next_path_position()
 	dir_global= (next_nav_point - global_position).normalized()
 	match(current_state):
@@ -63,9 +64,22 @@ func _process(delta):
 	if HEALTH_COMPONENT.health <= 0:
 		self.queue_free()
 
+func is_facing_target() -> bool:
+	return abs(target_rotation - rotation.y) <= FACING_EPSILON
+	
+func is_in_attack_range() -> bool:
+	return nav_agent.distance_to_target() <= ATTACK_RANGE
+
+func has_lost_target() -> bool:
+	return nav_agent.distance_to_target() > CHASE_LOST_RANGE
+
+func face_next_nav_point():
+	input_dir = Vector3.ZERO
+	input_dir = (next_nav_point - global_position).normalized()
+	target_rotation = atan2(-input_dir.x, -input_dir.z)
+
 
 func _idle_state():
-	#$AnimationPlayer.play("idle")
 	target = player
 	if target != null:
 		current_state = EnemyState.CHASE
@@ -75,31 +89,33 @@ func find_target():
 	pass
 
 func _chase_state():
-	input_dir = (next_nav_point - self.global_position).normalized()
-	target_rotation = atan2(-input_dir.x, -input_dir.z)
-	if abs(nav_agent.distance_to_target()) < 2:
-		input_dir = Vector3(0,0,0)
+	face_next_nav_point()
+	if is_in_attack_range():
+		input_dir = Vector3.ZERO
+		charge_timer = charge_time
 		current_state = EnemyState.CHARGE
-	pass
 
 func _charge_state():
-	var target = (next_nav_point - self.global_position).normalized()
-	target_rotation = atan2(-target.x, -target.z)
-	if abs(target_rotation-self.rotation.y) <=.1:
-		wants_to_attack = true
-		await get_tree().create_timer(1).timeout
-		wants_to_attack=false
-	if abs(nav_agent.distance_to_target()) > 5:
+	face_next_nav_point()
+	if has_lost_target():
 		wants_to_attack = false
 		current_state = EnemyState.CHASE
-	pass
+		return
+	if is_facing_target():
+		if not wants_to_attack:
+			wants_to_attack = true
+		charge_timer -= get_process_delta_time()
+		if charge_timer <= 0:
+			current_state = EnemyState.ATTACK
 
 func _attack_state():
-	var target = (next_nav_point - self.global_position).normalized()
-	target_rotation = atan2(-target.x, -target.z)
-	if abs(target_rotation-self.rotation.y) <=.1:
-		wants_to_attack = true
-	if abs(nav_agent.distance_to_target()) > 5:
+	if wants_to_attack:
 		wants_to_attack = false
+	# If still close, go back to charging (combo / loop)
+	if is_in_attack_range():
+		charge_timer = charge_time
+		current_state = EnemyState.CHARGE
+		return
+	# Otherwise chase
+	if has_lost_target():
 		current_state = EnemyState.CHASE
-	pass
