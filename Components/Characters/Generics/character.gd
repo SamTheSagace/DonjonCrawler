@@ -6,9 +6,8 @@ class_name Character
 @export var JUMP_VELOCITY := 4.5
 @export var SNEAK_SPEED := 0.5
 @export var SPRINT_SPEED := 1.5
-@export var HEALTH_COMPONENT: HealthComponent
-@export var MOVEMENT_COMPONENT: MovementComponent
-@export var SMC: StateMachineCombat
+@export var HEALTH_COMPONENT : HealthComponent
+@export var MOVEMENT_COMPONENT : MovementComponent
 
 var wants_to_attack := false
 var wants_to_parry := false
