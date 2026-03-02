@@ -16,17 +16,17 @@ enum EnemyState {
 var target = null
 var target_rotation :float
 var next_nav_point = null
-var dir_global : Vector3
 const FACING_EPSILON := 0.1
-const ATTACK_RANGE := 2.0
-const CHASE_LOST_RANGE := 5.0
+const ATTACK_RANGE :=3.0
+const CHASE_LOST_RANGE := 6.0
 
 var current_state = EnemyState.IDLE
 var text_info := ''
-
+var stunned := false
+var moving := false
 var charge_time := 1.0
 var charge_timer := 0.0
-
+var Rotation_Speed = SPEED * 1.5
 func _ready():
 	super._ready()
 	player = get_node(player_path)
@@ -34,28 +34,29 @@ func _ready():
 func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
-		velocity += get_gravity() * delta
-	var direction = input_dir
-	self.rotation.y = lerp_angle(self.rotation.y, target_rotation, SPEED*delta)
-	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
-	move_and_slide()
+		velocity += get_gravity() * delta	
+	if not stunned: 
+		self.rotation.y = lerp_angle(self.rotation.y, target_rotation, SPEED*delta)
+		if moving : 
+			if input_dir:
+				velocity.x = input_dir.x * SPEED
+				velocity.z = input_dir.z * SPEED
+			else:
+				velocity.x = move_toward(velocity.x, 0, SPEED)
+				velocity.z = move_toward(velocity.z, 0, SPEED)
+			move_and_slide()
 
 func _process(delta):
 	if HEALTH_COMPONENT:
 		%Info.text = "Health: %s\nDistance: %s\nState: %s" % [
 			HEALTH_COMPONENT.health,
-			nav_agent.distance_to_target(),
+			wants_to_attack,
 			EnemyState.keys()[current_state]
 		]
-	if current_state in [EnemyState.CHASE, EnemyState.CHARGE]:
-		nav_agent.set_target_position(player.global_position)
+	nav_agent.set_target_position(player.global_position)
 	next_nav_point = nav_agent.get_next_path_position()
-	dir_global= (next_nav_point - global_position).normalized()
+	target_rotation = atan2(input_dir.x, input_dir.z)+ PI
+	input_dir = (next_nav_point - global_position).normalized()
 	match(current_state):
 		EnemyState.IDLE: _idle_state()
 		EnemyState.CHASE: _chase_state()
@@ -73,13 +74,12 @@ func is_in_attack_range() -> bool:
 func has_lost_target() -> bool:
 	return nav_agent.distance_to_target() > CHASE_LOST_RANGE
 
-func face_next_nav_point():
-	input_dir = Vector3.ZERO
-	input_dir = (next_nav_point - global_position).normalized()
-	target_rotation = atan2(-input_dir.x, -input_dir.z)
-
+func toggle_moving():
+	moving = !moving
 
 func _idle_state():
+	if moving:
+		toggle_moving()
 	target = player
 	if target != null:
 		current_state = EnemyState.CHASE
@@ -89,14 +89,18 @@ func find_target():
 	pass
 
 func _chase_state():
-	face_next_nav_point()
+	if not moving: 
+		toggle_moving()
 	if is_in_attack_range():
 		input_dir = Vector3.ZERO
 		charge_timer = charge_time
 		current_state = EnemyState.CHARGE
+	if has_lost_target():
+		current_state = EnemyState.IDLE
 
 func _charge_state():
-	face_next_nav_point()
+	if moving:
+		toggle_moving()
 	if has_lost_target():
 		wants_to_attack = false
 		current_state = EnemyState.CHASE
@@ -109,13 +113,14 @@ func _charge_state():
 			current_state = EnemyState.ATTACK
 
 func _attack_state():
+	if moving:
+		toggle_moving()
 	if wants_to_attack:
-		wants_to_attack = false
-	# If still close, go back to charging (combo / loop)
+		wants_to_attack = false	
 	if is_in_attack_range():
 		charge_timer = charge_time
 		current_state = EnemyState.CHARGE
 		return
 	# Otherwise chase
-	if has_lost_target():
+	if not is_in_attack_range():
 		current_state = EnemyState.CHASE
