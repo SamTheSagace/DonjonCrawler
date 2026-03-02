@@ -91,3 +91,7 @@ func _process(delta: float) -> void:
 	wants_to_attack = Input.is_action_pressed("left_click")
 	wants_to_parry = Input.is_action_pressed("right_clic")
 	camera_auto_switch()
+
+func _resolve_knockback(attack: Attack):
+	print(attack.knockback, "this is a player, no knockback for no")
+	pass

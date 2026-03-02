@@ -3,7 +3,7 @@ extends Node3D
 
 @export var weapon_resource: WeaponResource
 @export var hand_anim: HandAnimation
-
+@export var CHARACTER : Character
 signal attacking_state_changed(is_attacking: bool)
 
 var melee_weapon: MeleeWeapon
@@ -69,5 +69,6 @@ func start_parry():
 func attack_Hit(hitbox):
 	print("should damage")
 	var attack = Attack.new()
+	attack.attacker_position = CHARACTER.global_position
 	attack.base_damage = weapon_resource.damage
 	hitbox.damage(attack)
