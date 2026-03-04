@@ -8,5 +8,5 @@ func update(delta):
 		state_machine.transition_to(StateMachineCombat.CombatState.PARRY)
 		return
 
-func enter(msg := {}):
-	print("is now idle", character.wants_to_parry)
+# func enter(msg := {}):
+# 	print("is now idle", character.wants_to_parry)

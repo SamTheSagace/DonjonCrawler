@@ -83,9 +83,14 @@ _data = {
 &"damageTaken": SubResource("Animation_0qu2q")
 }
 
-[node name="Enemy1" type="CharacterBody3D" unique_id=1320624076 node_paths=PackedStringArray("HEALTH_COMPONENT")]
+[node name="Enemy1" type="CharacterBody3D" unique_id=1320624076 node_paths=PackedStringArray("weapon_manager", "HEALTH_COMPONENT")]
 script = ExtResource("1_4h2bd")
+weapon_manager = NodePath("WeaponManager")
+MAX_HEALTH = null
 SPEED = 4.0
+JUMP_VELOCITY = null
+SNEAK_SPEED = null
+SPRINT_SPEED = null
 HEALTH_COMPONENT = NodePath("HealthComponent")
 
 [node name="DamageReceiver" parent="." unique_id=787278926 node_paths=PackedStringArray("SMC", "CHARACTER", "HITBOX", "HEALTH") instance=ExtResource("15_80bfm")]

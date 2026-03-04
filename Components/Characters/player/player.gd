@@ -18,7 +18,7 @@ var upgrades: Array[BasePlayerUpgrade] = []
 
 func _ready():
 	super._ready()
-	spring_arm.spring_length = SPRING_LENGTH_1
+	spring_arm.spring_length = SPRING_LENGTH_2
 	_set_layers()
 
 func _set_layers():
@@ -93,5 +93,5 @@ func _process(delta: float) -> void:
 	camera_auto_switch()
 
 func _resolve_knockback(attack: Attack):
-	print(attack.knockback, "this is a player, no knockback for no")
+	print(attack.knockback, "this is a player, no knockback for now")
 	pass

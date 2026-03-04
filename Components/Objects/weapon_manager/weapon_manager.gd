@@ -5,7 +5,6 @@ extends Node3D
 @export var hand_anim: HandAnimation
 @export var CHARACTER : Character
 signal attacking_state_changed(is_attacking: bool)
-
 var melee_weapon: MeleeWeapon
 var ranged_weapon: WeaponBase
 var attack_finished:= true
@@ -14,7 +13,7 @@ var hand: Node3D
 func _ready() -> void:
 	assert(hand_anim != null)
 	assert(weapon_resource != null)
-	hand_anim.animation_finished.connect(finish_attack)
+	hand_anim.animation_finished.connect(finish_animation)
 	await hand_anim.ready
 	hand = hand_anim.hand
 	weapon_match()
@@ -57,7 +56,7 @@ func start_attack():
 		emit_signal("attacking_state_changed", true)
 		hand_anim._on_attackInput(weapon_resource)
 
-func finish_attack(value:String):
+func finish_animation(value:String):
 	if value == "sword_slash":
 		attack_finished = true
 		emit_signal("attacking_state_changed", false)
@@ -70,5 +69,6 @@ func attack_Hit(hitbox):
 	print("should damage")
 	var attack = Attack.new()
 	attack.attacker_position = CHARACTER.global_position
+	attack.knockback = weapon_resource.knockback
 	attack.base_damage = weapon_resource.damage
 	hitbox.damage(attack)

@@ -8,10 +8,9 @@ class_name Character
 @export var SPRINT_SPEED := 1.5
 @export var HEALTH_COMPONENT : HealthComponent
 @export var MOVEMENT_COMPONENT : MovementComponent
-
+var knockack_direction : Vector3
 var wants_to_attack := false
 var wants_to_parry := false
-var is_stunned:= false
 var stun_timer :=0.0
 
 signal attackInput()
@@ -24,11 +23,10 @@ func _ready():
 		MOVEMENT_COMPONENT.set_stats(SPEED, JUMP_VELOCITY, SNEAK_SPEED, SPRINT_SPEED)
 
 func _resolve_knockback(attack: Attack):
-	is_stunned = true
-	stun_timer = 0.2
-	var direction = (self.global_transform.origin - attack.attacker_position)
-	direction.y = 0
-	direction = direction.normalized()
-	print("knocked back !", attack.attacker_position, direction)
-	if direction.length_squared() > 0.001:
-		knockback_velocity = direction.normalized() * attack.knockback
+	stun_timer = 1
+	knockack_direction = (self.global_transform.origin - attack.attacker_position)
+	knockack_direction.y = 0
+	knockack_direction = knockack_direction.normalized()
+	print("knocked back !", attack.attacker_position, knockack_direction)
+	if knockack_direction.length_squared() > 0.001:
+		knockback_velocity = knockack_direction.normalized() * attack.knockback
