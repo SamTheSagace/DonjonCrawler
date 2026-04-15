@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://b1d7vo8xmj4pk" path="res://Components/Characters/Animation/HandAnimation.tscn" id="3_34j08"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_fnie5"]
-size = Vector3(0.235, 0.2, 1.03)
+size = Vector3(0.235, 0.2, 0.405)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_is7yy"]
 radius = 0.20990731
@@ -17,7 +17,7 @@ script = ExtResource("1_34j08")
 hand_anim = NodePath("../arm/HandAnimation")
 
 [node name="arm" type="MeshInstance3D" parent="." unique_id=1132623860]
-transform = Transform3D(0.99999994, 0, 0, 0, 0.96592593, 0.2588191, 0, -0.25881907, 0.96592605, 1.0237008, 1.655751, -0.61668575)
+transform = Transform3D(0.9974407, 0.018504899, -0.069061235, 0, 0.9659258, 0.2588191, 0.07149743, -0.25815666, 0.963454, -0.5509182, 0.657193, -0.016636968)
 mesh = SubResource("BoxMesh_fnie5")
 
 [node name="HandAnimation" parent="arm" unique_id=351774857 instance=ExtResource("3_34j08")]
