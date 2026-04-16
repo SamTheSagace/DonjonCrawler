@@ -83,15 +83,12 @@ _data = {
 &"damageTaken": SubResource("Animation_0qu2q")
 }
 
-[node name="Enemy1" type="CharacterBody3D" unique_id=1320624076 node_paths=PackedStringArray("weapon_manager", "HEALTH_COMPONENT")]
+[node name="Enemy1" type="CharacterBody3D" unique_id=1320624076 node_paths=PackedStringArray("weapon_manager", "HEALTH_COMPONENT", "HITBOX")]
 script = ExtResource("1_4h2bd")
 weapon_manager = NodePath("WeaponManager")
-MAX_HEALTH = null
 SPEED = 4.0
-JUMP_VELOCITY = null
-SNEAK_SPEED = null
-SPRINT_SPEED = null
 HEALTH_COMPONENT = NodePath("HealthComponent")
+HITBOX = NodePath("HitboxComponent")
 
 [node name="DamageReceiver" parent="." unique_id=787278926 node_paths=PackedStringArray("SMC", "CHARACTER", "HITBOX", "HEALTH") instance=ExtResource("15_80bfm")]
 SMC = NodePath("../StateMachineCombat")
@@ -106,6 +103,8 @@ HEALTH_COMPONENT = NodePath("../HealthComponent")
 
 [node name="Parry" type="Node" parent="StateMachineCombat" unique_id=709002687]
 script = ExtResource("3_6n3fv")
+perfect_window = null
+parry_duration = null
 
 [node name="Cast" type="Node" parent="StateMachineCombat" unique_id=1645138846]
 script = ExtResource("4_lm3eu")

@@ -29,11 +29,12 @@
 [sub_resource type="LabelSettings" id="LabelSettings_2g87s"]
 font_size = 83
 
-[node name="Player" type="CharacterBody3D" unique_id=31202077 node_paths=PackedStringArray("skin", "HEALTH_COMPONENT", "MOVEMENT_COMPONENT")]
+[node name="Player" type="CharacterBody3D" unique_id=31202077 node_paths=PackedStringArray("skin", "HEALTH_COMPONENT", "MOVEMENT_COMPONENT", "HITBOX")]
 script = ExtResource("1_2h2ij")
 skin = NodePath("WorldModel/body/BodySkin")
 HEALTH_COMPONENT = NodePath("HealthComponent")
 MOVEMENT_COMPONENT = NodePath("Movement")
+HITBOX = NodePath("HitboxComponent")
 
 [node name="Movement" type="Node3D" parent="." unique_id=1793409437 node_paths=PackedStringArray("player")]
 script = ExtResource("9_305y5")

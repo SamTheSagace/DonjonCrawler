@@ -35,7 +35,7 @@ var Rotation_Speed = SPEED * 1.5
 func _ready():
 	super._ready()
 	target = player
-	weapon_manager.hand_anim.animation_finished.connect()
+	weapon_manager.hand_anim.animation_finished.connect(finish_animation)
 
 func _physics_process(delta):
 	if not is_on_floor():
