@@ -26,6 +26,10 @@ func _set_layers():
 		for child in skin.find_children("*", "VisualInstance3D", true, false):
 			child.set_layer_mask_value(1, false)
 			child.set_layer_mask_value(2, true)
+	else:
+		for child in skin.find_children("*", "VisualInstance3D", true, false):
+			child.set_layer_mask_value(1, true)
+			child.set_layer_mask_value(2, false)
 
 func _unhandled_input(event):
 	# Mouse capture toggle
