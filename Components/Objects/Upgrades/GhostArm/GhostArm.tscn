@@ -13,8 +13,9 @@ radius = 0.20990731
 [node name="GhostArm" type="CharacterBody3D" unique_id=1580302188]
 script = ExtResource("1_34j08")
 
-[node name="WeaponManager" parent="." unique_id=99890068 node_paths=PackedStringArray("hand_anim") instance=ExtResource("1_1ujru")]
+[node name="WeaponManager" parent="." unique_id=99890068 node_paths=PackedStringArray("hand_anim", "CHARACTER") instance=ExtResource("1_1ujru")]
 hand_anim = NodePath("../arm/HandAnimation")
+CHARACTER = NodePath("..")
 
 [node name="arm" type="MeshInstance3D" parent="." unique_id=1132623860]
 transform = Transform3D(0.9974407, 0.018504899, -0.069061235, 0, 0.9659258, 0.2588191, 0.07149743, -0.25815666, 0.963454, -0.5509182, 0.657193, -0.016636968)

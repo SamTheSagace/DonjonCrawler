@@ -5,7 +5,7 @@ extends StateCombat
 
 var elapsed := 0.0
 
-func enter(msg := {}):
+func enter(_msg := {}):
 	elapsed = 0.0
 	weapon_manager.start_parry()
 
@@ -27,7 +27,7 @@ func resolve_on_hit(attack: Attack):
 		# Perfect parry: negate damage
 		attack.damage_multiplier = 0.0
 		attack.was_parried = true
-		
+
 	else:
 		# Regular parry: reduce damage
 		attack.damage_multiplier = 0.2

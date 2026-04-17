@@ -3,6 +3,7 @@ class_name Player
 
 @export var sensitivity: float = 5.0
 @export var skin : SkinContent
+@export var stateMachine : StateMachineCombat
 @onready var head = $Head
 @onready var spring_arm = $Head/SpringArm3D
 @onready var camera = %Camera3D
@@ -91,7 +92,7 @@ func camera_auto_switch():
 		for child in skin.find_children("*", "VisualInstance3D"):
 			child.set_layer_mask_value(1, true)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	wants_to_attack = Input.is_action_pressed("left_click")
 	wants_to_parry = Input.is_action_pressed("right_clic")
 	camera_auto_switch()

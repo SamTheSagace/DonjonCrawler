@@ -6,5 +6,5 @@ extends Resource
 @export var priority: int
 @export var level: int = 1
 
-func apply_upgrade(player: Player):
+func apply_upgrade(_player: Player):
 	pass

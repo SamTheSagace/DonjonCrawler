@@ -9,6 +9,8 @@ var melee_weapon: MeleeWeapon
 var ranged_weapon: WeaponBase
 var attack_finished:= true
 var hand: Node3D
+signal attack_started
+signal charge_started
 
 func _ready() -> void:
 	assert(hand_anim != null)
@@ -44,26 +46,25 @@ func clean_up_weapon():
 		hand.get_node("RangedWeapon").queue_free()
 
 func go_to_idle():
-	if(weapon_resource):
-		hand_anim._on_idleInput()
+	hand_anim._on_idleInput()
 
 func start_charge():
+	charge_started.emit()
 	hand_anim._on_chargeInput(weapon_resource)
 
 func start_attack():
+	attack_started.emit()
 	attack_finished = false
-	if(weapon_resource):
-		emit_signal("attacking_state_changed", true)
-		hand_anim._on_attackInput(weapon_resource)
+	attacking_state_changed.emit(true)
+	hand_anim._on_attackInput(weapon_resource)
 
 func finish_animation(value:String):
 	if value == "sword_slash":
 		attack_finished = true
-		emit_signal("attacking_state_changed", false)
+		attacking_state_changed.emit(false)
 
 func start_parry():
-	if(weapon_resource):
-		hand_anim._on_parryInput(weapon_resource)
+	hand_anim._on_parryInput(weapon_resource)
 
 func attack_Hit(hitbox):
 	var attack = Attack.new()

@@ -1,6 +1,5 @@
 extends CharacterBody3D
 class_name Character
-
 @export var MAX_HEALTH := 60
 @export var SPEED := 5.0
 @export var JUMP_VELOCITY := 4.5

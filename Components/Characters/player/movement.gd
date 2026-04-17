@@ -60,7 +60,7 @@ func handle_physics(delta: float):
 # -----------------------------
 # MOVEMENT PHYSICS
 # -----------------------------
-func _handle_ground_physics(delta: float):
+func _handle_ground_physics(_delta: float):
 	player.velocity.x = wish_dir.x * _get_move_speed()
 	player.velocity.z = wish_dir.z * _get_move_speed()
 

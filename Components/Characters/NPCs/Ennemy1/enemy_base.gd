@@ -2,7 +2,7 @@ extends Character
 class_name Enemy
 
 var input_dir := Vector3(0,0,0)
-@export var player: Player 
+@export var player: Player
 @export var weapon_manager : WeaponManager
 @onready var nav_agent = $NavigationAgent3D
 
@@ -40,11 +40,11 @@ func _ready():
 func _physics_process(delta):
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-		
+
 	var movement_velocity := Vector3.ZERO
-	if not is_stunned(): 
+	if not is_stunned():
 		self.rotation.y = lerp_angle(self.rotation.y, target_rotation, SPEED*delta)
-		if moving : 
+		if moving :
 			if input_dir:
 				movement_velocity.x = input_dir.x * SPEED
 				movement_velocity.z = input_dir.z * SPEED
@@ -118,7 +118,7 @@ func find_target():
 	pass
 
 func _chase_state():
-	if not moving: 
+	if not moving:
 		toggle_moving()
 	if is_in_attack_range():
 		charge_timer = charge_time

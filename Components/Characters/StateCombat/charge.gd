@@ -1,13 +1,12 @@
 extends StateCombat
 
 
-func enter(msg := {}):
+func enter(_msg := {}):
 	weapon_manager.start_charge()
 	pass
 
-func update(delta: float):
+func update(_delta: float):
 	if !character.wants_to_attack:
-		print("should attack")
 		state_machine.transition_to(StateMachineCombat.CombatState.ATTACK, {"print":"attack"})
 		return
 
