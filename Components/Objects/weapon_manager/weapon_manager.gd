@@ -5,12 +5,12 @@ extends Node3D
 @export var hand_anim: HandAnimation
 @export var CHARACTER : Character
 signal attacking_state_changed(is_attacking: bool)
+signal attack_started(is_attack:bool)
+
 var melee_weapon: MeleeWeapon
 var ranged_weapon: WeaponBase
 var attack_finished:= true
 var hand: Node3D
-signal attack_started
-signal charge_started
 
 func _ready() -> void:
 	assert(hand_anim != null)
@@ -23,8 +23,8 @@ func _ready() -> void:
 func weapon_match():
 	if hand_anim and weapon_resource.world_model:
 		match(weapon_resource.weapon_type):
-				WeaponType.Type.MELEE: update_melee_weapon()
-				WeaponType.Type.RANGED: update_ranged_weapon()
+				WeaponParameter.Type.MELEE: update_melee_weapon()
+				WeaponParameter.Type.RANGED: update_ranged_weapon()
 				_: print("unknown type")
 
 func update_melee_weapon():
@@ -49,12 +49,12 @@ func go_to_idle():
 	hand_anim._on_idleInput()
 
 func start_charge():
-	charge_started.emit()
+	attack_started.emit(false)
 	hand_anim._on_chargeInput(weapon_resource)
 
 func start_attack():
-	attack_started.emit()
 	attack_finished = false
+	attack_started.emit(true)
 	attacking_state_changed.emit(true)
 	hand_anim._on_attackInput(weapon_resource)
 

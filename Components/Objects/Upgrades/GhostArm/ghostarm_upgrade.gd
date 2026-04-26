@@ -2,15 +2,14 @@ class_name GhostArmUpgrade
 extends BasePlayerUpgrade
 
 @export var ghost_arm: PackedScene
-@export var ghostSword : PackedScene
-@export var ghostBow : PackedScene
-@export var ghostSpear : PackedScene
+@export var ghostSword: PackedScene
+@export var ghostBow: PackedScene
+@export var ghostSpear: PackedScene
 
 
+var ghostWeaponManager: WeaponManager
 
-var ghostWeaponManager : WeaponManager
-
-var ghost : GhostArm
+var ghost: GhostArm
 
 func apply_upgrade(player: Player):
 	var weaponManager = player.stateMachine.WEAPON_MANAGER
@@ -20,12 +19,11 @@ func apply_upgrade(player: Player):
 		if child is WeaponManager:
 			ghostWeaponManager = child
 	ghost.ghostWeaponManager = ghostWeaponManager
-	weaponManager.charge_started.connect(ghost._on_start_charge)
-	weaponManager.attack_started.connect(ghost._on_start_attack)
-	ghostWeaponManager.weapon_resource =  weaponManager.weapon_resource.duplicate()
+	weaponManager.attack_started.connect(ghost._on_signal_attack)
+	ghostWeaponManager.weapon_resource = weaponManager.weapon_resource.duplicate()
 	ghostWeaponManager.weapon_resource.damage *= 0.5
 	ghostWeaponManager.weapon_resource.knockback = 0
-	if ghostWeaponManager.weapon_resource.weapon_type == WeaponType.Type.MELEE:
+	if ghostWeaponManager.weapon_resource.weapon_type == WeaponParameter.Type.MELEE:
 		ghostWeaponManager.weapon_resource.world_model = ghostSword
 	player.add_child(ghost)
 	ghost.global_position = player.global_position
