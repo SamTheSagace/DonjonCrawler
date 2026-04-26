@@ -6,5 +6,5 @@ signal hit_Hitbox(target)
 func _on_collision_area_entered(area):
 	if area is HitboxComponent:
 		var hitbox: HitboxComponent = area
-		emit_signal("hit_Hitbox", hitbox)
+		hit_Hitbox.emit(hitbox)
 	 # Replace with function body.

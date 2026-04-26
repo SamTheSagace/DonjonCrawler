@@ -3,7 +3,7 @@ extends Node3D
 
 var Max_health := 50
 
-var health : float
+var health: float
 signal damageTaken(dmg)
 
 func _ready():
@@ -13,8 +13,9 @@ func set_max_health(value: int):
 	Max_health = value
 	health = value
 
-func damage(attack: Attack):
+func handle_attack(attack: Attack):
 	if attack.was_parried:
 		return
-	emit_signal('damageTaken',attack.final_damage())
-	health -= attack.final_damage()
+	var finalDmg = attack.final_damage()
+	damageTaken.emit(finalDmg)
+	health -= finalDmg

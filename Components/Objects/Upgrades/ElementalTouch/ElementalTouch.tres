@@ -1,8 +1,8 @@
 [gd_resource type="Resource" format=3 uid="uid://ff2yow6uroep"]
 
-[ext_resource type="Script" uid="uid://c6s5bpmnqce05" path="res://Components/Objects/Upgrades/ElementalTouch/elemental_touch.gd" id="1_a1c71"]
+[ext_resource type="Script" uid="uid://c6s5bpmnqce05" path="res://Components/Objects/Upgrades/ElementalTouch/elemental_touch_upgrade.gd" id="1_a1c71"]
 
 [resource]
 script = ExtResource("1_a1c71")
-element = 3
+element = 2
 metadata/_custom_type_script = "uid://c2yt4m5vuy4lx"

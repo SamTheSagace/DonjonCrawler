@@ -13,7 +13,6 @@ var ghost: GhostArm
 
 func apply_upgrade(player: Player):
 	var weaponManager = player.stateMachine.WEAPON_MANAGER
-	print(weaponManager.weapon_resource)
 	ghost = ghost_arm.instantiate()
 	for child in ghost.get_children():
 		if child is WeaponManager:

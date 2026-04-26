@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://yl23rid523r3"]
 
-[ext_resource type="PackedScene" uid="uid://bi7cm43d6twr3" path="res://Components/Characters/Player/Player.tscn" id="1_m7e2g"]
+[ext_resource type="PackedScene" uid="uid://bi7cm43d6twr3" path="res://Components/Characters/player/Player.tscn" id="1_m7e2g"]
 [ext_resource type="Script" uid="uid://d3c3cro84wvpb" path="res://scenes/game.gd" id="1_p57ef"]
 [ext_resource type="PackedScene" uid="uid://cjp58634du344" path="res://Components/Objects/Upgrades/Upgrade.tscn" id="4_lbhrr"]
 [ext_resource type="Resource" uid="uid://cwwovcfxr5kig" path="res://Components/Objects/Upgrades/GhostArm/GhostArm.tres" id="6_p57ef"]
@@ -40,17 +40,11 @@ environment = SubResource("Environment_pr20v")
 [node name="Player" parent="." unique_id=791995048 instance=ExtResource("1_m7e2g")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.113739, 0, 7.2112103)
 
-[node name="Dummy" parent="." unique_id=27938221 instance=ExtResource("10_vtaks")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -19.234, 0, 6.621)
-Regeneration = 2
+[node name="Dummy" parent="." unique_id=1217072217 instance=ExtResource("10_vtaks")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.147276, 0, 0.2617383)
 
 [node name="Enemy1" parent="." unique_id=1320624076 node_paths=PackedStringArray("player") instance=ExtResource("7_u5sy4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.260696, 0, 8.784335)
 player = NodePath("../Player")
-MAX_HEALTH = 300
-JUMP_VELOCITY = 4.5
-SNEAK_SPEED = 0.5
-SPRINT_SPEED = 1.5
 
 [node name="Upgrade" parent="." unique_id=1110834986 instance=ExtResource("4_lbhrr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.855737, 0.24022675, 4.467176)

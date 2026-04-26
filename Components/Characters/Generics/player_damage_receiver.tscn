@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://dvv0260ms1gqg"]
+
+[ext_resource type="Script" uid="uid://fc3gtu4ts5et" path="res://Components/Characters/Generics/player_damage_receiver.gd" id="1_2p8da"]
+
+[node name="PlayerDamageReceiver" type="Node" unique_id=787278926]
+script = ExtResource("1_2p8da")
+metadata/_custom_type_script = "uid://bk0yhpxltxuoq"

@@ -7,17 +7,17 @@ func _ready():
 		HEALTH_COMPONENT.damageTaken.connect(_on_damage_taken)
 		%Health.text = var_to_str(HEALTH_COMPONENT.health)
 
-func _on_damage_taken(dmg):
-	print(dmg)
+func _on_damage_taken(_dmg):
+	pass
 
 func _process(_delta):
 	if HEALTH_COMPONENT:
 		%Health.text = var_to_str(HEALTH_COMPONENT.health)
 		if HEALTH_COMPONENT.health < HEALTH_COMPONENT.Max_health:
 			var dif = HEALTH_COMPONENT.Max_health - HEALTH_COMPONENT.health
-			if  dif > Regeneration:
+			if dif > Regeneration:
 				HEALTH_COMPONENT.health += Regeneration
-			else :
+			else:
 				HEALTH_COMPONENT.health += dif
 
 func _physics_process(delta):

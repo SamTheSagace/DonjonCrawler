@@ -1,5 +1,4 @@
-class_name ElementParameter
-extends Node
+class_name ElementList
 
 enum Type {
 	NONE,

@@ -1,9 +1,9 @@
 extends Character
 class_name Enemy
 
-var input_dir := Vector3(0,0,0)
+var input_dir := Vector3(0, 0, 0)
 @export var player: Player
-@export var weapon_manager : WeaponManager
+@export var weapon_manager: WeaponManager
 @onready var nav_agent = $NavigationAgent3D
 
 enum EnemyState {
@@ -14,11 +14,11 @@ enum EnemyState {
 	CHARGE
 }
 var target = null
-var target_rotation :float
+var target_rotation: float
 var next_nav_point = null
 
 const FACING_EPSILON := 0.1
-const ATTACK_RANGE :=2.5
+const ATTACK_RANGE := 2.5
 const CHASE_LOST_RANGE := 15.0
 
 var current_state = EnemyState.IDLE
@@ -28,7 +28,7 @@ var isCharged := false
 var text_info := ''
 var charge_time := 1.0
 var charge_timer := 0.0
-var wait_timer:= 0.0
+var wait_timer := 0.0
 var wait_time := 3.0
 var Rotation_Speed = SPEED * 1.5
 
@@ -43,8 +43,8 @@ func _physics_process(delta):
 
 	var movement_velocity := Vector3.ZERO
 	if not is_stunned():
-		self.rotation.y = lerp_angle(self.rotation.y, target_rotation, SPEED*delta)
-		if moving :
+		self.rotation.y = lerp_angle(self.rotation.y, target_rotation, SPEED * delta)
+		if moving:
 			if input_dir:
 				movement_velocity.x = input_dir.x * SPEED
 				movement_velocity.z = input_dir.z * SPEED
@@ -70,10 +70,10 @@ func _process(delta):
 		]
 	nav_agent.set_target_position(player.global_position)
 	next_nav_point = nav_agent.get_next_path_position()
-	target_rotation = atan2(input_dir.x, input_dir.z)+ PI
+	target_rotation = atan2(input_dir.x, input_dir.z) + PI
 	if not is_stunned():
 		input_dir = (next_nav_point - global_position).normalized()
-	match(current_state):
+	match (current_state):
 		EnemyState.IDLE: _idle_state()
 		EnemyState.CHASE: _chase_state()
 		EnemyState.ATTACK: _attack_state()
@@ -82,10 +82,10 @@ func _process(delta):
 		reset()
 
 func reset():
-	self.position = Vector3(0,self.position.y, 0)
+	self.position = Vector3(0, self.position.y, 0)
 	HEALTH_COMPONENT.health = HEALTH_COMPONENT.Max_health
 
-func finish_animation(value:String):
+func finish_animation(value: String):
 	if value == "sword_charge":
 		isCharged = true
 
@@ -99,10 +99,8 @@ func is_in_attack_range() -> bool:
 	return distance_to_player() <= ATTACK_RANGE
 
 func has_lost_target() -> bool:
-	return distance_to_player()  > CHASE_LOST_RANGE
+	return distance_to_player() > CHASE_LOST_RANGE
 
-func is_stunned() -> bool:
-	return stun_timer >0.0
 
 func toggle_moving():
 	moving = !moving
@@ -131,7 +129,7 @@ func _charge_state():
 		current_state = EnemyState.IDLE
 	if moving:
 		toggle_moving()
-	if is_in_attack_range():  # Set ONCE
+	if is_in_attack_range(): # Set ONCE
 		if not wants_to_attack:
 			wants_to_attack = true
 		if charge_timer <= 0:
@@ -151,7 +149,7 @@ func _attack_state():
 	if wants_to_attack:
 		wants_to_attack = false
 	if is_in_attack_range():
-		if wait_timer <=0:
+		if wait_timer <= 0:
 			wait_timer = 0.0
 			charge_timer = charge_time
 			current_state = EnemyState.CHARGE

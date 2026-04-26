@@ -7,8 +7,8 @@ func enter(_msg := {}):
 
 func update(_delta: float):
 	if !character.wants_to_attack:
-		state_machine.transition_to(StateMachineCombat.CombatState.ATTACK, {"print":"attack"})
+		state_machine.transition_to(StateMachineCombat.CombatState.ATTACK, {"print": "attack"})
 		return
 
 func exit():
-	print("stop charging attack, attacking")
+	pass

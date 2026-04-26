@@ -1,15 +1,15 @@
-class_name WeaponManager
 extends Node3D
+class_name WeaponManager
 
 @export var weapon_resource: WeaponResource
 @export var hand_anim: HandAnimation
-@export var CHARACTER : Character
+@export var CHARACTER: Character
 signal attacking_state_changed(is_attacking: bool)
-signal attack_started(is_attack:bool)
+signal attack_started(is_attack: bool)
 
 var melee_weapon: MeleeWeapon
 var ranged_weapon: WeaponBase
-var attack_finished:= true
+var attack_finished := true
 var hand: Node3D
 
 func _ready() -> void:
@@ -22,7 +22,7 @@ func _ready() -> void:
 
 func weapon_match():
 	if hand_anim and weapon_resource.world_model:
-		match(weapon_resource.weapon_type):
+		match (weapon_resource.weapon_type):
 				WeaponParameter.Type.MELEE: update_melee_weapon()
 				WeaponParameter.Type.RANGED: update_ranged_weapon()
 				_: print("unknown type")
@@ -58,7 +58,7 @@ func start_attack():
 	attacking_state_changed.emit(true)
 	hand_anim._on_attackInput(weapon_resource)
 
-func finish_animation(value:String):
+func finish_animation(value: String):
 	if value == "sword_slash":
 		attack_finished = true
 		attacking_state_changed.emit(false)
@@ -66,10 +66,9 @@ func finish_animation(value:String):
 func start_parry():
 	hand_anim._on_parryInput(weapon_resource)
 
-func attack_Hit(hitbox):
+func attack_Hit(hitbox: HitboxComponent):
 	var attack = Attack.new()
-	print(CHARACTER.global_position)
 	attack.attacker = CHARACTER
-	attack.knockback = weapon_resource.knockback
-	attack.base_damage = weapon_resource.damage
+	attack.weapon_resource = weapon_resource
+	attack.weapon_resource.status_types.append(CHARACTER.status_type_modifiers)
 	hitbox.damage(attack)

@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://d1ooy1p6tsu5u"]
+[gd_scene format=3 uid="uid://d1ooy1p6tsu5u"]
 
-[ext_resource type="Script" uid="uid://bcv7ts0prtkio" path="res://Components/Objects/weapon_manager/MeleeWeapon.gd" id="1_s84ao"]
+[ext_resource type="Script" uid="uid://bcv7ts0prtkio" path="res://Components/Objects/weapon_manager/Ressources/MeleeWeapon.gd" id="1_s84ao"]
 [ext_resource type="PackedScene" uid="uid://1rqcg2dcpvsw" path="res://Components/Objects/weapon_manager/Bow/bow.glb" id="2_dlt0m"]
 [ext_resource type="PackedScene" uid="uid://clwgv660wr2ck" path="res://Components/Objects/weapon_manager/weaponHurtbox.tscn" id="3_u2som"]
+
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rspo1"]
 size = Vector3(0.03, 2.3, 0.2)

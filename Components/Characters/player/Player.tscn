@@ -7,14 +7,14 @@
 [ext_resource type="PackedScene" uid="uid://bu866va6wl0v0" path="res://Components/Characters/Generics/HealthComponent.tscn" id="3_6r5ir"]
 [ext_resource type="Resource" uid="uid://c73x0ieajhcws" path="res://Components/Objects/weapon_manager/sword/sword.tres" id="3_ancfq"]
 [ext_resource type="Script" uid="uid://dwcj5rig36ply" path="res://Components/Characters/player/state_machine_combat.gd" id="3_dsj48"]
-[ext_resource type="Script" uid="uid://50og77v5isdf" path="res://Components/Characters/StateCombat/charge.gd" id="4_dsj48"]
-[ext_resource type="Script" uid="uid://c4kpkspvywtdj" path="res://Components/Characters/StateCombat/combat_idle.gd" id="4_fl5x8"]
-[ext_resource type="Script" uid="uid://cjvbat62s5t88" path="res://Components/Characters/StateCombat/parry.gd" id="4_mikml"]
-[ext_resource type="Script" uid="uid://c2m6y23faseph" path="res://Components/Characters/StateCombat/cast.gd" id="5_0k167"]
+[ext_resource type="Script" uid="uid://50og77v5isdf" path="res://Components/Characters/StatesCombat/charge.gd" id="4_dsj48"]
+[ext_resource type="Script" uid="uid://c4kpkspvywtdj" path="res://Components/Characters/StatesCombat/combat_idle.gd" id="4_fl5x8"]
+[ext_resource type="Script" uid="uid://cjvbat62s5t88" path="res://Components/Characters/StatesCombat/parry.gd" id="4_mikml"]
+[ext_resource type="Script" uid="uid://c2m6y23faseph" path="res://Components/Characters/StatesCombat/cast.gd" id="5_0k167"]
 [ext_resource type="Script" uid="uid://cjx5odish7rue" path="res://Components/Characters/Generics/attack.gd" id="6_o6wjn"]
 [ext_resource type="Script" uid="uid://20qt3k6lqvx2" path="res://Components/Characters/player/movement.gd" id="9_305y5"]
 [ext_resource type="Script" uid="uid://bupf3pckd3pvo" path="res://Components/Characters/player/HUD.gd" id="10_2g87s"]
-[ext_resource type="PackedScene" uid="uid://dvv0260ms1gqg" path="res://Components/Characters/Generics/character_damage_receiver.tscn" id="11_27ntm"]
+[ext_resource type="PackedScene" uid="uid://dvv0260ms1gqg" path="res://Components/Characters/Generics/player_damage_receiver.tscn" id="11_27ntm"]
 [ext_resource type="PackedScene" uid="uid://b1d7vo8xmj4pk" path="res://Components/Characters/Animation/HandAnimation.tscn" id="15_0k167"]
 [ext_resource type="Script" uid="uid://vb7ivc46yxav" path="res://Components/Characters/player/skin.gd" id="15_mtylk"]
 
@@ -66,11 +66,9 @@ weapon_resource = ExtResource("3_ancfq")
 hand_anim = NodePath("../WorldModel/body/HandAnimation")
 CHARACTER = NodePath("..")
 
-[node name="DamageReceiver" parent="." unique_id=787278926 node_paths=PackedStringArray("SMC", "CHARACTER", "HITBOX", "HEALTH") instance=ExtResource("11_27ntm")]
+[node name="PlayerDamageReceiver" parent="." unique_id=787278926 node_paths=PackedStringArray("SMC", "CHARACTER") instance=ExtResource("11_27ntm")]
 SMC = NodePath("../StateMachineCombat")
 CHARACTER = NodePath("..")
-HITBOX = NodePath("../HitboxComponent")
-HEALTH = NodePath("../HealthComponent")
 
 [node name="HitboxComponent" parent="." unique_id=1237130923 instance=ExtResource("2_bkrd4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

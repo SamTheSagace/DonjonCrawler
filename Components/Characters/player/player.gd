@@ -2,8 +2,8 @@ extends Character
 class_name Player
 
 @export var sensitivity: float = 5.0
-@export var skin : SkinContent
-@export var stateMachine : StateMachineCombat
+@export var skin: SkinContent
+@export var stateMachine: StateMachineCombat
 @onready var head = $Head
 @onready var spring_arm = $Head/SpringArm3D
 @onready var camera = %Camera3D
@@ -49,7 +49,7 @@ func _unhandled_input(event):
 
 	# Handle visibility for TPS camera collision
 	if event.is_action_pressed("left_click"):
-		emit_signal("attackInput")
+		attackInput.emit()
 
 func _camera_change():
 	if spring_arm.spring_length == SPRING_LENGTH_1:
@@ -93,10 +93,10 @@ func camera_auto_switch():
 			child.set_layer_mask_value(1, true)
 
 func _process(_delta: float) -> void:
+	super._process(_delta)
 	wants_to_attack = Input.is_action_pressed("left_click")
 	wants_to_parry = Input.is_action_pressed("right_clic")
 	camera_auto_switch()
 
-func _resolve_knockback(attack: Attack):
-	print(attack.knockback, "this is a player, no knockback for now")
+func _resolve_knockback(_attack: Attack):
 	pass

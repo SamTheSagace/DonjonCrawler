@@ -3,6 +3,10 @@ extends Resource
 
 
 @export var weapon_type: WeaponParameter.Type
-@export var damage := 10.0
 @export var world_model: PackedScene
-@export var knockback := 3.0
+
+@export var damage := 10.0
+@export var knockback := 10.0
+
+
+@export var status_types: Array[ElementList.Type] = []

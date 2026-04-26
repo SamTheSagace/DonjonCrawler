@@ -32,11 +32,10 @@ func resolve_on_hit(attack: Attack):
 		# Regular parry: reduce damage
 		attack.damage_multiplier = 0.2
 
-func perfect_parry(attack:Attack):
+func perfect_parry(attack: Attack):
 	var attacker = attack.attacker
 	var respattack = Attack.new()
 	respattack.attacker = character
-	respattack.knockback = weapon_manager.weapon_resource.knockback
-	respattack.base_damage = 0
+	respattack.weapon_resource = weapon_manager.weapon_resource.duplicate()
+	respattack.damage_multiplier = 0.0
 	attacker._resolve_knockback(respattack)
-	print("perfect parry !", respattack.knockback)

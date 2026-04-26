@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cjp58634du344"]
 
 [ext_resource type="PackedScene" uid="uid://cklixvcxj1gie" path="res://Components/Objects/Upgrades/loot_hurtbox.tscn" id="1_546m0"]
-[ext_resource type="Script" uid="uid://csgr8io1dijac" path="res://Components/Objects/Upgrades/upgrade.gd" id="1_fyk0f"]
+[ext_resource type="Script" uid="uid://csgr8io1dijac" path="res://Components/Objects/Upgrades/upgrade_object.gd" id="1_fyk0f"]
 
 [sub_resource type="PrismMesh" id="PrismMesh_fyk0f"]
 lightmap_size_hint = Vector2i(14, 21)
