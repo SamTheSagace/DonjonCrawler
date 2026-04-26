@@ -1,54 +1,75 @@
 class_name WeaponManager
 extends Node3D
 
-@export var character: Character
-
 @export var weapon_resource: WeaponResource
-@export var view_model_container: Node3D
-@export var world_model_container: Node3D
-var world_hand_anim: WorldHandAnimation
+@export var hand_anim: HandAnimation
+@export var CHARACTER : Character
+signal attacking_state_changed(is_attacking: bool)
+signal attack_started(is_attack:bool)
 
-var melee_instance : MeleeWeapon
-var ranged_instance : WeaponBase
-
-signal attack_Animation(weapon_ressource)
-signal isAttacking(bool)
-
-func update_weapon_model(weapon) -> void:
-	if view_model_container and weapon_resource.view_model:
-		view_model_container.add_child(weapon_resource.view_model.instantiate())
-	if world_model_container and weapon_resource.world_model:
-		weapon = weapon_resource.world_model.instantiate()
-		if weapon is MeleeWeapon:
-			weapon.hit_Hitbox.connect(attack_Hit)
-			isAttacking.connect(weapon.set_attacking)
-		world_model_container.add_child(weapon)
+var melee_weapon: MeleeWeapon
+var ranged_weapon: WeaponBase
+var attack_finished:= true
+var hand: Node3D
 
 func _ready() -> void:
-	if %WorldModelAnimation:
-			world_hand_anim = %WorldModelAnimation
-			world_hand_anim.animation_finished.connect(finish_attack)
-	if(character):
-		character.attackInput.connect(_on_attackInput)	
-	if weapon_resource != null:
+	assert(hand_anim != null)
+	assert(weapon_resource != null)
+	hand_anim.animation_finished.connect(finish_animation)
+	await hand_anim.ready
+	hand = hand_anim.hand
+	weapon_match()
+
+func weapon_match():
+	if hand_anim and weapon_resource.world_model:
 		match(weapon_resource.weapon_type):
-			WeaponType.Type.MELEE: update_weapon_model(melee_instance)
-			WeaponType.Type.RANGED: update_weapon_model(ranged_instance)
-			_: print("unknown type")
- 
-func _process(delta):
-	pass
+				WeaponParameter.Type.MELEE: update_melee_weapon()
+				WeaponParameter.Type.RANGED: update_ranged_weapon()
+				_: print("unknown type")
 
-func finish_attack(value:String):
-	print(value)
-	emit_signal("isAttacking", false)
+func update_melee_weapon():
+	clean_up_weapon()
+	melee_weapon = weapon_resource.world_model.instantiate()
+	melee_weapon.hit_Hitbox.connect(attack_Hit)
+	attacking_state_changed.connect(melee_weapon.set_attacking)
+	hand.add_child(melee_weapon)
 
-func _on_attackInput():
-	if(weapon_resource):
-		emit_signal("isAttacking", true)
-		emit_signal("attack_Animation", weapon_resource)
+func update_ranged_weapon():
+	clean_up_weapon()
+	ranged_weapon = weapon_resource.world_model.instantiate()
+	hand.add_child(ranged_weapon)
+
+func clean_up_weapon():
+	if hand.has_node("MeleeWeapon"):
+		hand.get_node("MeleeWeapon").queue_free()
+	if hand.has_node("RangedWeapon"):
+		hand.get_node("RangedWeapon").queue_free()
+
+func go_to_idle():
+	hand_anim._on_idleInput()
+
+func start_charge():
+	attack_started.emit(false)
+	hand_anim._on_chargeInput(weapon_resource)
+
+func start_attack():
+	attack_finished = false
+	attack_started.emit(true)
+	attacking_state_changed.emit(true)
+	hand_anim._on_attackInput(weapon_resource)
+
+func finish_animation(value:String):
+	if value == "sword_slash":
+		attack_finished = true
+		attacking_state_changed.emit(false)
+
+func start_parry():
+	hand_anim._on_parryInput(weapon_resource)
 
 func attack_Hit(hitbox):
 	var attack = Attack.new()
-	attack.attack_Damage = weapon_resource.damage
+	print(CHARACTER.global_position)
+	attack.attacker = CHARACTER
+	attack.knockback = weapon_resource.knockback
+	attack.base_damage = weapon_resource.damage
 	hitbox.damage(attack)

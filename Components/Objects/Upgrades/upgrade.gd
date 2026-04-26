@@ -16,5 +16,5 @@ func _on_touch_loot(character: Player):
 	await get_tree().create_timer(time_in_seconds).timeout
 	self.queue_free()
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass

@@ -7,9 +7,10 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass
 #
-func _input(event):
+func _input(_event):
 	if Input.is_action_just_pressed("escape"):
 		get_tree().quit()
+	pass
