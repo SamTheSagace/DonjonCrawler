@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bu866va6wl0v0" path="res://Components/Characters/Generics/HealthComponent.tscn" id="1_4fqi0"]
 [ext_resource type="Script" uid="uid://dae8ptut3nr76" path="res://Components/Characters/NPCs/Ennemy1/enemy_base.gd" id="1_4h2bd"]
-[ext_resource type="Script" uid="uid://dwcj5rig36ply" path="res://Components/Characters/Player/state_machine_combat.gd" id="2_80bfm"]
+[ext_resource type="Script" uid="uid://dwcj5rig36ply" path="res://Components/Characters/player/state_machine_combat.gd" id="2_80bfm"]
 [ext_resource type="PackedScene" uid="uid://bkcotb4wiqh2g" path="res://Components/Characters/Generics/HitboxComponent.tscn" id="2_310ak"]
 [ext_resource type="PackedScene" uid="uid://3s7hon3kcce0" path="res://Components/Objects/weapon_manager/WeaponManager.tscn" id="3_5ya66"]
 [ext_resource type="Script" uid="uid://cjvbat62s5t88" path="res://Components/Characters/StateCombat/parry.gd" id="3_6n3fv"]
@@ -83,13 +83,16 @@ _data = {
 &"damageTaken": SubResource("Animation_0qu2q")
 }
 
-[node name="Enemy1" type="CharacterBody3D" unique_id=1320624076 node_paths=PackedStringArray("HEALTH_COMPONENT")]
+[node name="Enemy1" type="CharacterBody3D" unique_id=1320624076 node_paths=PackedStringArray("weapon_manager", "HEALTH_COMPONENT", "HITBOX")]
 script = ExtResource("1_4h2bd")
+weapon_manager = NodePath("WeaponManager")
 SPEED = 4.0
 HEALTH_COMPONENT = NodePath("HealthComponent")
+HITBOX = NodePath("HitboxComponent")
 
-[node name="DamageReceiver" parent="." unique_id=787278926 node_paths=PackedStringArray("SMC", "HITBOX", "HEALTH") instance=ExtResource("15_80bfm")]
+[node name="DamageReceiver" parent="." unique_id=787278926 node_paths=PackedStringArray("SMC", "CHARACTER", "HITBOX", "HEALTH") instance=ExtResource("15_80bfm")]
 SMC = NodePath("../StateMachineCombat")
+CHARACTER = NodePath("..")
 HITBOX = NodePath("../HitboxComponent")
 HEALTH = NodePath("../HealthComponent")
 
@@ -134,9 +137,10 @@ text = "eee
 e
 e"
 
-[node name="WeaponManager" parent="." unique_id=1395439372 node_paths=PackedStringArray("hand_anim") instance=ExtResource("3_5ya66")]
+[node name="WeaponManager" parent="." unique_id=1395439372 node_paths=PackedStringArray("hand_anim", "CHARACTER") instance=ExtResource("3_5ya66")]
 weapon_resource = ExtResource("4_4h2bd")
 hand_anim = NodePath("../WorldModel/Body/HandAnimation")
+CHARACTER = NodePath("..")
 
 [node name="WorldModel" type="Node3D" parent="." unique_id=1489945488]
 

@@ -1,4 +1,4 @@
-class_name WeaponType
+class_name WeaponParameter
 extends Node
 
 enum Type {

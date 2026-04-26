@@ -10,7 +10,7 @@ func _ready():
 func _on_damage_taken(dmg):
 	print(dmg)
 
-func _process(delta):
+func _process(_delta):
 	if HEALTH_COMPONENT:
 		%Health.text = var_to_str(HEALTH_COMPONENT.health)
 		if HEALTH_COMPONENT.health < HEALTH_COMPONENT.Max_health:

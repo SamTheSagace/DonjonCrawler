@@ -44,9 +44,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.113739, 0, 7.2112103)
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -19.234, 0, 6.621)
 Regeneration = 2
 
-[node name="Enemy1" parent="." unique_id=1320624076 instance=ExtResource("7_u5sy4")]
+[node name="Enemy1" parent="." unique_id=1320624076 node_paths=PackedStringArray("player") instance=ExtResource("7_u5sy4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.260696, 0, 8.784335)
-player_path = NodePath("../Player")
+player = NodePath("../Player")
+MAX_HEALTH = 300
+JUMP_VELOCITY = 4.5
+SNEAK_SPEED = 0.5
+SPRINT_SPEED = 1.5
 
 [node name="Upgrade" parent="." unique_id=1110834986 instance=ExtResource("4_lbhrr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.855737, 0.24022675, 4.467176)

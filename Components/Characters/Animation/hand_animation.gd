@@ -5,6 +5,7 @@ class_name HandAnimation
 signal animation_finished(anim_name: StringName)
 @export var animation : WorldHandAnimation
 @onready var hand = %Hand
+
 func _ready():
 	animation.animation_finished.connect(_finish_animation)
 

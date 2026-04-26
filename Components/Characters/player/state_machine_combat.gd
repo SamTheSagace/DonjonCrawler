@@ -33,7 +33,7 @@ func child_state():
 		assert(node is State, "%s must extend State" % node_name)
 		node.character = character
 		node.state_machine = self
-		
+
 		node.weapon_manager = WEAPON_MANAGER
 		node.health_component = HEALTH_COMPONENT
 		assert(node.weapon_manager !=null && node.health_component !=null)
@@ -52,7 +52,7 @@ func transition_to(state_id: int, msg := {}):
 
 func enter_initial_state():
 	transition_to(initial_state)
-	
+
 func _resolve_attack(attack:Attack):
 	if combat_state():
 		combat_state().resolve_on_hit(attack)

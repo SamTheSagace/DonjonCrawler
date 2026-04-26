@@ -7,5 +7,5 @@ func _ready() -> void:
 		HEALTH_COMPONENT.damageTaken.connect(_on_damage_taken)
 	pass
 
-func _on_damage_taken(dmg):
+func _on_damage_taken(_dmg):
 	play('damageTaken')

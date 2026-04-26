@@ -15,7 +15,6 @@ func set_max_health(value: int):
 
 func damage(attack: Attack):
 	if attack.was_parried:
-		print("no damage taken")
 		return
 	emit_signal('damageTaken',attack.final_damage())
 	health -= attack.final_damage()
