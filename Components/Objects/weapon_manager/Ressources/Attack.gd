@@ -3,7 +3,6 @@ class_name Attack
 
 var weapon_resource: WeaponResource
 var damage_multiplier := 1.0
-#var modifiers : Array = []
 
 var attacker: Character
 

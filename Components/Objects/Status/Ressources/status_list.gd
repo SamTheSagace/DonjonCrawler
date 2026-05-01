@@ -8,12 +8,3 @@ enum Type {
 	LIGHTNING,
 	SLICE
 }
-
-enum Status {
-	NONE,
-	POISONNED,
-	SLOWED,
-	BURNED,
-	STUNNED,
-	BLEEDING
-}

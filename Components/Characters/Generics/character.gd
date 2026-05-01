@@ -16,10 +16,13 @@ signal attackInput()
 var knockack_direction: Vector3
 var knockback_velocity: Vector3 = Vector3.ZERO
 var stun_timer := 0.0
+
+
 func is_stunned() -> bool:
 	return stun_timer > 0.0
 
-var status_inflicted: Array[ElementList.Status] = []
+
+var status_inflicted: Array[StatusDefinition] = []
 
 var status_type_modifiers: Array[ElementList.Type] = []
 
@@ -39,16 +42,23 @@ func _resolve_knockback(attack: Attack):
 	if knockack_direction.length_squared() > 0.001:
 		knockback_velocity = knockack_direction.normalized() * knockbackPower
 
-func _resolve_status_inflicted(attack: Attack):
-	var elements = attack.weapon_resource.status_types
-	# match(status):
-	# 	EnemyState.IDLE: _idle_state()
-	# 	EnemyState.CHASE: _chase_state()
-	# 	EnemyState.ATTACK: _attack_state()
-	# 	EnemyState.CHARGE: _charge_state()
-	status_inflicted.append(elements)
+func _resolve_status_damage(value: float, status: ElementList.Type):
+	HEALTH_COMPONENT.handle_damage(value, status)
 
-func _resolve_status_effect():
-	pass
+func _resolve_status_inflicted(attack: Attack):
+	var statuses = attack.weapon_resource.status_types
+	for status: StatusDefinition in statuses:
+		status_inflicted.append(status)
+		status.apply(self)
+
+
+func _resolve_status_decay(_delta: float):
+	for status in status_inflicted:
+		status.duration -= _delta
+		if status.duration <= 0:
+			status_inflicted.erase(status)
+
+
 func _process(_delta: float) -> void:
+	_resolve_status_decay(_delta)
 	pass

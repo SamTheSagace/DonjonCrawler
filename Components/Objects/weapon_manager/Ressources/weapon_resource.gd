@@ -9,4 +9,4 @@ extends Resource
 @export var knockback := 10.0
 
 
-@export var status_types: Array[ElementList.Type] = []
+@export var status_types: Array[StatusDefinition] = []
