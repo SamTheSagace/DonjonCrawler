@@ -5,7 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://c1tdw8tv4ntro" path="res://assets/Models/disguise-glasses.glb" id="2_ox2ha"]
 [ext_resource type="PackedScene" uid="uid://3s7hon3kcce0" path="res://Components/Objects/weapon_manager/WeaponManager.tscn" id="3_6m33q"]
 [ext_resource type="PackedScene" uid="uid://bu866va6wl0v0" path="res://Components/Characters/Generics/HealthComponent.tscn" id="3_6r5ir"]
-[ext_resource type="Resource" uid="uid://c73x0ieajhcws" path="res://Components/Objects/weapon_manager/sword/sword.tres" id="3_ancfq"]
 [ext_resource type="Script" uid="uid://dwcj5rig36ply" path="res://Components/Characters/player/state_machine_combat.gd" id="3_dsj48"]
 [ext_resource type="Script" uid="uid://50og77v5isdf" path="res://Components/Characters/StatesCombat/charge.gd" id="4_dsj48"]
 [ext_resource type="Script" uid="uid://c4kpkspvywtdj" path="res://Components/Characters/StatesCombat/combat_idle.gd" id="4_fl5x8"]
@@ -14,6 +13,7 @@
 [ext_resource type="Script" uid="uid://cjx5odish7rue" path="res://Components/Characters/Generics/attack.gd" id="6_o6wjn"]
 [ext_resource type="Script" uid="uid://20qt3k6lqvx2" path="res://Components/Characters/player/movement.gd" id="9_305y5"]
 [ext_resource type="Script" uid="uid://bupf3pckd3pvo" path="res://Components/Characters/player/HUD.gd" id="10_2g87s"]
+[ext_resource type="Resource" uid="uid://d14ajwlensury" path="res://Components/Objects/weapon_manager/sword/fire_sword.tres" id="10_mtylk"]
 [ext_resource type="PackedScene" uid="uid://dvv0260ms1gqg" path="res://Components/Characters/Generics/player_damage_receiver.tscn" id="11_27ntm"]
 [ext_resource type="PackedScene" uid="uid://b1d7vo8xmj4pk" path="res://Components/Characters/Animation/HandAnimation.tscn" id="15_0k167"]
 [ext_resource type="Script" uid="uid://vb7ivc46yxav" path="res://Components/Characters/player/skin.gd" id="15_mtylk"]
@@ -62,7 +62,7 @@ script = ExtResource("4_fl5x8")
 script = ExtResource("6_o6wjn")
 
 [node name="WeaponManager" parent="." unique_id=1262555556 node_paths=PackedStringArray("hand_anim", "CHARACTER") instance=ExtResource("3_6m33q")]
-weapon_resource = ExtResource("3_ancfq")
+weapon_resource = ExtResource("10_mtylk")
 hand_anim = NodePath("../WorldModel/body/HandAnimation")
 CHARACTER = NodePath("..")
 

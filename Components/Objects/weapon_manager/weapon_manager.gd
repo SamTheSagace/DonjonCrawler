@@ -69,6 +69,6 @@ func start_parry():
 func attack_Hit(hitbox: HitboxComponent):
 	var attack = Attack.new()
 	attack.attacker = CHARACTER
-	attack.weapon_resource = weapon_resource
-	attack.weapon_resource.status_types.append(CHARACTER.status_type_modifiers)
+	attack.weapon_resource = weapon_resource.duplicate(true)
+	# attack.weapon_resource.status_types.append(CHARACTER.status_type_modifiers)
 	hitbox.damage(attack)

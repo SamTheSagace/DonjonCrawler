@@ -1,4 +1,4 @@
-class_name ElementList
+class_name StatusList
 
 enum Type {
 	NONE,

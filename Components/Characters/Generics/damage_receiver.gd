@@ -13,4 +13,5 @@ func _ready() -> void:
 	HITBOX.hit_taken.connect(resolve_attack)
 
 func resolve_attack(attack: Attack) -> void:
+	CHARACTER._resolve_status_inflicted(attack)
 	HEALTH.handle_attack(attack)

@@ -45,6 +45,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.147276, 0, 0.2617383)
 
 [node name="Enemy1" parent="." unique_id=1320624076 node_paths=PackedStringArray("player") instance=ExtResource("7_u5sy4")]
 player = NodePath("../Player")
+MAX_HEALTH = 6000
 
 [node name="Upgrade" parent="." unique_id=1110834986 instance=ExtResource("4_lbhrr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.855737, 0.24022675, 4.467176)

@@ -37,7 +37,34 @@ func _ready():
 	target = player
 	weapon_manager.hand_anim.animation_finished.connect(finish_animation)
 
+func status_text():
+	var status_list: Array[String] = []
+	for status: StatusDefinition in status_inflicted:
+		var statusName = StatusList.Type.keys()[status.type].capitalize() + str(status.duration)
+		status_list.append(statusName)
+	return ", ".join(status_list)
+
+func _process(delta):
+	super._process(delta)
+	timer_decay(delta)
+	%Info.text = "Health: %s\nStunned: %s\nStatus: %s" % [
+			HEALTH_COMPONENT.health,
+			stun_timer,
+			status_text()
+		]
+	handle_nav_guide()
+	if not is_stunned():
+		input_dir = (next_nav_point - global_position).normalized()
+	match (current_state):
+		EnemyState.IDLE: _idle_state()
+		EnemyState.CHASE: _chase_state()
+		EnemyState.ATTACK: _attack_state()
+		EnemyState.CHARGE: _charge_state()
+	if HEALTH_COMPONENT.health <= 0:
+		reset()
+
 func _physics_process(delta):
+	super._physics_process(delta)
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
@@ -55,33 +82,22 @@ func _physics_process(delta):
 	velocity.z = movement_velocity.z + knockback_velocity.z
 	move_and_slide()
 	knockback_velocity = knockback_velocity.lerp(Vector3.ZERO, 8.0 * delta)
-func _process(delta):
+
+func handle_nav_guide():
+	nav_agent.set_target_position(player.global_position)
+	next_nav_point = nav_agent.get_next_path_position()
+	target_rotation = atan2(input_dir.x, input_dir.z) + PI
+
+func timer_decay(delta: float):
 	if charge_timer > 0.0:
 		charge_timer -= delta
 	if wait_timer > 0.0:
 		wait_timer -= delta
 	if is_stunned():
 		stun_timer -= delta
-	if HEALTH_COMPONENT:
-		%Info.text = "Health: %s\nStunned: %s\nState: %s" % [
-			HEALTH_COMPONENT.health,
-			stun_timer,
-			EnemyState.keys()[current_state]
-		]
-	nav_agent.set_target_position(player.global_position)
-	next_nav_point = nav_agent.get_next_path_position()
-	target_rotation = atan2(input_dir.x, input_dir.z) + PI
-	if not is_stunned():
-		input_dir = (next_nav_point - global_position).normalized()
-	match (current_state):
-		EnemyState.IDLE: _idle_state()
-		EnemyState.CHASE: _chase_state()
-		EnemyState.ATTACK: _attack_state()
-		EnemyState.CHARGE: _charge_state()
-	if HEALTH_COMPONENT.health <= 0:
-		reset()
 
 func reset():
+	print(HEALTH_COMPONENT.health)
 	self.position = Vector3(0, self.position.y, 0)
 	HEALTH_COMPONENT.health = HEALTH_COMPONENT.Max_health
 

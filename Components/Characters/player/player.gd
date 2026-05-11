@@ -22,6 +22,15 @@ func _ready():
 	spring_arm.spring_length = SPRING_LENGTH_2
 	_set_layers()
 
+func _process(_delta: float) -> void:
+	super._process(_delta)
+	wants_to_attack = Input.is_action_pressed("left_click")
+	wants_to_parry = Input.is_action_pressed("right_clic")
+	camera_auto_switch()
+
+func _physics_process(delta: float):
+	MOVEMENT_COMPONENT.handle_physics(delta)
+
 func _set_layers():
 	if spring_arm.spring_length == SPRING_LENGTH_1:
 		for child in skin.find_children("*", "VisualInstance3D", true, false):
@@ -61,8 +70,6 @@ func _camera_change():
 		for child in skin.find_children("*", "VisualInstance3D", true, false):
 			child.set_layer_mask_value(1, false)
 
-func _physics_process(delta: float):
-	MOVEMENT_COMPONENT.handle_physics(delta)
 
 # Optional smooth-camera helper
 func _save_camera_pos_for_smoothing():
@@ -82,7 +89,7 @@ func _slide_camera_smooth_back_to_origin(delta):
 
 func add_upgrade(upgrade: BasePlayerUpgrade):
 	upgrades.append(upgrade)
-	upgrade.apply_upgrade(self)
+	upgrade._apply_upgrade(self )
 
 func camera_auto_switch():
 	if spring_arm.get_hit_length() <= 1 and spring_arm.spring_length == SPRING_LENGTH_2:
@@ -92,11 +99,6 @@ func camera_auto_switch():
 		for child in skin.find_children("*", "VisualInstance3D"):
 			child.set_layer_mask_value(1, true)
 
-func _process(_delta: float) -> void:
-	super._process(_delta)
-	wants_to_attack = Input.is_action_pressed("left_click")
-	wants_to_parry = Input.is_action_pressed("right_clic")
-	camera_auto_switch()
 
 func _resolve_knockback(_attack: Attack):
 	pass
