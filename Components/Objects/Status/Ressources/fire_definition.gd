@@ -9,6 +9,11 @@ class_name FireDefinition
 func _init():
 	type = StatusList.Type.FIRE
 
+func merge_from(new_status: StatusDefinition):
+	super.merge_from(new_status)
+	fear = max(fear, new_status.fear)
+	damageOnTick = max(damageOnTick, new_status.damageOnTick)
+
 
 func tick(_target: Character):
 	_target._resolve_status_damage(damageOnTick, type)

@@ -2,6 +2,7 @@ extends CharacterBody3D
 class_name Character
 @export var MAX_HEALTH := 60
 @export var SPEED := 5.0
+var FINALSPEED: float
 @export var JUMP_VELOCITY := 4.5
 @export var SNEAK_SPEED := 0.5
 @export var SPRINT_SPEED := 1.5
@@ -17,13 +18,11 @@ var knockack_direction: Vector3
 var knockback_velocity: Vector3 = Vector3.ZERO
 var stun_timer := 0.0
 
-var slowed_timer := 0.0
-var slowed_value := 0.0
 
 func is_stunned() -> bool:
 	return stun_timer > 0.0
 func is_slowed() -> bool:
-	return slowed_timer > 0.0
+	return FINALSPEED < SPEED
 
 var status_inflicted: Array[StatusDefinition] = []
 
@@ -32,17 +31,19 @@ var status_type_modifiers: Array[StatusDefinition] = []
 func _ready():
 	assert(HEALTH_COMPONENT != null && HITBOX != null)
 	HEALTH_COMPONENT.set_max_health(MAX_HEALTH)
+	FINALSPEED = SPEED
 	if MOVEMENT_COMPONENT != null:
 		MOVEMENT_COMPONENT.set_stats(SPEED, JUMP_VELOCITY, SNEAK_SPEED, SPRINT_SPEED)
 
 func _process(_delta: float) -> void:
 	_resolve_status_decay(_delta)
 
-func _physics_process(delta: float) -> void:
-	_handle_slowed(delta)
+func _physics_process(_delta: float) -> void:
+	pass
+
 
 func _resolve_knockback(attack: Attack):
-	stun_timer = 1
+	stun_timer += 1
 	var knockbackPower = attack.weapon_resource.knockback
 	var attacker_position = attack.attacker.global_position
 	knockack_direction = (self.global_transform.origin - attacker_position)
@@ -54,21 +55,24 @@ func _resolve_knockback(attack: Attack):
 func _resolve_status_damage(value: float, status: StatusList.Type):
 	HEALTH_COMPONENT.handle_damage(value, status)
 
+func add_status(status: StatusDefinition):
+	var incoming := status.duplicate(true)
+	for s: StatusDefinition in status_inflicted:
+		if s.type == incoming.type:
+			s.merge_from(incoming)
+			s.apply(self )
+			return
+	status_inflicted.append(incoming)
+	incoming.apply(self )
+
 func _resolve_status_inflicted(attack: Attack):
-	print("resolve attack", attack)
-	var statuses = attack.weapon_resource.status_types
+	var statuses = attack.weapon_resource.statuses
 	for status: StatusDefinition in statuses:
-		status_inflicted.append(status)
-		status.apply(self )
+		add_status(status)
 
-func _resolve_slowed(slow: float, _type: StatusList.Type):
-	slowed_timer += 1
-	slowed_value = slow
 
-func _handle_slowed(_delta: float):
-	if is_slowed():
-		slowed_timer -= _delta
-		SPEED *= slowed_value
+func _handle_slowed(slowed_value: float):
+	FINALSPEED = SPEED * slowed_value
 
 func _resolve_stunned(stunned: float, _type: StatusList.Type):
 	stun_timer += stunned
@@ -80,4 +84,5 @@ func _resolve_status_decay(_delta: float):
 		if status.duration > 0:
 			status.tick(self )
 		else:
+			status._clean_up(self )
 			status_inflicted.erase(status)

@@ -2,13 +2,12 @@
 
 [ext_resource type="Script" uid="uid://etitetj0g0n" path="res://Components/Objects/weapon_manager/Ressources/weapon_resource.gd" id="1_m5gn4"]
 [ext_resource type="Script" uid="uid://clvl3llihurmq" path="res://Components/Objects/Status/Ressources/status_definition.gd" id="2_xeh32"]
-[ext_resource type="Script" uid="uid://bo6qsjmqgfm6j" path="res://Components/Objects/Status/Ressources/fire_definition.gd" id="3_xeh32"]
+[ext_resource type="Script" uid="uid://bw4iwlthh117w" path="res://Components/Objects/Status/Ressources/lightning_definition.gd" id="3_xeh32"]
 [ext_resource type="PackedScene" uid="uid://i34kvjjehl1e" path="res://Components/Objects/weapon_manager/sword/sword.tscn" id="3_ykidx"]
 
-[sub_resource type="Resource" id="Resource_xeh32"]
+[sub_resource type="Resource" id="Resource_ykidx"]
 script = ExtResource("3_xeh32")
-fear = 0.5
-metadata/_custom_type_script = "uid://bo6qsjmqgfm6j"
+metadata/_custom_type_script = "uid://bw4iwlthh117w"
 
 [resource]
 script = ExtResource("1_m5gn4")
@@ -16,5 +15,5 @@ weapon_type = 1
 world_model = ExtResource("3_ykidx")
 damage = 20.0
 knockback = 12.0
-status_types = Array[ExtResource("2_xeh32")]([SubResource("Resource_xeh32")])
+statuses = Array[ExtResource("2_xeh32")]([SubResource("Resource_ykidx")])
 metadata/_custom_type_script = "uid://etitetj0g0n"

@@ -9,5 +9,16 @@ var type: StatusList.Type
 func apply(_target: Character):
 	_target._resolve_status_damage(damageOnApply, type)
 
+
+func merge_from(new_status: StatusDefinition):
+	if (new_status.type != type):
+		return
+	duration = new_status.duration
+	damageOnApply = max(damageOnApply, new_status.damageOnApply)
+	tick_rate = min(tick_rate, new_status.tick_rate)
+
 func tick(_target: Character):
+	pass
+
+func _clean_up(_target: Character):
 	pass

@@ -30,7 +30,7 @@ var charge_time := 1.0
 var charge_timer := 0.0
 var wait_timer := 0.0
 var wait_time := 3.0
-var Rotation_Speed = SPEED * 1.5
+var rotation_Speed = FINALSPEED * 1.5
 
 func _ready():
 	super._ready()
@@ -40,18 +40,18 @@ func _ready():
 func status_text():
 	var status_list: Array[String] = []
 	for status: StatusDefinition in status_inflicted:
-		var statusName = StatusList.Type.keys()[status.type].capitalize() + str(status.duration)
+		var statusName = StatusList.Type.keys()[status.type].capitalize() + " " + str(status.duration)
 		status_list.append(statusName)
 	return ", ".join(status_list)
 
 func _process(delta):
 	super._process(delta)
-	timer_decay(delta)
-	%Info.text = "Health: %s\nStunned: %s\nStatus: %s" % [
+	%Info.text = "Health: %s\nSLow: %s\nStatus: %s" % [
 			HEALTH_COMPONENT.health,
-			stun_timer,
+			str(is_slowed()),
 			status_text()
 		]
+	timer_decay(delta)
 	handle_nav_guide()
 	if not is_stunned():
 		input_dir = (next_nav_point - global_position).normalized()
@@ -70,14 +70,14 @@ func _physics_process(delta):
 
 	var movement_velocity := Vector3.ZERO
 	if not is_stunned():
-		self.rotation.y = lerp_angle(self.rotation.y, target_rotation, SPEED * delta)
+		self.rotation.y = lerp_angle(self.rotation.y, target_rotation, FINALSPEED * delta)
 		if moving:
 			if input_dir:
-				movement_velocity.x = input_dir.x * SPEED
-				movement_velocity.z = input_dir.z * SPEED
+				movement_velocity.x = input_dir.x * FINALSPEED
+				movement_velocity.z = input_dir.z * FINALSPEED
 			else:
-				movement_velocity.x = move_toward(velocity.x, 0, SPEED)
-				movement_velocity.z = move_toward(velocity.z, 0, SPEED)
+				movement_velocity.x = move_toward(velocity.x, 0, FINALSPEED)
+				movement_velocity.z = move_toward(velocity.z, 0, FINALSPEED)
 	velocity.x = movement_velocity.x + knockback_velocity.x
 	velocity.z = movement_velocity.z + knockback_velocity.z
 	move_and_slide()

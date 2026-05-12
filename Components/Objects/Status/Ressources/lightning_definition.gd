@@ -6,6 +6,9 @@ class_name LightningDefinition
 func _init():
 	type = StatusList.Type.LIGHTNING
 
+func merge_from(new_status: StatusDefinition):
+	super.merge_from(new_status)
+	stunned = max(stunned, new_status.stunned)
 
 func tick(_target: Character):
 	_target._resolve_stunned(stunned, type)

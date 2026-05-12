@@ -12,6 +12,10 @@ func enter(_msg := {}):
 func update(delta: float):
 	elapsed += delta
 	if !character.wants_to_parry:
+		if character.wants_to_attack:
+			weapon_manager.go_to_idle()
+			state_machine.transition_to(StateMachineCombat.CombatState.CHARGE)
+			return
 		weapon_manager.go_to_idle()
 		state_machine.transition_to(StateMachineCombat.CombatState.IDLE)
 		return
