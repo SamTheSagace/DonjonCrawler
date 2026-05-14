@@ -4,9 +4,12 @@ extends StateCombat
 @export var parry_duration := 0.8
 
 var elapsed := 0.0
+var idle_delay_timer := 0.0
+const IDLE_DELAY := 0.2
 
 func enter(_msg := {}):
 	elapsed = 0.0
+	idle_delay_timer = 0.0
 	weapon_manager.start_parry()
 
 func update(delta: float):
@@ -16,9 +19,12 @@ func update(delta: float):
 			weapon_manager.go_to_idle()
 			state_machine.transition_to(StateMachineCombat.CombatState.CHARGE)
 			return
-		weapon_manager.go_to_idle()
-		state_machine.transition_to(StateMachineCombat.CombatState.IDLE)
-		return
+		idle_delay_timer += delta
+		if idle_delay_timer >= IDLE_DELAY:
+			weapon_manager.go_to_idle()
+			idle_delay_timer = 0.0
+			state_machine.transition_to(StateMachineCombat.CombatState.IDLE)
+			return
 	if character.wants_to_attack:
 		weapon_manager.go_to_idle()
 		state_machine.transition_to(StateMachineCombat.CombatState.CHARGE)

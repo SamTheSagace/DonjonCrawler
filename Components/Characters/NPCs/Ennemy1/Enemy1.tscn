@@ -12,7 +12,7 @@
 [ext_resource type="Script" uid="uid://50og77v5isdf" path="res://Components/Characters/StatesCombat/charge.gd" id="5_nta42"]
 [ext_resource type="Script" uid="uid://c4kpkspvywtdj" path="res://Components/Characters/StatesCombat/combat_idle.gd" id="6_gqo3k"]
 [ext_resource type="PackedScene" uid="uid://c1tdw8tv4ntro" path="res://assets/Models/disguise-glasses.glb" id="6_o0vjk"]
-[ext_resource type="Script" uid="uid://cjx5odish7rue" path="res://Components/Characters/Generics/attack.gd" id="7_0quxv"]
+[ext_resource type="Script" uid="uid://cjx5odish7rue" path="res://Components/Characters/StatesCombat/attack_state.gd" id="7_0quxv"]
 [ext_resource type="Script" uid="uid://2ger1cq2sfsm" path="res://Components/Characters/NPCs/Dummy/body_animation.gd" id="8_1v2vy"]
 [ext_resource type="PackedScene" uid="uid://b1d7vo8xmj4pk" path="res://Components/Characters/Animation/HandAnimation.tscn" id="13_dshi3"]
 

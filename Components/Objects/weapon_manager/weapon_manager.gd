@@ -4,7 +4,6 @@ class_name WeaponManager
 @export var weapon_resource: WeaponResource
 @export var hand_anim: HandAnimation
 @export var CHARACTER: Character
-signal attacking_state_changed(is_attacking: bool)
 signal attack_started(is_attack: bool)
 
 var melee_weapon: MeleeWeapon
@@ -31,7 +30,6 @@ func update_melee_weapon():
 	clean_up_weapon()
 	melee_weapon = weapon_resource.world_model.instantiate()
 	melee_weapon.hit_Hitbox.connect(attack_Hit)
-	attacking_state_changed.connect(melee_weapon.set_attacking)
 	hand.add_child(melee_weapon)
 
 func update_ranged_weapon():
@@ -55,15 +53,19 @@ func start_charge():
 func start_attack():
 	attack_finished = false
 	attack_started.emit(true)
-	attacking_state_changed.emit(true)
+	melee_weapon.set_attacking(true)
 	hand_anim._on_attackInput(weapon_resource)
 
 func finish_animation(value: String):
 	if value == "sword_slash":
 		attack_finished = true
-		attacking_state_changed.emit(false)
+		melee_weapon.set_attacking(false)
 
 func start_parry():
+	if(hand_anim.animation.current_animation != "RESET"):
+		melee_weapon.set_attacking(false)
+		hand_anim._on_idleInput()
+		return
 	hand_anim._on_parryInput(weapon_resource)
 
 func attack_Hit(hitbox: HitboxComponent):

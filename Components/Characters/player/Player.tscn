@@ -10,7 +10,7 @@
 [ext_resource type="Script" uid="uid://c4kpkspvywtdj" path="res://Components/Characters/StatesCombat/combat_idle.gd" id="4_fl5x8"]
 [ext_resource type="Script" uid="uid://cjvbat62s5t88" path="res://Components/Characters/StatesCombat/parry.gd" id="4_mikml"]
 [ext_resource type="Script" uid="uid://c2m6y23faseph" path="res://Components/Characters/StatesCombat/cast.gd" id="5_0k167"]
-[ext_resource type="Script" uid="uid://cjx5odish7rue" path="res://Components/Characters/Generics/attack.gd" id="6_o6wjn"]
+[ext_resource type="Script" uid="uid://cjx5odish7rue" path="res://Components/Characters/StatesCombat/attack_state.gd" id="6_o6wjn"]
 [ext_resource type="Script" uid="uid://20qt3k6lqvx2" path="res://Components/Characters/player/movement.gd" id="9_305y5"]
 [ext_resource type="Script" uid="uid://bupf3pckd3pvo" path="res://Components/Characters/player/HUD.gd" id="10_2g87s"]
 [ext_resource type="Resource" uid="uid://d14ajwlensury" path="res://Components/Objects/weapon_manager/sword/fire_sword.tres" id="10_mtylk"]
