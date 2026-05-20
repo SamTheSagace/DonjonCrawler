@@ -22,7 +22,7 @@ func _apply_upgrade(player: Player):
 	ghostWeaponManager.weapon_resource = weaponManager.weapon_resource.duplicate()
 	ghostWeaponManager.weapon_resource.damage *= 0.5
 	ghostWeaponManager.weapon_resource.knockback = 0
-	if ghostWeaponManager.weapon_resource.weapon_type == WeaponParameter.Type.MELEE:
+	if ghostWeaponManager.weapon_resource.weapon_type == WeaponType.List.MELEE:
 		ghostWeaponManager.weapon_resource.world_model = ghostSword
 	player.add_child(ghost)
 	ghost.global_position = player.global_position

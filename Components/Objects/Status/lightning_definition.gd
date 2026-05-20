@@ -4,8 +4,7 @@ class_name LightningDefinition
 @export var stunned := 1.0
 
 func _init():
-	duration = 1.0
-	type = StatusList.Type.LIGHTNING
+	type = StatusType.List.LIGHTNING
 
 func merge_from(new_status: StatusDefinition):
 	super.merge_from(new_status)

@@ -1,14 +1,13 @@
 class_name StatusDefinition
 extends Resource
 
-var type: StatusList.Type
+var type: StatusType.List
 @export var duration := 5.0
 @export var tick_rate := 1.0
 @export var damageOnApply := 5.0
 
 func apply(_target: Character):
 	_target._resolve_status_damage(damageOnApply, type)
-
 
 func merge_from(new_status: StatusDefinition):
 	if (new_status.type != type):

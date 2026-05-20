@@ -13,7 +13,7 @@ func set_max_health(value: int):
 	Max_health = value
 	health = value
 
-func handle_damage(value: float, _status: StatusList.Type):
+func handle_damage(value: float, _status: StatusType.List):
 	health -= value
 
 func handle_attack(attack: Attack):

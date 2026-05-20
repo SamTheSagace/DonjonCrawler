@@ -21,11 +21,10 @@ func _ready() -> void:
 	weapon_match()
 
 func weapon_match():
-	if hand_anim and weapon_resource.world_model:
-		match (weapon_resource.weapon_type):
-				WeaponParameter.Type.MELEE: update_melee_weapon()
-				WeaponParameter.Type.RANGED: update_ranged_weapon()
-				_: print("unknown type")
+	match (weapon_resource.weapon_type):
+		WeaponType.List.MELEE: update_melee_weapon()
+		WeaponType.List.RANGED: update_ranged_weapon()
+		_: print("unknown type")
 
 func update_melee_weapon():
 	clean_up_weapon()

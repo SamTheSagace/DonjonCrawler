@@ -40,7 +40,7 @@ func _ready():
 func status_text():
 	var status_list: Array[String] = []
 	for status: StatusDefinition in status_inflicted:
-		var statusName = StatusList.Type.keys()[status.type].capitalize() + " " + str(status.duration)
+		var statusName = StatusType.List.keys()[status.type].capitalize() + " " + str(status.duration)
 		status_list.append(statusName)
 	return ", ".join(status_list)
 

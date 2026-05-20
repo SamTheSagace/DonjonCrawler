@@ -5,7 +5,7 @@ class_name PoisonDefinition
 @export var damageOnTick := 3.0
 
 func _init():
-	type = StatusList.Type.POISON
+	type = StatusType.List.POISON
 
 func merge_from(new_status: StatusDefinition):
 	super.merge_from(new_status)

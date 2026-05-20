@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://cqgk0gsohmovx" path="res://Components/Characters/NPCs/Ennemy1/Enemy1.tscn" id="7_u5sy4"]
 [ext_resource type="Resource" uid="uid://ff2yow6uroep" path="res://Components/Objects/Upgrades/ElementalTouch/ElementalTouch.tres" id="8_gee14"]
 [ext_resource type="PackedScene" uid="uid://cvlbkmc4ia8ci" path="res://scenes/parkour_testV1.tscn" id="9_0tnpc"]
+[ext_resource type="PackedScene" uid="uid://bsgcg7l6ek3hf" path="res://Components/Objects/weapon_manager/Ressources/weapon_loot.tscn" id="9_dinhu"]
+[ext_resource type="Resource" uid="uid://dpqmiab0le6aw" path="res://Components/Objects/weapon_manager/broadsword/broadsword.tres" id="10_kvpfn"]
 [ext_resource type="PackedScene" uid="uid://pi12nha5o2yq" path="res://Components/Characters/NPCs/Dummy/Dummy.tscn" id="10_vtaks"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_b54tr"]
@@ -47,6 +49,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.147276, 0, 0.2617383)
 [node name="Enemy1" parent="." unique_id=1320624076 node_paths=PackedStringArray("player") instance=ExtResource("7_u5sy4")]
 player = NodePath("../Player")
 MAX_HEALTH = 6000
+JUMP_VELOCITY = null
+SNEAK_SPEED = null
+SPRINT_SPEED = null
 
 [node name="Upgrade" parent="." unique_id=1110834986 instance=ExtResource("4_lbhrr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.855737, 0.24022675, 4.467176)
@@ -61,3 +66,7 @@ use_collision = true
 [node name="Upgrade2" parent="." unique_id=93325597 instance=ExtResource("4_lbhrr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.855737, 0.24022675, 2.2101064)
 upgrade = ExtResource("8_gee14")
+
+[node name="WeaponLoot" parent="." unique_id=1370880954 instance=ExtResource("9_dinhu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.525578, 0.09857166, 5.016748)
+weapon_ressource = ExtResource("10_kvpfn")

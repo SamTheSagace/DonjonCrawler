@@ -1,8 +1,8 @@
 class_name WeaponResource
 extends Resource
 
-
-@export var weapon_type: WeaponParameter.Type
+@export var name: String
+@export var weapon_type: WeaponType.List
 @export var world_model: PackedScene
 
 @export var damage := 10.0

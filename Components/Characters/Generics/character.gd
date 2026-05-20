@@ -52,7 +52,7 @@ func _resolve_knockback(attack: Attack):
 	if knockack_direction.length_squared() > 0.001:
 		knockback_velocity = knockack_direction.normalized() * knockbackPower
 
-func _resolve_status_damage(value: float, status: StatusList.Type):
+func _resolve_status_damage(value: float, status: StatusType.List):
 	HEALTH_COMPONENT.handle_damage(value, status)
 
 func add_status(status: StatusDefinition):
@@ -74,7 +74,7 @@ func _resolve_status_inflicted(attack: Attack):
 func _handle_slowed(slowed_value: float):
 	FINALSPEED = SPEED * slowed_value
 
-func _resolve_stunned(_stunned: float, _type: StatusList.Type, _delta):
+func _resolve_stunned(_stunned: float, _type: StatusType.List, _delta):
 	stun_timer += _delta
 
 

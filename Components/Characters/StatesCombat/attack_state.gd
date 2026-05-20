@@ -4,7 +4,7 @@ func enter(_msg := {}):
 	weapon_manager.start_attack()
 
 func update(_delta: float):
-	if character.wants_to_parry && weapon_manager.weapon_resource.weapon_type == WeaponParameter.Type.MELEE:
+	if character.wants_to_parry && weapon_manager.weapon_resource.weapon_type == WeaponType.List.MELEE:
 		state_machine.transition_to(StateMachineCombat.CombatState.PARRY, {"print": "attack canceled, switch to parry"})
 	if weapon_manager.attack_finished:
 		state_machine.transition_to(StateMachineCombat.CombatState.IDLE, {"print": "attack finished, back to idle"})

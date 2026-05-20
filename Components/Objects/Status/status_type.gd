@@ -1,6 +1,6 @@
-class_name StatusList
+class_name StatusType
 
-enum Type {
+enum List {
 	NONE,
 	POISON,
 	FROST,

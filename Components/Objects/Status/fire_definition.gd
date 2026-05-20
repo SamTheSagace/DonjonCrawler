@@ -7,7 +7,7 @@ class_name FireDefinition
 @export var damageOnTick := 2.0
 
 func _init():
-	type = StatusList.Type.FIRE
+	type = StatusType.List.FIRE
 
 func merge_from(new_status: StatusDefinition):
 	super.merge_from(new_status)

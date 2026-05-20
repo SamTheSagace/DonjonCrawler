@@ -1,7 +1,8 @@
-class_name WeaponParameter
+class_name WeaponType
 extends Node
 
-enum Type {
+
+enum List {
 	NONE,
 	MELEE,
 	RANGED,

@@ -2,11 +2,11 @@ class_name LootHurtbox
 extends Node
 
 var loot = 1
-signal loot_hurtbox(target)
+signal loot_hurt(target: Character)
 
 func _on_collision_area_entered(area):
 	if area is HitboxComponent:
 		var character = area.get_parent()
 		if character is Player:
-			loot_hurtbox.emit(character)
+			loot_hurt.emit(character)
 		self.queue_free()

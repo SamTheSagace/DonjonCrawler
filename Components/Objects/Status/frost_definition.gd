@@ -4,7 +4,7 @@ class_name FrostDefinition
 @export var slow := 0.25
 
 func _init():
-	type = StatusList.Type.FROST
+	type = StatusType.List.FROST
 
 func merge_from(new_status: StatusDefinition):
 	super.merge_from(new_status)
