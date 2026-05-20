@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cjp58634du344" path="res://Components/Objects/Upgrades/Upgrade.tscn" id="4_lbhrr"]
 [ext_resource type="Resource" uid="uid://cwwovcfxr5kig" path="res://Components/Objects/Upgrades/GhostArm/GhostArm.tres" id="6_p57ef"]
 [ext_resource type="PackedScene" uid="uid://cqgk0gsohmovx" path="res://Components/Characters/NPCs/Ennemy1/Enemy1.tscn" id="7_u5sy4"]
+[ext_resource type="Resource" uid="uid://ff2yow6uroep" path="res://Components/Objects/Upgrades/ElementalTouch/ElementalTouch.tres" id="8_gee14"]
 [ext_resource type="PackedScene" uid="uid://cvlbkmc4ia8ci" path="res://scenes/parkour_testV1.tscn" id="9_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://pi12nha5o2yq" path="res://Components/Characters/NPCs/Dummy/Dummy.tscn" id="10_vtaks"]
 
@@ -56,3 +57,7 @@ navigation_mesh = SubResource("NavigationMesh_u5sy4")
 
 [node name="parkour" parent="NavigationRegion3D" unique_id=1587507195 instance=ExtResource("9_0tnpc")]
 use_collision = true
+
+[node name="Upgrade2" parent="." unique_id=93325597 instance=ExtResource("4_lbhrr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.855737, 0.24022675, 2.2101064)
+upgrade = ExtResource("8_gee14")

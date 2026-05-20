@@ -9,6 +9,7 @@ signal attack_started(is_attack: bool)
 var melee_weapon: MeleeWeapon
 var ranged_weapon: WeaponBase
 var attack_finished := true
+var parry_finished := true
 var hand: Node3D
 
 func _ready() -> void:
@@ -60,11 +61,14 @@ func finish_animation(value: String):
 	if value == "sword_slash":
 		attack_finished = true
 		melee_weapon.set_attacking(false)
+	if value == "sword_parry":
+		parry_finished = true
 
 func start_parry():
-	if(hand_anim.animation.current_animation != "RESET"):
+	parry_finished = false
+	if (hand_anim.animation.current_animation != "RESET"):
 		melee_weapon.set_attacking(false)
-		hand_anim._on_idleInput()
+		hand_anim._on_parryInput(weapon_resource)
 		return
 	hand_anim._on_parryInput(weapon_resource)
 

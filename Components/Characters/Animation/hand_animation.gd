@@ -3,14 +3,14 @@ class_name HandAnimation
 
 
 signal animation_finished(anim_name: StringName)
-@export var animation : WorldHandAnimation
+@export var animation: WorldHandAnimation
 @onready var hand = %Hand
 
 func _ready():
 	animation.animation_finished.connect(_finish_animation)
 
 func _finish_animation(anim_name: StringName):
-	emit_signal("animation_finished", anim_name)
+	animation_finished.emit(anim_name)
 
 
 func _on_chargeInput(weapon_resource: WeaponResource):

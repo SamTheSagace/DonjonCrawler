@@ -46,9 +46,9 @@ func status_text():
 
 func _process(delta):
 	super._process(delta)
-	%Info.text = "Health: %s\nSLow: %s\nStatus: %s" % [
+	%Info.text = "Health: %s\nStunned: %s\nStatus: %s" % [
 			HEALTH_COMPONENT.health,
-			str(is_slowed()),
+			is_stunned(),
 			status_text()
 		]
 	timer_decay(delta)

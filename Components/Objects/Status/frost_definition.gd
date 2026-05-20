@@ -10,7 +10,7 @@ func merge_from(new_status: StatusDefinition):
 	super.merge_from(new_status)
 	slow = max(slow, new_status.slow)
 
-func tick(_target: Character):
+func tick(_target: Character, _delta):
 	_target._handle_slowed(slow)
 
 func _clean_up(_target: Character):

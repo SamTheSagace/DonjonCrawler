@@ -15,5 +15,5 @@ func merge_from(new_status: StatusDefinition):
 	damageOnTick = max(damageOnTick, new_status.damageOnTick)
 
 
-func tick(_target: Character):
+func tick(_target: Character, _delta):
 	_target._resolve_status_damage(damageOnTick, type)

@@ -8,5 +8,5 @@ func _on_collision_area_entered(area):
 	if area is HitboxComponent:
 		var character = area.get_parent()
 		if character is Player:
-			emit_signal("loot_hurtbox",character)
+			loot_hurtbox.emit(character)
 		self.queue_free()

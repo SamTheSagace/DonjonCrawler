@@ -19,8 +19,7 @@ func update(delta: float):
 			weapon_manager.go_to_idle()
 			state_machine.transition_to(StateMachineCombat.CombatState.CHARGE)
 			return
-		idle_delay_timer += delta
-		if idle_delay_timer >= IDLE_DELAY:
+		if weapon_manager.parry_finished:
 			weapon_manager.go_to_idle()
 			idle_delay_timer = 0.0
 			state_machine.transition_to(StateMachineCombat.CombatState.IDLE)

@@ -17,7 +17,7 @@ func merge_from(new_status: StatusDefinition):
 	damageOnApply = max(damageOnApply, new_status.damageOnApply)
 	tick_rate = min(tick_rate, new_status.tick_rate)
 
-func tick(_target: Character):
+func tick(_target: Character, _delta):
 	pass
 
 func _clean_up(_target: Character):

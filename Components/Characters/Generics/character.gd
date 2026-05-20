@@ -43,7 +43,7 @@ func _physics_process(_delta: float) -> void:
 
 
 func _resolve_knockback(attack: Attack):
-	stun_timer += 1
+	stun_timer += 0.4
 	var knockbackPower = attack.weapon_resource.knockback
 	var attacker_position = attack.attacker.global_position
 	knockack_direction = (self.global_transform.origin - attacker_position)
@@ -74,15 +74,15 @@ func _resolve_status_inflicted(attack: Attack):
 func _handle_slowed(slowed_value: float):
 	FINALSPEED = SPEED * slowed_value
 
-func _resolve_stunned(stunned: float, _type: StatusList.Type):
-	stun_timer += stunned
+func _resolve_stunned(_stunned: float, _type: StatusList.Type, _delta):
+	stun_timer += _delta
 
 
 func _resolve_status_decay(_delta: float):
 	for status: StatusDefinition in status_inflicted:
 		status.duration -= _delta
 		if status.duration > 0:
-			status.tick(self )
+			status.tick(self , _delta)
 		else:
 			status._clean_up(self )
 			status_inflicted.erase(status)
