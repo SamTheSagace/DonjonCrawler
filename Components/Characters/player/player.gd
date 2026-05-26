@@ -15,9 +15,10 @@ const SPRING_LENGTH_2 := 5
 var _saved_camera_global_pos = null
 
 var upgrades: Array[BasePlayerUpgrade] = []
-
+var status_weapon_modifiers: Array[StatusDefinition] = []
 
 func _ready():
+	whoami = "Player"
 	super._ready()
 	spring_arm.spring_length = SPRING_LENGTH_2
 	_set_layers()

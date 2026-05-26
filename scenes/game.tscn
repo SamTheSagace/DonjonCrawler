@@ -39,17 +39,15 @@ shadow_enabled = true
 environment = SubResource("Environment_pr20v")
 
 [node name="Player" parent="." unique_id=791995048 instance=ExtResource("1_m7e2g")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.113739, 0, 7.2112103)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.023846, 0, 2.5623302)
 
 [node name="Dummy" parent="." unique_id=1217072217 instance=ExtResource("10_vtaks")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.147276, 0, 0.2617383)
 
 [node name="Enemy1" parent="." unique_id=1320624076 node_paths=PackedStringArray("player") instance=ExtResource("7_u5sy4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.8487144, 0, 14.62233)
 player = NodePath("../Player")
 MAX_HEALTH = 6000
-JUMP_VELOCITY = null
-SNEAK_SPEED = null
-SPRINT_SPEED = null
 
 [node name="Upgrade" parent="." unique_id=1110834986 instance=ExtResource("4_lbhrr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.855737, 0.24022675, 4.467176)

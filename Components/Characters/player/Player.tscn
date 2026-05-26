@@ -10,10 +10,10 @@
 [ext_resource type="Script" uid="uid://c4kpkspvywtdj" path="res://Components/Characters/StatesCombat/combat_idle.gd" id="4_fl5x8"]
 [ext_resource type="Script" uid="uid://cjvbat62s5t88" path="res://Components/Characters/StatesCombat/parry.gd" id="4_mikml"]
 [ext_resource type="Script" uid="uid://c2m6y23faseph" path="res://Components/Characters/StatesCombat/cast.gd" id="5_0k167"]
-[ext_resource type="Script" uid="uid://cjx5odish7rue" path="res://Components/Characters/StatesCombat/attack_state.gd" id="6_o6wjn"]
+[ext_resource type="Script" path="res://Components/Characters/StatesCombat/attack_state.gd" id="6_o6wjn"]
 [ext_resource type="Script" uid="uid://20qt3k6lqvx2" path="res://Components/Characters/player/movement.gd" id="9_305y5"]
 [ext_resource type="Script" uid="uid://bupf3pckd3pvo" path="res://Components/Characters/player/HUD.gd" id="10_2g87s"]
-[ext_resource type="Resource" uid="uid://d14ajwlensury" path="res://Components/Objects/weapon_manager/sword/fire_sword.tres" id="10_mtylk"]
+[ext_resource type="Resource" uid="uid://c73x0ieajhcws" path="res://Components/Objects/weapon_manager/sword/sword.tres" id="10_mtylk"]
 [ext_resource type="PackedScene" uid="uid://dvv0260ms1gqg" path="res://Components/Characters/Generics/player_damage_receiver.tscn" id="11_27ntm"]
 [ext_resource type="PackedScene" uid="uid://b1d7vo8xmj4pk" path="res://Components/Characters/Animation/HandAnimation.tscn" id="15_0k167"]
 [ext_resource type="Script" uid="uid://vb7ivc46yxav" path="res://Components/Characters/player/skin.gd" id="15_mtylk"]
@@ -125,9 +125,9 @@ target_position = Vector3(0, -0.75, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_6r5ir")
 
-[node name="HUD" type="CanvasLayer" parent="." unique_id=201738268 node_paths=PackedStringArray("HEALTH_COMPONENT")]
+[node name="HUD" type="CanvasLayer" parent="." unique_id=201738268 node_paths=PackedStringArray("player")]
 script = ExtResource("10_2g87s")
-HEALTH_COMPONENT = NodePath("../HealthComponent")
+player = NodePath("..")
 
 [node name="Node2D" type="Node2D" parent="HUD" unique_id=1775559386]
 
@@ -145,10 +145,19 @@ position = Vector2(164.24998, 26.75)
 scale = Vector2(329.49997, 54.5)
 mesh = SubResource("QuadMesh_305y5")
 
+[node name="status_onweapon" type="Label" parent="HUD/Node2D" unique_id=1803957527]
+unique_name_in_owner = true
+offset_left = 11.0
+offset_top = 129.0
+offset_right = 106.0
+offset_bottom = 243.0
+text = "60"
+label_settings = SubResource("LabelSettings_2g87s")
+
 [node name="health_text" type="Label" parent="HUD/Node2D" unique_id=472486628]
 unique_name_in_owner = true
-offset_left = 557.0
-offset_right = 597.0
-offset_bottom = 23.0
+offset_left = 585.0
+offset_right = 680.0
+offset_bottom = 114.0
 text = "60"
 label_settings = SubResource("LabelSettings_2g87s")

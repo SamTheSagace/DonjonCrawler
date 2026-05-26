@@ -15,6 +15,7 @@ var hand: Node3D
 func _ready() -> void:
 	assert(hand_anim != null)
 	assert(weapon_resource != null)
+	weapon_resource = weapon_resource.duplicate(true)
 	hand_anim.animation_finished.connect(finish_animation)
 	await hand_anim.ready
 	hand = hand_anim.hand
@@ -74,5 +75,14 @@ func start_parry():
 func attack_Hit(hitbox: HitboxComponent):
 	var attack = Attack.new()
 	attack.attacker = CHARACTER
+	var statuses = weapon_resource.statuses
+	if(statuses.size()>0):
+		for status: StatusDefinition in statuses:
+			if (status ==null ):
+				statuses.erase(status)
+			else:
+				print(status.type)
 	attack.weapon_resource = weapon_resource.duplicate(true)
+	if(CHARACTER is Player):
+		attack.weapon_resource.statuses.append_array(CHARACTER.status_weapon_modifiers)
 	hitbox.damage(attack)

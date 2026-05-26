@@ -19,7 +19,7 @@ func _apply_upgrade(player: Player):
 			ghostWeaponManager = child
 	ghost.ghostWeaponManager = ghostWeaponManager
 	weaponManager.attack_started.connect(ghost._on_signal_attack)
-	ghostWeaponManager.weapon_resource = weaponManager.weapon_resource.duplicate()
+	ghostWeaponManager.weapon_resource = weaponManager.weapon_resource.duplicate(true)
 	ghostWeaponManager.weapon_resource.damage *= 0.5
 	ghostWeaponManager.weapon_resource.knockback = 0
 	if ghostWeaponManager.weapon_resource.weapon_type == WeaponType.List.MELEE:

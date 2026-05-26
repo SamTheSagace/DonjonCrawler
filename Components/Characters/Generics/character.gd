@@ -25,8 +25,7 @@ func is_slowed() -> bool:
 	return FINALSPEED < SPEED
 
 var status_inflicted: Array[StatusDefinition] = []
-
-var status_type_modifiers: Array[StatusDefinition] = []
+var whoami:= "character"
 
 func _ready():
 	assert(HEALTH_COMPONENT != null && HITBOX != null)
@@ -67,8 +66,9 @@ func add_status(status: StatusDefinition):
 
 func _resolve_status_inflicted(attack: Attack):
 	var statuses = attack.weapon_resource.statuses
-	for status: StatusDefinition in statuses:
-		add_status(status)
+	if(statuses != null && statuses.size() > 0):
+		for status: StatusDefinition in statuses:
+			add_status(status)
 
 
 func _handle_slowed(slowed_value: float):

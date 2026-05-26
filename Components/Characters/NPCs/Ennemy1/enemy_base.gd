@@ -49,7 +49,7 @@ func _process(delta):
 	%Info.text = "Health: %s\nStunned: %s\nStatus: %s" % [
 			HEALTH_COMPONENT.health,
 			is_stunned(),
-			status_text()
+			weapon_manager.weapon_resource.statuses.size(),
 		]
 	timer_decay(delta)
 	handle_nav_guide()
