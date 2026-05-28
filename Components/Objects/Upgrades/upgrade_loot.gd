@@ -9,7 +9,6 @@ func _ready() -> void:
 	%Label3D.text = upgrade.upgrade_name
 	assert(loot_hurtbox != null)
 	loot_hurtbox.loot_hurt.connect(_on_touch_loot)
-	pass # Replace with function body.
 
 
 func _on_touch_loot(character: Player):

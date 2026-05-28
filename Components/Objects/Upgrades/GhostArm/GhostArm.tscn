@@ -10,8 +10,9 @@ size = Vector3(0.235, 0.2, 0.405)
 [sub_resource type="SphereShape3D" id="SphereShape3D_is7yy"]
 radius = 0.20990731
 
-[node name="GhostArm" type="CharacterBody3D" unique_id=1580302188]
+[node name="GhostArm" type="CharacterBody3D" unique_id=1580302188 node_paths=PackedStringArray("ghostWeaponManager")]
 script = ExtResource("1_34j08")
+ghostWeaponManager = NodePath("WeaponManager")
 
 [node name="WeaponManager" parent="." unique_id=99890068 node_paths=PackedStringArray("hand_anim", "CHARACTER") instance=ExtResource("1_1ujru")]
 hand_anim = NodePath("../arm/HandAnimation")

@@ -11,7 +11,6 @@ func _ready() -> void:
 	%Label3D.text = weapon_ressource.name
 	loot_hurtbox.loot_hurt.connect(_on_touch_loot)
 	self.add_child(weapon_ressource.world_model.instantiate())
-	pass # Replace with function body.
 
 
 func _on_touch_loot(character: Player):

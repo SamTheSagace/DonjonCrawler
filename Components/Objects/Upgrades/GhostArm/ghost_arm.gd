@@ -2,7 +2,7 @@ extends Character
 class_name GhostArm
 
 var time_in_seconds = .1
-var ghostWeaponManager : WeaponManager
+@export var ghostWeaponManager : WeaponManager
 
 func _ready():
 	assert(ghostWeaponManager != null)

@@ -3,6 +3,7 @@ class_name Player
 
 @export var sensitivity: float = 5.0
 @export var skin: SkinContent
+@export var WEAPON_MANAGER: WeaponManager
 @export var stateMachine: StateMachineCombat
 @onready var head = $Head
 @onready var spring_arm = $Head/SpringArm3D
@@ -20,6 +21,7 @@ var status_weapon_modifiers: Array[StatusDefinition] = []
 func _ready():
 	whoami = "Player"
 	super._ready()
+	assert(stateMachine !=null && WEAPON_MANAGER != null)
 	spring_arm.spring_length = SPRING_LENGTH_2
 	_set_layers()
 
