@@ -7,8 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://cqgk0gsohmovx" path="res://Components/Characters/NPCs/Ennemy1/Enemy1.tscn" id="7_u5sy4"]
 [ext_resource type="Resource" uid="uid://ff2yow6uroep" path="res://Components/Objects/Upgrades/ElementalTouch/ElementalTouch.tres" id="8_gee14"]
 [ext_resource type="PackedScene" uid="uid://cvlbkmc4ia8ci" path="res://scenes/parkour_testV1.tscn" id="9_0tnpc"]
-[ext_resource type="PackedScene" uid="uid://bsgcg7l6ek3hf" path="res://Components/Objects/weapon_manager/Ressources/weapon_loot.tscn" id="9_dinhu"]
-[ext_resource type="Resource" uid="uid://dpqmiab0le6aw" path="res://Components/Objects/weapon_manager/broadsword/broadsword.tres" id="10_kvpfn"]
+[ext_resource type="PackedScene" uid="uid://bsgcg7l6ek3hf" path="res://Components/Objects/Weapon/Ressources/weapon_loot.tscn" id="9_dinhu"]
+[ext_resource type="Resource" uid="uid://dpqmiab0le6aw" path="res://Components/Objects/Weapon/broadsword/broadsword.tres" id="10_kvpfn"]
 [ext_resource type="PackedScene" uid="uid://pi12nha5o2yq" path="res://Components/Characters/NPCs/Dummy/Dummy.tscn" id="10_vtaks"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_b54tr"]
@@ -38,9 +38,8 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=241512863]
 environment = SubResource("Environment_pr20v")
 
-[node name="Player" parent="." unique_id=791995048 instance=ExtResource("1_m7e2g")]
+[node name="Player" parent="." unique_id=31202077 instance=ExtResource("1_m7e2g")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.023846, 0, 2.5623302)
-SPEED = 10.0
 
 [node name="Dummy" parent="." unique_id=1217072217 instance=ExtResource("10_vtaks")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.147276, 0, 0.2617383)

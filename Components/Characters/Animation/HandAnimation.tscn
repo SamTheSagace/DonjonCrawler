@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://b1d7vo8xmj4pk"]
 
 [ext_resource type="Script" uid="uid://ckvaxhv803tay" path="res://Components/Characters/Animation/hand_animation.gd" id="1_dcn3l"]
-[ext_resource type="Script" uid="uid://dmlgkbxt4c6mn" path="res://Components/Objects/weapon_manager/Animations/model_anim.gd" id="2_dcjn0"]
-[ext_resource type="PackedScene" uid="uid://pj2jrig5rx6h" path="res://Components/Objects/weapon_manager/sword/sword.glb" id="3_kh1vq"]
+[ext_resource type="Script" uid="uid://dmlgkbxt4c6mn" path="res://Components/Objects/Weapon/Animations/model_anim.gd" id="2_dcjn0"]
+[ext_resource type="PackedScene" uid="uid://pj2jrig5rx6h" path="res://Components/Objects/Weapon/sword/sword.glb" id="3_kh1vq"]
 
 [sub_resource type="Animation" id="Animation_bkrd4"]
 length = 0.001

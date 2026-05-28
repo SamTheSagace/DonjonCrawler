@@ -18,6 +18,6 @@ func _apply_upgrade(player: Player):
 	ghost.ghostWeaponManager.weapon_resource.damage *= 0.5
 	ghost.ghostWeaponManager.weapon_resource.knockback = 0
 	if ghost.ghostWeaponManager.weapon_resource.weapon_type == WeaponType.List.MELEE:
-		ghost.ghostWeaponManager.weapon_resource.world_model = ghostSword
+		ghost.ghostWeaponManager.weapon_resource.scene_weapon = ghostSword
 	player.add_child(ghost)
 	ghost.global_position = player.global_position

@@ -34,22 +34,16 @@ var rotation_Speed = FINALSPEED * 1.5
 
 func _ready():
 	super._ready()
+	whoami = "enemy"
 	target = player
 	weapon_manager.hand_anim.animation_finished.connect(finish_animation)
-
-func status_text():
-	var status_list: Array[String] = []
-	for status: StatusDefinition in status_inflicted:
-		var statusName = StatusType.List.keys()[status.type].capitalize() + " " + str(status.duration)
-		status_list.append(statusName)
-	return ", ".join(status_list)
 
 func _process(delta):
 	super._process(delta)
 	%Info.text = "Health: %s\nStunned: %s\nStatus: %s" % [
 			HEALTH_COMPONENT.health,
 			is_stunned(),
-			weapon_manager.weapon_resource.statuses.size(),
+			StatusType.get_statuses_string(status_inflicted),
 		]
 	timer_decay(delta)
 	handle_nav_guide()
@@ -97,8 +91,8 @@ func timer_decay(delta: float):
 		stun_timer -= delta
 
 func reset():
-	print(HEALTH_COMPONENT.health)
 	self.position = Vector3(0, self.position.y, 0)
+	status_inflicted = []
 	HEALTH_COMPONENT.health = HEALTH_COMPONENT.Max_health
 
 func finish_animation(value: String):

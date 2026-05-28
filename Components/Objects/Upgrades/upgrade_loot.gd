@@ -12,7 +12,6 @@ func _ready() -> void:
 
 
 func _on_touch_loot(character: Player):
-	print(character.name)
 	character.add_upgrade(upgrade)
 	self.global_position += Vector3(0, 1, 0)
 	await get_tree().create_timer(time_in_seconds).timeout
