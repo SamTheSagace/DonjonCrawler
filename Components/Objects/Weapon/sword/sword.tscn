@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://i34kvjjehl1e"]
+
+[ext_resource type="Script" uid="uid://cjgclp7afgioh" path="res://Components/Objects/Weapon/Ressources/base_weapon.gd" id="1_i0n2q"]
+[ext_resource type="PackedScene" uid="uid://pj2jrig5rx6h" path="res://Components/Objects/Weapon/sword/sword.glb" id="1_j3t1y"]
+[ext_resource type="PackedScene" uid="uid://clwgv660wr2ck" path="res://Components/Objects/Weapon/Ressources/weaponHurtbox.tscn" id="2_rspo1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rspo1"]
+size = Vector3(0.03, 2.3, 0.2)
+
+[node name="Sword" type="Node3D" unique_id=1245291969]
+script = ExtResource("1_i0n2q")
+
+[node name="sword_model" parent="." unique_id=141573765 instance=ExtResource("1_j3t1y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
+
+[node name="WeaponHitbox" parent="." unique_id=330040640 instance=ExtResource("2_rspo1")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WeaponHitbox" unique_id=2015715475]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35, 0)
+shape = SubResource("BoxShape3D_rspo1")
