@@ -7,7 +7,7 @@
 [resource]
 script = ExtResource("1_pat6l")
 name = "Broadsword"
-weapon_type = 1
+weapon_superType = 1
 damage = 20.0
 knockback = 20.0
 scene_weapon = ExtResource("1_il2cv")

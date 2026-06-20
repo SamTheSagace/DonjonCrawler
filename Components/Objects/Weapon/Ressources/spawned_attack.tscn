@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://bnng8tgexpjp2"]
+
+[ext_resource type="Script" uid="uid://uh18xjgxqam0" path="res://Components/Objects/Weapon/Ressources/spawned_attack.gd" id="1_ahqqs"]
+[ext_resource type="PackedScene" uid="uid://clwgv660wr2ck" path="res://Components/Objects/Weapon/Ressources/weaponHurtbox.tscn" id="2_8rx5v"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8cde2"]
+size = Vector3(0.03, 2.3, 0.2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_3l4v4"]
+size = Vector3(0.02, 2.3, 0.2)
+
+[node name="SpawnedAttack" type="Node3D" unique_id=47907212]
+script = ExtResource("1_ahqqs")
+
+[node name="WeaponHitbox" parent="." unique_id=2061562853 instance=ExtResource("2_8rx5v")]
+unique_name_in_owner = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WeaponHitbox" unique_id=102662751]
+shape = SubResource("BoxShape3D_8cde2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=62630225]
+mesh = SubResource("BoxMesh_3l4v4")

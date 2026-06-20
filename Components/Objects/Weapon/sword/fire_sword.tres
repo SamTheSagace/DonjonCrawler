@@ -12,7 +12,7 @@ metadata/_custom_type_script = "uid://bo6qsjmqgfm6j"
 [resource]
 script = ExtResource("1_m5gn4")
 name = "Fire sword"
-weapon_type = 1
+weapon_superType = 1
 damage = 20.0
 knockback = 12.0
 statuses = Array[ExtResource("2_xeh32")]([SubResource("Resource_jt3v2")])

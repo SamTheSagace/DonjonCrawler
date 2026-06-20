@@ -7,6 +7,6 @@
 [resource]
 script = ExtResource("1_ha06e")
 name = "Basic sword"
-weapon_type = 1
+weapon_superType = 1
 scene_weapon = ExtResource("1_tuta4")
 metadata/_custom_type_script = "uid://etitetj0g0n"

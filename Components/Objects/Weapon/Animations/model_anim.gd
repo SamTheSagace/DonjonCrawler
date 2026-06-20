@@ -2,8 +2,8 @@ extends AnimationPlayer
 class_name WorldHandAnimation
 
 func _on_chargeInput(weapon_resource: WeaponResource):
-	var type := weapon_resource.weapon_type
-	var expectType := WeaponType.List
+	var type := weapon_resource.weapon_superType
+	var expectType := WeaponParam.SuperType
 	match type:
 		expectType.MELEE:
 			play("sword_charge")
@@ -13,8 +13,8 @@ func _on_chargeInput(weapon_resource: WeaponResource):
 			play("sword_charge")
 
 func _on_attackInput(weapon_resource: WeaponResource):
-	var type := weapon_resource.weapon_type
-	var expectType := WeaponType.List
+	var type := weapon_resource.weapon_superType
+	var expectType := WeaponParam.SuperType
 	match type:
 		expectType.MELEE:
 			play("sword_slash")
@@ -24,8 +24,8 @@ func _on_attackInput(weapon_resource: WeaponResource):
 			play("sword_slash")
 
 func _on_parryInput(weapon_resource: WeaponResource):
-	var type := weapon_resource.weapon_type
-	var expectType := WeaponType.List
+	var type := weapon_resource.weapon_superType
+	var expectType := WeaponParam.SuperType
 	match type:
 		expectType.MELEE:
 			play("sword_parry")

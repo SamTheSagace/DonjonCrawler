@@ -3,7 +3,7 @@ extends Resource
 
 @export var name: String
 
-@export var weapon_type: WeaponType.List
+@export var weapon_superType: WeaponParam.SuperType
 
 @export var damage := 10.0
 @export var knockback := 10.0

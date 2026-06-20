@@ -21,10 +21,10 @@ func _ready() -> void:
 	weapon_match()
 
 func weapon_match():
-	assert(weapon_resource.weapon_type != null)
-	match (weapon_resource.weapon_type):
-		WeaponType.List.MELEE: update_weapon()
-		WeaponType.List.RANGED: update_weapon()
+	assert(weapon_resource.weapon_superType != null)
+	match (weapon_resource.weapon_superType):
+		WeaponParam.SuperType.MELEE: update_weapon()
+		WeaponParam.SuperType.RANGED: update_weapon()
 		_: print("unknown type")
 
 func update_weapon():

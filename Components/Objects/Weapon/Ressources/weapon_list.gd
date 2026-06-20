@@ -1,11 +1,17 @@
-class_name WeaponType
+class_name WeaponParam
 extends Node
 
 
-enum List {
+enum SuperType {
 	NONE,
 	MELEE,
 	RANGED,
 	MAGIC,
-	THROWABLE
+}
+
+enum MeleeType {
+	NONE,
+	SWORD,
+	SPEAR,
+	DAGGER
 }
