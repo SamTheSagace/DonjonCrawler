@@ -4,6 +4,7 @@ class_name Player
 @export var sensitivity: float = 5.0
 @export var skin: SkinContent
 @export var WEAPON_MANAGER: WeaponManager
+@export var WEAPON_ACTION: WeaponAction
 @export var stateMachine: StateMachineCombat
 @onready var head = $Head
 @onready var spring_arm = $Head/SpringArm3D
@@ -21,7 +22,7 @@ var status_weapon_modifiers: Array[StatusDefinition] = []
 func _ready():
 	whoami = "Player"
 	super._ready()
-	assert(stateMachine !=null && WEAPON_MANAGER != null)
+	assert(stateMachine != null && WEAPON_MANAGER != null && WEAPON_ACTION != null)
 	spring_arm.spring_length = SPRING_LENGTH_2
 	_set_layers()
 
@@ -92,7 +93,7 @@ func _slide_camera_smooth_back_to_origin(delta):
 
 func add_upgrade(upgrade: BasePlayerUpgrade):
 	upgrades.append(upgrade)
-	upgrade._apply_upgrade(self )
+	upgrade._apply_upgrade(self)
 
 func camera_auto_switch():
 	if spring_arm.get_hit_length() <= 1 and spring_arm.spring_length == SPRING_LENGTH_2:

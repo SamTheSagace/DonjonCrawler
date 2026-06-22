@@ -3,7 +3,7 @@ class_name Character
 @export var MAX_HEALTH := 60
 @export var SPEED := 5.0
 var FINALSPEED: float
-@export var JUMP_VELOCITY := 4.5
+@export var JUMP_VELOCITY := 5.5
 @export var SNEAK_SPEED := 0.5
 @export var SPRINT_SPEED := 1.5
 @export var HEALTH_COMPONENT: HealthComponent
@@ -25,7 +25,7 @@ func is_slowed() -> bool:
 	return FINALSPEED < SPEED
 
 var status_inflicted: Array[StatusDefinition] = []
-var whoami:= "character"
+var whoami := "character"
 
 func _ready():
 	assert(HEALTH_COMPONENT != null && HITBOX != null)
@@ -59,14 +59,14 @@ func add_status(status: StatusDefinition):
 	for s: StatusDefinition in status_inflicted:
 		if s.type == incoming.type:
 			s.merge_from(incoming)
-			s.apply(self )
+			s.apply(self)
 			return
 	status_inflicted.append(incoming)
-	incoming.apply(self )
+	incoming.apply(self)
 
 func _resolve_status_inflicted(attack: Attack):
 	var statuses = attack.weapon_resource.statuses
-	if(statuses != null && statuses.size() > 0):
+	if (statuses != null && statuses.size() > 0):
 		for status: StatusDefinition in statuses:
 			add_status(status)
 
@@ -82,7 +82,7 @@ func _resolve_status_decay(_delta: float):
 	for status: StatusDefinition in status_inflicted:
 		status.duration -= _delta
 		if status.duration > 0:
-			status.tick(self , _delta)
+			status.tick(self, _delta)
 		else:
-			status._clean_up(self )
+			status._clean_up(self)
 			status_inflicted.erase(status)

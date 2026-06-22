@@ -4,5 +4,3 @@
 
 [node name="WeaponManager" type="Node3D" unique_id=417059537]
 script = ExtResource("1_mpcs4")
-
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1171488786]

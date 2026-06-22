@@ -6,7 +6,7 @@ func _on_chargeInput(weapon_resource: WeaponResource):
 	var expectType := WeaponParam.SuperType
 	match type:
 		expectType.MELEE:
-			play("sword_charge")
+			play("sword_horizontal_charge")
 		expectType.RANGED:
 			print("ranged")
 		_:
@@ -17,7 +17,7 @@ func _on_attackInput(weapon_resource: WeaponResource):
 	var expectType := WeaponParam.SuperType
 	match type:
 		expectType.MELEE:
-			play("sword_slash")
+			play("sword_horizontal_slash")
 		expectType.RANGED:
 			print("ranged")
 		_:
@@ -39,8 +39,4 @@ func _on_idleInput():
 
 
 func _on_animation_finished(_anim_name: StringName) -> void:
-	pass # Replace with function body.
-
-
-func _process(_delta: float) -> void:
 	pass

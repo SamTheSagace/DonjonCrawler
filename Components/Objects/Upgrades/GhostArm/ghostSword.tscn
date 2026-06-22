@@ -2,19 +2,9 @@
 
 [ext_resource type="Script" uid="uid://cjgclp7afgioh" path="res://Components/Objects/Weapon/Ressources/base_weapon.gd" id="1_fg3i5"]
 [ext_resource type="PackedScene" uid="uid://pj2jrig5rx6h" path="res://Components/Objects/Weapon/sword/sword.glb" id="2_drqx1"]
-[ext_resource type="PackedScene" uid="uid://clwgv660wr2ck" path="res://Components/Objects/Weapon/Ressources/weaponHurtbox.tscn" id="3_qcn6l"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_rspo1"]
-size = Vector3(0.03, 3, 0.2)
 
 [node name="ghostSword" type="Node3D" unique_id=1006676393]
 script = ExtResource("1_fg3i5")
 
 [node name="sword" parent="." unique_id=1042469950 instance=ExtResource("2_drqx1")]
 transform = Transform3D(1, 0, 0, 0, 1.315, 0, 0, 0, 1, 0, 0.2, 0)
-
-[node name="WeaponHitbox" parent="." unique_id=1107335624 instance=ExtResource("3_qcn6l")]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="WeaponHitbox" unique_id=1562993092]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
-shape = SubResource("BoxShape3D_rspo1")

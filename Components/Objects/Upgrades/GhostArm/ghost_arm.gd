@@ -2,10 +2,11 @@ extends Character
 class_name GhostArm
 
 var time_in_seconds = .1
-@export var ghostWeaponManager : WeaponManager
+@export var weapon_manager: WeaponManager
+@export var weapon_action: WeaponAction
 
 func _ready():
-	assert(ghostWeaponManager != null)
+	assert(weapon_manager != null && weapon_action != null)
 	pass
 
 var queue: Array = []
@@ -28,7 +29,7 @@ func process_queue():
 	processing = false
 
 func _start_charge():
-	ghostWeaponManager.start_charge()
+	weapon_action.start_charge()
 
 func _start_attack():
-	ghostWeaponManager.start_attack()
+	weapon_action.start_attack()

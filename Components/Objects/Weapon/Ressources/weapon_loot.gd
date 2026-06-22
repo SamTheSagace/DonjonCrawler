@@ -10,7 +10,7 @@ func _ready() -> void:
 	assert(weapon_ressource != null)
 	%Label3D.text = weapon_ressource.name
 	loot_hurtbox.loot_hurt.connect(_on_touch_loot)
-	self.add_child(weapon_ressource.instantiate_weapon())
+	self.add_child(weapon_ressource.scene_weapon.instantiate())
 
 
 func _on_touch_loot(player: Player):

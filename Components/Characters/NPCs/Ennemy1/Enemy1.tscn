@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://c1tdw8tv4ntro" path="res://assets/Models/disguise-glasses.glb" id="6_o0vjk"]
 [ext_resource type="Script" uid="uid://cjx5odish7rue" path="res://Components/Characters/StatesCombat/attack_state.gd" id="7_0quxv"]
 [ext_resource type="Script" uid="uid://2ger1cq2sfsm" path="res://Components/Characters/NPCs/Dummy/body_animation.gd" id="8_1v2vy"]
+[ext_resource type="PackedScene" uid="uid://xhjh1riv10ok" path="res://Components/Objects/Weapon/Ressources/WeaponAction.tscn" id="10_6n3fv"]
 [ext_resource type="PackedScene" uid="uid://b1d7vo8xmj4pk" path="res://Components/Characters/Animation/HandAnimation.tscn" id="13_dshi3"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1v2vy"]
@@ -90,12 +91,19 @@ SPEED = 4.0
 HEALTH_COMPONENT = NodePath("HealthComponent")
 HITBOX = NodePath("HitboxComponent")
 
-[node name="DamagerReceiver" parent="." unique_id=570540522 node_paths=PackedStringArray("CHARACTER") instance=ExtResource("2_6n3fv")]
+[node name="WeaponManager" parent="." unique_id=1395439372 node_paths=PackedStringArray("hand_anim", "CHARACTER") instance=ExtResource("3_5ya66")]
+weapon_resource = ExtResource("4_4h2bd")
+hand_anim = NodePath("../WorldModel/Body/HandAnimation")
 CHARACTER = NodePath("..")
 
-[node name="StateMachineCombat" type="Node" parent="." unique_id=1558641969 node_paths=PackedStringArray("WEAPON_MANAGER", "HEALTH_COMPONENT")]
+[node name="WeaponAction" parent="." unique_id=1452111762 node_paths=PackedStringArray("hand_anim", "weapon_storage") instance=ExtResource("10_6n3fv")]
+hand_anim = NodePath("../WorldModel/Body/HandAnimation")
+weapon_storage = NodePath("../WeaponManager")
+
+[node name="StateMachineCombat" type="Node" parent="." unique_id=1558641969 node_paths=PackedStringArray("WEAPON_MANAGER", "WEAPON_ACTION", "HEALTH_COMPONENT")]
 script = ExtResource("2_80bfm")
 WEAPON_MANAGER = NodePath("../WeaponManager")
+WEAPON_ACTION = NodePath("../WeaponAction")
 HEALTH_COMPONENT = NodePath("../HealthComponent")
 
 [node name="Parry" type="Node" parent="StateMachineCombat" unique_id=709002687]
@@ -121,6 +129,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HitboxComponent" unique_id=1085966595]
 shape = SubResource("CapsuleShape3D_1v2vy")
 
+[node name="DamagerReceiver" parent="." unique_id=570540522 node_paths=PackedStringArray("CHARACTER") instance=ExtResource("2_6n3fv")]
+CHARACTER = NodePath("..")
+
 [node name="Name" type="Label3D" parent="." unique_id=188212300]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 2.2900643, 0)
 pixel_size = 0.009
@@ -133,11 +144,6 @@ pixel_size = 0.009
 text = "eee
 e
 e"
-
-[node name="WeaponManager" parent="." unique_id=1395439372 node_paths=PackedStringArray("hand_anim", "CHARACTER") instance=ExtResource("3_5ya66")]
-weapon_resource = ExtResource("4_4h2bd")
-hand_anim = NodePath("../WorldModel/Body/HandAnimation")
-CHARACTER = NodePath("..")
 
 [node name="WorldModel" type="Node3D" parent="." unique_id=1489945488]
 

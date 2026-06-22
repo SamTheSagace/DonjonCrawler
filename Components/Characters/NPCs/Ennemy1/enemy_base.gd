@@ -34,6 +34,7 @@ var rotation_Speed = FINALSPEED * 1.5
 
 func _ready():
 	super._ready()
+	assert(player != null)
 	whoami = "enemy"
 	target = player
 	weapon_manager.hand_anim.animation_finished.connect(finish_animation)

@@ -2,7 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://3s7hon3kcce0" path="res://Components/Objects/Weapon/WeaponManager.tscn" id="1_1ujru"]
 [ext_resource type="Script" uid="uid://dnpoeosrpr3s8" path="res://Components/Objects/Upgrades/GhostArm/ghost_arm.gd" id="1_34j08"]
+[ext_resource type="PackedScene" uid="uid://xhjh1riv10ok" path="res://Components/Objects/Weapon/Ressources/WeaponAction.tscn" id="2_is7yy"]
 [ext_resource type="PackedScene" uid="uid://b1d7vo8xmj4pk" path="res://Components/Characters/Animation/HandAnimation.tscn" id="3_34j08"]
+[ext_resource type="Resource" uid="uid://dlbrgog6dw024" path="res://Components/Objects/Upgrades/GhostArm/ghost_sword.tres" id="3_fnie5"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_fnie5"]
 size = Vector3(0.235, 0.2, 0.405)
@@ -10,13 +12,19 @@ size = Vector3(0.235, 0.2, 0.405)
 [sub_resource type="SphereShape3D" id="SphereShape3D_is7yy"]
 radius = 0.20990731
 
-[node name="GhostArm" type="CharacterBody3D" unique_id=1580302188 node_paths=PackedStringArray("ghostWeaponManager")]
+[node name="GhostArm" type="CharacterBody3D" unique_id=1580302188 node_paths=PackedStringArray("weapon_manager", "weapon_action")]
 script = ExtResource("1_34j08")
-ghostWeaponManager = NodePath("WeaponManager")
+weapon_manager = NodePath("WeaponManager")
+weapon_action = NodePath("WeaponAction")
 
 [node name="WeaponManager" parent="." unique_id=99890068 node_paths=PackedStringArray("hand_anim", "CHARACTER") instance=ExtResource("1_1ujru")]
+weapon_resource = ExtResource("3_fnie5")
 hand_anim = NodePath("../arm/HandAnimation")
 CHARACTER = NodePath("..")
+
+[node name="WeaponAction" parent="." unique_id=1452111762 node_paths=PackedStringArray("hand_anim", "weapon_storage") instance=ExtResource("2_is7yy")]
+hand_anim = NodePath("../arm/HandAnimation")
+weapon_storage = NodePath("../WeaponManager")
 
 [node name="arm" type="MeshInstance3D" parent="." unique_id=1132623860]
 transform = Transform3D(0.9974407, 0.018504899, -0.069061235, 0, 0.9659258, 0.2588191, 0.07149743, -0.25815666, 0.963454, -0.5509182, 0.657193, -0.016636968)
