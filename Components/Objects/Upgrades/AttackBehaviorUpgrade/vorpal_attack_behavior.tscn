@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://s7maww4mfvfu"]
+
+[ext_resource type="Script" uid="uid://73ujnikg45y2" path="res://Components/Objects/Upgrades/AttackBehaviorUpgrade/vorpal_attack_behavior.gd" id="1_8pg3e"]
+
+[node name="VorpalAttackBehavior" type="Node3D" unique_id=1404079019]
+script = ExtResource("1_8pg3e")
