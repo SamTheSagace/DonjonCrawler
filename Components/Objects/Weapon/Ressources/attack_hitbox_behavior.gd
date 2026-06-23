@@ -17,17 +17,18 @@ static func create(context: AttackHitboxContext) -> AttackHitboxBehavior:
 	attack.state = State.ACTIVE
 	return attack
 
-func on_create(context: AttackHitboxContext, ) -> void:
-	var attack = self as AttackHitboxBehavior
+func on_create(context: AttackHitboxContext) -> void:
 	_add_to_tree(context)
-	attack._handler = context.handler
-	attack.global_transform = context.transform.global_transform 
-	attack.hurtbox = attack.get_node("%WeaponHurtbox")
-	attack.hurtbox.hit_Hitbox.connect(attack._on_hit_Hitbox)
+	_handler = context.handler
+	hurtbox = get_node("%WeaponHurtbox")
+	hurtbox.hit_Hitbox.connect(_on_hit_Hitbox)
+	global_transform = context.transform.global_transform
+	print("created attack: ", self, " parent: ", get_parent())
+	state = State.ACTIVE
 
 
 func _add_to_tree(context: AttackHitboxContext) -> void:
-	context.parent.add_child(self)
+	context.transform.add_child(self)
 
 func expire() -> void:
 	if state != State.ACTIVE:

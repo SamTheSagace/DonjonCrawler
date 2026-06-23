@@ -4,28 +4,22 @@ class_name BaseWeapon
 signal hit_Hitbox(target)
 
 var handler: Character
-var current_attack: AttackHitboxBehavior
+var attack_scene: AttackHitboxBehavior
 var is_attacking := false
-var attack_script: GDScript
 
-@export var transformPoint: Node3D 
+@export var transformPoint: Node3D
 @export var hitbox_scene: PackedScene
-
 
 
 func set_attacking(value: bool) -> void:
 	is_attacking = value
 	if value:
-		current_attack = AttackHitboxBehavior.create(AttackHitboxContext.new(
-			handler,
-			get_tree().root,
-			self,
-			hitbox_scene
-		))
-		current_attack.hit_Hitbox.connect(_on_hit_Hitbox)
+		var context = AttackHitboxContext.new(handler, self, hitbox_scene)
+		attack_scene = AttackHitboxBehavior.create(context)
+		attack_scene.hit_Hitbox.connect(_on_hit_Hitbox)
 	else:
-		if current_attack:
-			current_attack.expire()
+		if attack_scene:
+			attack_scene.expire()
 
 
 func _on_hit_Hitbox(hitbox) -> void:

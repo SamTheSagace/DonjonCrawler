@@ -20,6 +20,7 @@ func _process(_delta: float) -> void:
 
 
 func on_expire() -> void:
-	_follow_target = null
+	print("should stay, then delete")
 	await get_tree().create_timer(LINGER_DURATION).timeout
+	_follow_target = null
 	_finish()
