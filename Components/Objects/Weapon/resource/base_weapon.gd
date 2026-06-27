@@ -1,17 +1,24 @@
 extends Node3D
 class_name BaseWeapon
 
-signal hit_Hitbox(target)
+signal hit_Hitbox(target: HitboxComponent)
 
-var handler: Character
+@export var attack_definition: AttackDefinition
 
-var is_attacking := false
+var controller := AttackController.new()
 
-func _ready() -> void:
+
+func _ready():
+	assert(attack_definition != null)
+	add_child(controller)
+	controller.hit_Hitbox.connect(_on_hit_Hitbox)
 	pass
 
-func set_attacking(value: bool) -> void:
-	pass
+func set_attacking():
+	controller.start_attack(attack_definition, self)
 
-func _on_hit_Hitbox(hitbox) -> void:
+func stop_attacking():
+	controller.finish_attack()
+
+func _on_hit_Hitbox(hitbox):
 	hit_Hitbox.emit(hitbox)

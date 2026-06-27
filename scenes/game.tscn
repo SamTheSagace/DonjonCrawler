@@ -7,9 +7,8 @@
 [ext_resource type="Resource" uid="uid://cbrjprdwj5rq2" path="res://Components/objects/upgrades/attack_behavior/vorpal_attack_upgrade.tres" id="7_kvpfn"]
 [ext_resource type="PackedScene" uid="uid://cqgk0gsohmovx" path="res://Components/Characters/NPCs/Ennemy1/Enemy1.tscn" id="7_u5sy4"]
 [ext_resource type="Resource" uid="uid://ff2yow6uroep" path="res://Components/objects/upgrades/elemental_touch/ElementalTouch.tres" id="8_gee14"]
+[ext_resource type="Script" uid="uid://215yfy3vrfrm" path="res://Components/objects/upgrades/attack_behavior/attack_behavior_upgrade.gd" id="8_vtaks"]
 [ext_resource type="PackedScene" uid="uid://cvlbkmc4ia8ci" path="res://scenes/parkour_testV1.tscn" id="9_0tnpc"]
-[ext_resource type="PackedScene" uid="uid://bsgcg7l6ek3hf" path="res://Components/objects/weapon/resource/weapon_loot.tscn" id="9_dinhu"]
-[ext_resource type="Resource" uid="uid://dpqmiab0le6aw" path="res://Components/objects/weapon/broadsword/broadsword.tres" id="10_kvpfn"]
 [ext_resource type="PackedScene" uid="uid://pi12nha5o2yq" path="res://Components/Characters/NPCs/Dummy/Dummy.tscn" id="10_vtaks"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_b54tr"]
@@ -24,6 +23,12 @@ background_mode = 2
 sky = SubResource("Sky_rlqky")
 tonemap_mode = 2
 glow_enabled = true
+
+[sub_resource type="Resource" id="Resource_kvpfn"]
+script = ExtResource("8_vtaks")
+newBehavior = ExtResource("7_kvpfn")
+upgrade_name = "Vorpal Attack"
+metadata/_custom_type_script = "uid://215yfy3vrfrm"
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_vtaks"]
 vertices = PackedVector3Array(9.27, 4.428388, 47.6495, 9.27, 4.428388, 46.3995, 8.52, 4.678388, 46.1495, 7.2700005, 4.678388, 46.1495, -41.73, 4.428388, 47.6495, 8.52, 4.678388, -13.100497, 9.27, 4.678388, -13.350497, 9.27, 4.678388, -14.600497, 7.2700005, 4.678388, -13.100497, -41.73, 4.678388, -14.600497, -40.23, 4.678388, -13.100497, -40.23, 4.428388, 46.1495, -32.23, 0.42838812, -6.6004972, -31.73, 0.42838812, -6.8504972, -31.73, 0.42838812, -12.350497, -39.23, 0.42838812, -12.350497, -39.23, 0.42838812, -5.6004972, -32.23, 0.42838812, -5.6004972, -27.23, 0.42838812, -6.8504972, -26.98, 0.42838812, -5.6004972, -26.48, 0.42838812, -5.6004972, -26.48, 0.42838812, -8.100497, -25.98, 0.42838812, -12.350497, -25.98, 0.42838812, -8.350497, -0.47999954, 0.42838812, -2.1004972, -0.22999954, 0.42838812, -0.85049725, 0.27000046, 0.42838812, -1.1004972, 0.27000046, 0.42838812, -2.8504972, -5.9799995, 0.42838812, -8.350497, -5.7299995, 0.42838812, -3.1004972, -5.2299995, 0.42838812, -3.1004972, -4.9799995, 0.42838812, -8.350497, -6.9799995, 0.42838812, -2.8504972, -6.9799995, 0.42838812, -1.3504972, -3.2299995, 0.42838812, -1.3504972, -2.9799995, 0.42838812, -2.1004972, 6.2700005, 0.42838812, -12.350497, 4.7700005, 0.42838812, -8.350497, 5.0200005, 0.42838812, 0.64950275, 6.2700005, 0.42838812, 0.89950275, -25.48, 1.9283881, -7.3504972, -25.48, 1.9283881, -3.8504972, -16.98, 1.9283881, -3.8504972, -16.98, 1.9283881, -7.3504972, -14.98, 2.678388, -7.3504972, -14.98, 2.678388, -3.8504972, -6.7299995, 2.678388, -3.8504972, -6.7299995, 2.678388, -7.3504972, 1.0200005, 4.178388, -3.8504972, 1.2700005, 4.178388, -3.3504972, 4.0200005, 4.178388, -3.1004972, 4.0200005, 4.178388, -7.3504972, -4.2299995, 4.178388, -7.3504972, -4.2299995, 4.178388, -3.8504972, -31.23, 1.1783881, -5.8504972, -31.23, 1.1783881, -5.3504972, -30.73, 1.1783881, -5.3504972, -30.73, 1.1783881, -5.8504972, -28.73, 1.1783881, -5.8504972, -28.73, 1.1783881, -5.3504972, -27.98, 1.1783881, -5.3504972, -27.98, 1.1783881, -5.8504972, -9.73, 0.6783881, -2.1004972, -7.9799995, 1.1783881, -2.3504972, -9.73, 0.6783881, -2.3504972, 0.27000046, 0.42838812, -0.100497246, -0.47999954, 0.42838812, 0.64950275, -31.98, 0.42838812, -4.3504972, -27.23, 0.42838812, -4.3504972, -26.23, 0.42838812, -2.8504972, 1.5200005, 0.42838812, 0.89950275, 1.5200005, 0.6783881, 0.14950275, -6.9799995, 0.42838812, 2.6495028, -9.73, 0.42838812, -1.1004972, -15.73, 0.42838812, -3.1004972, -39.23, 0.42838812, 45.3995, 6.2700005, 0.42838812, 45.3995, 2.7700005, 0.42838812, 2.6495028, 2.5200005, 0.42838812, 1.1495028, 4.7700005, 0.42838812, 2.6495028, -2.9799995, 0.42838812, 0.64950275, -3.2299995, 0.42838812, 2.6495028, -7.2299995, 0.42838812, -1.1004972, -9.73, 0.6783881, -2.8504972, -2.2299995, 4.428388, -1.1004972, -2.2299995, 4.428388, -0.35049725, -1.2299995, 4.428388, -0.35049725, -1.2299995, 4.428388, -1.1004972, -6.2299995, 4.428388, -0.35049725, -6.2299995, 4.428388, 1.6495028, -3.9799995, 4.428388, 1.6495028, -3.9799995, 4.428388, -0.35049725)
@@ -49,13 +54,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.016155, 0, -2.2251163)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.060615063, 0, 41.049908)
 player = NodePath("../Player")
 
-[node name="Upgrade" parent="." unique_id=1110834986 instance=ExtResource("4_lbhrr")]
+[node name="ghost_arm" parent="." unique_id=1110834986 instance=ExtResource("4_lbhrr")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -13.558047, 0.24022675, 3.2566986)
 upgrade = ExtResource("6_p57ef")
 
-[node name="Upgrade3" parent="." unique_id=93325597 instance=ExtResource("4_lbhrr")]
+[node name="vorpal_arm" parent="." unique_id=93325597 instance=ExtResource("4_lbhrr")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -13.565754, -4.7683716e-07, 0.980351)
-upgrade = ExtResource("7_kvpfn")
+upgrade = SubResource("Resource_kvpfn")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1603518999]
 navigation_mesh = SubResource("NavigationMesh_vtaks")
@@ -66,7 +71,3 @@ use_collision = true
 [node name="Upgrade2" parent="." unique_id=1042012543 instance=ExtResource("4_lbhrr")]
 transform = Transform3D(-0.9999302, 0, -0.011815692, 0, 1, 0, 0.011815692, 0, -0.9999302, -13.558047, 0.24022675, 5.513768)
 upgrade = ExtResource("8_gee14")
-
-[node name="WeaponLoot" parent="." unique_id=1370880954 instance=ExtResource("9_dinhu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.525578, 0.09857166, 5.016748)
-weapon_ressource = ExtResource("10_kvpfn")

@@ -18,7 +18,6 @@ func _ready():
 
 func instantiate_weapon(handler: Character) -> BaseWeapon:
 	var weapon := scene_weapon.instantiate() as BaseWeapon
-	weapon.handler = handler
 	assert(weapon != null,
 		"Scene must inherit BaseWeapon")
 	return weapon

@@ -2,9 +2,11 @@
 
 [ext_resource type="Script" uid="uid://cjgclp7afgioh" path="res://Components/objects/weapon/resource/base_weapon.gd" id="1_i0n2q"]
 [ext_resource type="PackedScene" uid="uid://c218h3icmcb80" path="res://Components/objects/weapon/sword/sword.glb" id="1_j3t1y"]
+[ext_resource type="Resource" uid="uid://b2s6yquystoys" path="res://Components/objects/weapon/sword/base_attack_definition.tres" id="2_41ego"]
 
 [node name="Sword" type="Node3D" unique_id=1245291969]
 script = ExtResource("1_i0n2q")
+attack_definition = ExtResource("2_41ego")
 
 [node name="sword_model" parent="." unique_id=141573765 instance=ExtResource("1_j3t1y")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)

@@ -31,26 +31,29 @@ func start_charge():
 func start_attack():
 	attack_finished = false
 	attack_started.emit(true)
-	weapon_storage.weapon.set_attacking(true)
+	weapon_storage.weapon.set_attacking()
 	hand_anim._on_attackInput(weapon_storage.weapon_resource)
 
 func finish_animation(value: String):
 	var isAttackAnim = value.contains("slash") || value.contains("thrust")
 	if isAttackAnim:
 		attack_finished = true
-		weapon_storage.weapon.set_attacking(false)
+		weapon_storage.weapon.stop_attacking()
 	if value == "sword_parry":
 		parry_finished = true
 
 func start_parry():
 	parry_finished = false
 	if (hand_anim.animation.current_animation != "RESET"):
-		weapon_storage.weapon.set_attacking(false)
+		weapon_storage.weapon.set_attacking()
 		hand_anim._on_parryInput(weapon_storage.weapon_resource)
 		return
 	hand_anim._on_parryInput(weapon_storage.weapon_resource)
 
 func attack_Hit(hitbox: HitboxComponent):
+	if (hitbox == CHARACTER.HITBOX):
+		print("hit itself")
+		return
 	var attack = Attack.new()
 	attack.attacker = CHARACTER
 	var statuses = weapon_storage.weapon_resource.statuses

@@ -1,10 +1,8 @@
 extends BasePlayerUpgrade
 class_name AttackBehaviorPlayerUpgrade
 
-@export var newAttackBehavior: PackedScene
-
+@export var newBehavior: AttackBehavior
 
 func _apply_upgrade(player: Player):
-	assert(newAttackBehavior.instantiate() is AttackHitboxBehavior)
-	var weapon = player.WEAPON_MANAGER.weapon
-	weapon.attack_scene = newAttackBehavior
+	if (newBehavior != null):
+		player.WEAPON_MANAGER.weapon.attack_definition.behavior = newBehavior
