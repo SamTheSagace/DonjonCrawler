@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://d1ooy1p6tsu5u"]
 
 [ext_resource type="Script" path="res://Components/Objects/weapon_manager/Ressources/MeleeWeapon.gd" id="1_s84ao"]
-[ext_resource type="PackedScene" uid="uid://1rqcg2dcpvsw" path="res://Components/Objects/Weapon/Bow/bow.glb" id="2_dlt0m"]
-[ext_resource type="PackedScene" uid="uid://clwgv660wr2ck" path="res://Components/Objects/Weapon/Ressources/weaponHurtbox.tscn" id="3_u2som"]
+[ext_resource type="PackedScene" uid="uid://fpvqaq2ftls0" path="res://Components/objects/weapon/bow/bow.glb" id="2_dlt0m"]
+[ext_resource type="PackedScene" uid="uid://clwgv660wr2ck" path="res://Components/objects/weapon/resource/weaponHurtbox.tscn" id="3_u2som"]
 
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rspo1"]

@@ -8,8 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://cqgk0gsohmovx" path="res://Components/Characters/NPCs/Ennemy1/Enemy1.tscn" id="7_u5sy4"]
 [ext_resource type="Resource" uid="uid://ff2yow6uroep" path="res://Components/objects/upgrades/elemental_touch/ElementalTouch.tres" id="8_gee14"]
 [ext_resource type="PackedScene" uid="uid://cvlbkmc4ia8ci" path="res://scenes/parkour_testV1.tscn" id="9_0tnpc"]
-[ext_resource type="PackedScene" uid="uid://bsgcg7l6ek3hf" path="res://Components/objects/weapon/resource/weapon_loot.tscn" id="9_dinhu"]
-[ext_resource type="Resource" uid="uid://dpqmiab0le6aw" path="res://Components/objects/weapon/broadsword/broadsword.tres" id="10_kvpfn"]
+[ext_resource type="PackedScene" uid="uid://bsgcg7l6ek3hf" path="res://Components/objects/Weapon/resource/weapon_loot.tscn" id="9_dinhu"]
+[ext_resource type="Resource" uid="uid://dpqmiab0le6aw" path="res://Components/objects/Weapon/broadsword/broadsword.tres" id="10_kvpfn"]
 [ext_resource type="PackedScene" uid="uid://pi12nha5o2yq" path="res://Components/Characters/NPCs/Dummy/Dummy.tscn" id="10_vtaks"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_b54tr"]

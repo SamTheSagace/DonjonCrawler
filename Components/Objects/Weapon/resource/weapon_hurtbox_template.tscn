@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cocthqu52v8gb"]
+
+[ext_resource type="Script" uid="uid://b4teft2fvtc8h" path="res://Components/objects/weapon/resource/attack/weapon_hurtbox_attack.gd" id="1_mjb4h"]
+
+[node name="WeaponHurtboxTemplate" type="Node3D" unique_id=843712072]
+script = ExtResource("1_mjb4h")

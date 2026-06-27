@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="FrostDefinition" format=3 uid="uid://b1gangegjd8d6"]
 
-[ext_resource type="Script" uid="uid://bl0tq4mguwllu" path="res://Components/Objects/Status/Scripts/frost_definition.gd" id="1_w2hsr"]
+[ext_resource type="Script" uid="uid://bl0tq4mguwllu" path="res://Components/objects/status/Scripts/frost_definition.gd" id="1_w2hsr"]
 
 [resource]
 script = ExtResource("1_w2hsr")

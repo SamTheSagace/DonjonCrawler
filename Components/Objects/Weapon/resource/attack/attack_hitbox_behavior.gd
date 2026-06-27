@@ -1,34 +1,30 @@
 extends Node3D
 class_name AttackHitboxBehavior
 
-signal hit_Hitbox(target)
+signal hit_Hitbox(target: HitboxComponent)
 signal attack_ended
 
 enum State {INACTIVE, ACTIVE, EXPIRING}
 var state := State.INACTIVE
 
 var _handler: Character
-var hurtbox: WeaponHurtbox
+var instantiate_Attack: WeaponHurtboxAttack
 
-
-static func create(context: AttackHitboxContext) -> AttackHitboxBehavior:
-	var attack = context.scene.instantiate() as AttackHitboxBehavior
-	attack.on_create(context)
-	attack.state = State.ACTIVE
-	return attack
+func create(context: AttackHitboxContext):
+	assert(context.scene != null)
+	on_create(context)
 
 func on_create(context: AttackHitboxContext) -> void:
+	instantiate_Attack = context.scene.instantiate() as WeaponHurtboxAttack
 	_add_to_tree(context)
 	_handler = context.handler
-	hurtbox = get_node("%WeaponHurtbox")
-	hurtbox.hit_Hitbox.connect(_on_hit_Hitbox)
-	global_transform = context.transform.global_transform
-	print("created attack: ", self, " parent: ", get_parent())
+	instantiate_Attack.hit_Hitbox.connect(_on_hit_Hitbox)
+	instantiate_Attack.global_transform = context.scene.global_transform
 	state = State.ACTIVE
 
 
 func _add_to_tree(context: AttackHitboxContext) -> void:
-	context.transform.add_child(self)
+	context.self.add_child(instantiate_Attack)
 
 func expire() -> void:
 	if state != State.ACTIVE:
@@ -38,9 +34,6 @@ func expire() -> void:
 
 
 func on_expire() -> void:
-	_finish() # default: instant
-
-func _finish() -> void:
 	attack_ended.emit()
 	queue_free()
 

@@ -1,16 +1,35 @@
 [gd_scene format=3 uid="uid://dtu5qu4j0qaf4"]
 
-[ext_resource type="Script" uid="uid://cjgclp7afgioh" path="res://Components/Objects/Weapon/Ressources/base_weapon.gd" id="1_r47yy"]
-[ext_resource type="PackedScene" uid="uid://d18c8lvl6musa" path="res://Components/Objects/Weapon/broadsword/sword.glb" id="2_s572v"]
-[ext_resource type="PackedScene" uid="uid://bnng8tgexpjp2" path="res://Components/Objects/Weapon/Ressources/Attack_Hitbox.tscn" id="4_s572v"]
+[ext_resource type="Script" uid="uid://cjgclp7afgioh" path="res://Components/objects/weapon/resource/base_weapon.gd" id="1_r47yy"]
+[ext_resource type="PackedScene" uid="uid://cocthqu52v8gb" path="res://Components/objects/weapon/resource/weapon_hurtbox_template.tscn" id="2_r47yy"]
+[ext_resource type="PackedScene" uid="uid://bdl5upwmm17v6" path="res://Components/objects/weapon/broadsword/sword.glb" id="2_s572v"]
+[ext_resource type="PackedScene" uid="uid://clwgv660wr2ck" path="res://Components/objects/weapon/resource/weaponHurtbox.tscn" id="4_s572v"]
 
-[node name="Sword" type="Node3D" unique_id=954480639 node_paths=PackedStringArray("transformPoint")]
+[sub_resource type="BoxShape3D" id="BoxShape3D_2syve"]
+size = Vector3(0.03, 2.2980895, 2.3654296)
+
+[sub_resource type="PrismMesh" id="PrismMesh_vi8wg"]
+left_to_right = 1.0
+size = Vector3(2.14, 2.3, 0.004)
+
+[node name="Sword" type="Node3D" unique_id=954480639]
 script = ExtResource("1_r47yy")
-transformPoint = NodePath("Transform_point")
-hitbox_scene = ExtResource("4_s572v")
 
 [node name="sword_model" parent="." unique_id=1212264775 instance=ExtResource("2_s572v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 2.01, 0, 0.2, 0)
 
-[node name="Transform_point" type="Node3D" parent="." unique_id=180991818]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3817832, 0)
+[node name="WeaponHurtboxTemplate" parent="." unique_id=843712072 instance=ExtResource("2_r47yy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.16471362, 0)
+visible = false
+
+[node name="WeaponHurtbox" parent="WeaponHurtboxTemplate" unique_id=1262001628 instance=ExtResource("4_s572v")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1523395, 1.0699768)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WeaponHurtboxTemplate/WeaponHurtbox" unique_id=855112027]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00095522404, -0.11269534)
+shape = SubResource("BoxShape3D_2syve")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WeaponHurtboxTemplate" unique_id=1885698]
+transform = Transform3D(-4.371139e-08, 0, -1, -8.742278e-08, -1, 3.821371e-15, -1, 8.742278e-08, 4.371139e-08, 0, 1.1523395, 1.0699768)
+mesh = SubResource("PrismMesh_vi8wg")

@@ -6,7 +6,7 @@ var _follow_target: Node3D
 
 
 func on_create(context: AttackHitboxContext) -> void:
-	_follow_target = context.transform
+	_follow_target = context.self
 	super.on_create(context)
 
 
@@ -23,4 +23,4 @@ func on_expire() -> void:
 	print("should stay, then delete")
 	await get_tree().create_timer(LINGER_DURATION).timeout
 	_follow_target = null
-	_finish()
+	super.on_expire()

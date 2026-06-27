@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="WeaponResource" format=3 uid="uid://dpqmiab0le6aw"]
 
-[ext_resource type="PackedScene" uid="uid://dtu5qu4j0qaf4" path="res://Components/Objects/Weapon/broadsword/broadsword.tscn" id="1_il2cv"]
-[ext_resource type="Script" uid="uid://etitetj0g0n" path="res://Components/Objects/Weapon/Ressources/weapon_resource.gd" id="1_pat6l"]
-[ext_resource type="Script" uid="uid://clvl3llihurmq" path="res://Components/Objects/Status/Scripts/status_definition.gd" id="2_l518k"]
+[ext_resource type="PackedScene" uid="uid://dtu5qu4j0qaf4" path="res://Components/objects/weapon/broadsword/broadsword.tscn" id="1_il2cv"]
+[ext_resource type="Script" uid="uid://etitetj0g0n" path="res://Components/objects/weapon/resource/weapon_resource.gd" id="1_pat6l"]
+[ext_resource type="Script" uid="uid://clvl3llihurmq" path="res://Components/objects/status/Scripts/status_definition.gd" id="2_l518k"]
 
 [resource]
 script = ExtResource("1_pat6l")

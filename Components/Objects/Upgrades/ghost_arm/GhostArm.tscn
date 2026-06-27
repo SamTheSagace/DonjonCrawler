@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://cw52heitjln8m"]
 
-[ext_resource type="PackedScene" uid="uid://3s7hon3kcce0" path="res://Components/Objects/Weapon/WeaponManager.tscn" id="1_1ujru"]
-[ext_resource type="Script" uid="uid://dnpoeosrpr3s8" path="res://Components/Objects/Upgrades/GhostArm/ghost_arm.gd" id="1_34j08"]
-[ext_resource type="PackedScene" uid="uid://xhjh1riv10ok" path="res://Components/Objects/Weapon/Ressources/WeaponAction.tscn" id="2_is7yy"]
+[ext_resource type="PackedScene" uid="uid://3s7hon3kcce0" path="res://Components/objects/weapon/weapon_manager.tscn" id="1_1ujru"]
+[ext_resource type="Script" uid="uid://dnpoeosrpr3s8" path="res://Components/objects/upgrades/ghost_arm/ghost_arm.gd" id="1_34j08"]
+[ext_resource type="PackedScene" uid="uid://xhjh1riv10ok" path="res://Components/objects/weapon/resource/WeaponAction.tscn" id="2_is7yy"]
 [ext_resource type="PackedScene" uid="uid://b1d7vo8xmj4pk" path="res://Components/Characters/Animation/HandAnimation.tscn" id="3_34j08"]
-[ext_resource type="Resource" uid="uid://dlbrgog6dw024" path="res://Components/Objects/Upgrades/GhostArm/ghost_sword.tres" id="3_fnie5"]
+[ext_resource type="Resource" uid="uid://dlbrgog6dw024" path="res://Components/objects/upgrades/ghost_arm/ghost_sword.tres" id="3_fnie5"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_fnie5"]
 size = Vector3(0.235, 0.2, 0.405)

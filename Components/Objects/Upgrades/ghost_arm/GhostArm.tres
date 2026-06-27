@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="GhostArmUpgrade" format=3 uid="uid://cwwovcfxr5kig"]
+
+[ext_resource type="PackedScene" uid="uid://cw52heitjln8m" path="res://Components/objects/upgrades/ghost_arm/GhostArm.tscn" id="1_48ohy"]
+[ext_resource type="Script" uid="uid://b4glvkccnds77" path="res://Components/objects/upgrades/ghost_arm/ghost_arm_upgrade.gd" id="1_eesle"]
+[ext_resource type="PackedScene" uid="uid://dqk37xiv1iifh" path="res://Components/objects/upgrades/ghost_arm/ghostSword.tscn" id="1_qfrgb"]
+
+[resource]
+script = ExtResource("1_eesle")
+ghost_arm = ExtResource("1_48ohy")
+ghostSword = ExtResource("1_qfrgb")
+upgrade_name = "GhostForm"
+metadata/_custom_type_script = "uid://b4glvkccnds77"

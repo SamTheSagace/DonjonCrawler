@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://clwgv660wr2ck"]
 
-[ext_resource type="Script" uid="uid://c4bgop16uw5v5" path="res://Components/Objects/Weapon/Ressources/weapon_hurtbox.gd" id="1_1nsk6"]
+[ext_resource type="Script" uid="uid://c4bgop16uw5v5" path="res://Components/objects/weapon/resource/weapon_hurtbox.gd" id="1_1nsk6"]
 
 
 [node name="WeaponHurtbox" type="Area3D"]

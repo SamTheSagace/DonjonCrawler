@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://dqk37xiv1iifh"]
+
+[ext_resource type="Script" uid="uid://cjgclp7afgioh" path="res://Components/objects/weapon/resource/base_weapon.gd" id="1_fg3i5"]
+[ext_resource type="PackedScene" uid="uid://c218h3icmcb80" path="res://Components/objects/weapon/sword/sword.glb" id="2_drqx1"]
+
+[node name="ghostSword" type="Node3D" unique_id=1006676393]
+script = ExtResource("1_fg3i5")
+
+[node name="sword" parent="." unique_id=1042469950 instance=ExtResource("2_drqx1")]
+transform = Transform3D(1, 0, 0, 0, 1.315, 0, 0, 0, 1, 0, 0.2, 0)
+
+[node name="Transform_point" type="Node3D" parent="." unique_id=906991105]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.675441, 0)

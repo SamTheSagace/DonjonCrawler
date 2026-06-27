@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://3s7hon3kcce0"]
 
-[ext_resource type="Script" uid="uid://c1ickvb3qvdfl" path="res://Components/Objects/Weapon/weapon_manager.gd" id="1_mpcs4"]
+[ext_resource type="Script" uid="uid://c1ickvb3qvdfl" path="res://Components/objects/weapon/weapon_manager.gd" id="1_mpcs4"]
 
 [node name="WeaponManager" type="Node3D" unique_id=417059537]
 script = ExtResource("1_mpcs4")

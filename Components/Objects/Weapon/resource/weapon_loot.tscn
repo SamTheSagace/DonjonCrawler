@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bsgcg7l6ek3hf"]
 
-[ext_resource type="Script" uid="uid://cppbuno60ooo8" path="res://Components/Objects/Weapon/Ressources/weapon_loot.gd" id="1_o7sru"]
-[ext_resource type="PackedScene" uid="uid://cklixvcxj1gie" path="res://Components/Objects/loot_hurtbox.tscn" id="2_d82iy"]
+[ext_resource type="Script" uid="uid://cppbuno60ooo8" path="res://Components/objects/weapon/resource/weapon_loot.gd" id="1_o7sru"]
+[ext_resource type="PackedScene" uid="uid://cklixvcxj1gie" path="res://Components/objects/loot_hurtbox.tscn" id="2_d82iy"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_urrn5"]
 
