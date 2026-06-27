@@ -10,8 +10,6 @@ var follow_weapon := false
 func _ready() -> void:
 	hurtbox.hit_Hitbox.connect(_on_hit_Hitbox)
 
-func _add_self(weapon: BaseWeapon):
-	weapon.add_child(self)
 
 func stop_following():
 	follow_weapon = false
