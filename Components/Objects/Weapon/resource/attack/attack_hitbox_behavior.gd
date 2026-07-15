@@ -1,5 +1,5 @@
 extends Resource
-class_name AttackBehavior
+class_name AttackHitboxBehavior
 
 func on_spawn(hitbox: Node, weapon: Node): pass
 

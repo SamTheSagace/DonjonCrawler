@@ -5,4 +5,6 @@ class_name AttackBehaviorPlayerUpgrade
 
 func _apply_upgrade(player: Player):
 	if (newBehavior != null):
-		player.WEAPON_MANAGER.weapon.attack_definition.behavior = newBehavior
+		var weapon = player.WEAPON_MANAGER.weapon
+		weapon.attack_definition = weapon.attack_definition.duplicate(true)
+		weapon.attack_definition.behavior = newBehavior

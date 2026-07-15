@@ -29,6 +29,7 @@ func start_charge():
 	hand_anim._on_chargeInput(weapon_storage.weapon_resource)
 
 func start_attack():
+	print(weapon_storage.weapon.attack_definition.behavior.get_script().get_global_name())
 	attack_finished = false
 	attack_started.emit(true)
 	weapon_storage.weapon.set_attacking()

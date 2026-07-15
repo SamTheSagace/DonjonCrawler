@@ -137,6 +137,8 @@ func _snap_up_stairs_check(delta) -> bool:
 
 # HEADBOB
 func _headbob_effect(delta):
+	if not player.is_on_floor():
+		return 
 	headbob_time += delta * player.velocity.length()
 	player.spring_arm.transform.origin = Vector3(
 		cos(headbob_time * HEADBOB_FREQUENCY * 0.5) * HEADBOB_MOVE_AMOUNT,

@@ -22,3 +22,6 @@ func stop_attacking():
 
 func _on_hit_Hitbox(hitbox):
 	hit_Hitbox.emit(hitbox)
+
+func _process(delta: float) -> void:
+	controller.tick(delta, self)

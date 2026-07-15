@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="AttackDefinition" format=3 uid="uid://b2s6yquystoys"]
 
-[ext_resource type="Script" uid="uid://c0fi1bh70iws8" path="res://Components/objects/weapon/resource/attack/attack_definition.gd" id="1_0dlsw"]
-[ext_resource type="Script" uid="uid://bnetn4naqbtyq" path="res://Components/objects/weapon/resource/attack/base_attack_behavior.gd" id="1_kpb5e"]
-[ext_resource type="PackedScene" uid="uid://cmapvqiwmugpu" path="res://Components/objects/weapon/sword/attack_hitbox_sword.tscn" id="2_s1nb1"]
+[ext_resource type="Script" uid="uid://c0fi1bh70iws8" path="res://Components/Objects/Weapon/resource/attack/attack_definition.gd" id="1_0dlsw"]
+[ext_resource type="Script" uid="uid://bnetn4naqbtyq" path="res://Components/Objects/Weapon/resource/attack/base_attack_behavior.gd" id="1_kpb5e"]
+[ext_resource type="PackedScene" uid="uid://cmapvqiwmugpu" path="res://Components/Objects/Weapon/sword/attack_hurtbox_sword.tscn" id="2_g7ufo"]
 
 [sub_resource type="Resource" id="Resource_s1nb1"]
 script = ExtResource("1_kpb5e")
@@ -10,6 +10,6 @@ metadata/_custom_type_script = "uid://bnetn4naqbtyq"
 
 [resource]
 script = ExtResource("1_0dlsw")
-hitbox_scene = ExtResource("2_s1nb1")
+hitbox_scene = ExtResource("2_g7ufo")
 behavior = SubResource("Resource_s1nb1")
 metadata/_custom_type_script = "uid://c0fi1bh70iws8"

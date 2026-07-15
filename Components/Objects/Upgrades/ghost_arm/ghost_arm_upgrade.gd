@@ -22,5 +22,5 @@ func _apply_upgrade(player: Player):
 	player.add_child(ghost)
 	ghost.global_position = player.global_position
 
-func _on_ghost_weapon_equipped(weapon: BaseWeapon, player: Player):
-	weapon.handler = player
+func _on_ghost_weapon_equipped(_weapon: BaseWeapon, player: Player):
+	ghost.weapon_action.CHARACTER = player

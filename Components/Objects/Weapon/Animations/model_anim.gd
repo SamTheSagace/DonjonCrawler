@@ -39,4 +39,6 @@ func _on_idleInput():
 
 
 func _on_animation_finished(_anim_name: StringName) -> void:
-	pass
+	if(_anim_name.contains("reset")):
+		return
+	play("sword_horizontal_reset")

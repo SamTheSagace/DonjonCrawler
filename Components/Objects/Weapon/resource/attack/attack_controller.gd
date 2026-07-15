@@ -24,8 +24,8 @@ func _on_hit(target: HitboxComponent):
 	hit_Hitbox.emit(target)
 	pass
 
-func _process(delta: float) -> void:
+func tick(delta: float, weapon: BaseWeapon) -> void:
 	if(current_behavior != null):
-		pass
+		current_behavior.tick(current_hitbox,weapon,delta)
 		#for b in current_behavior:
 			#b.tick(delta)
