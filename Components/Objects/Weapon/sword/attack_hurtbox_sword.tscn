@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://cmapvqiwmugpu"]
+
+[ext_resource type="Script" uid="uid://b4teft2fvtc8h" path="res://Components/Objects/Weapon/resource/attack/weapon_hurtbox_attack.gd" id="1_lm4xa"]
+[ext_resource type="PackedScene" uid="uid://clwgv660wr2ck" path="res://Components/Objects/Weapon/resource/weaponHurtbox.tscn" id="2_ibku3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8cde2"]
+size = Vector3(0.03, 2.3, 2.5497437)
+
+[node name="AttackHitboxBehavior" type="Node3D" unique_id=47907212]
+script = ExtResource("1_lm4xa")
+
+[node name="WeaponHurtbox" parent="." unique_id=2061562853 instance=ExtResource("2_ibku3")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1523395, 1.0699768)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WeaponHurtbox" unique_id=102662751]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00095522404, -0.022991896)
+shape = SubResource("BoxShape3D_8cde2")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="." unique_id=1631412821]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, -0.098602295, 4.310043e-09, 0)
+radius = 2.34
+height = 0.01
+sides = 17
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="CSGCylinder3D" unique_id=1328226877]
+operation = 2
+radius = 0.37451172
+height = 0.70410156
+sides = 17
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCylinder3D" unique_id=831855643]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1326294, 0, -1.2349243)
+operation = 2
+size = Vector3(5.2056885, 1, 2.4625244)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCylinder3D" unique_id=1488096798]
+transform = Transform3D(0.70710677, -1.2802769e-08, 0.70710677, -1.2802769e-08, 1, 3.090862e-08, -0.70710677, -3.090862e-08, 0.70710677, 1.8901526, 3.7252903e-08, 0.23332536)
+operation = 2
+size = Vector3(2.322113, 1, 2.9962158)
