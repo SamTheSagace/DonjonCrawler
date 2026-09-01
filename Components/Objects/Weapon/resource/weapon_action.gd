@@ -53,7 +53,6 @@ func start_parry():
 
 func attack_Hit(hitbox: HitboxComponent):
 	if (hitbox == CHARACTER.HITBOX):
-		print("hit itself")
 		return
 	var attack = Attack.new()
 	attack.attacker = CHARACTER

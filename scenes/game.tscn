@@ -2,12 +2,12 @@
 
 [ext_resource type="PackedScene" uid="uid://bi7cm43d6twr3" path="res://Components/Characters/player/Player.tscn" id="1_m7e2g"]
 [ext_resource type="Script" uid="uid://d3c3cro84wvpb" path="res://scenes/game.gd" id="1_p57ef"]
-[ext_resource type="PackedScene" uid="uid://cjp58634du344" path="res://Components/Objects/Upgrades/Upgrade.tscn" id="4_lbhrr"]
-[ext_resource type="Resource" uid="uid://cwwovcfxr5kig" path="res://Components/Objects/Upgrades/ghost_arm/GhostArm.tres" id="6_p57ef"]
-[ext_resource type="Resource" uid="uid://cbrjprdwj5rq2" path="res://Components/Objects/Upgrades/attack_behavior/vorpal_attack_upgrade.tres" id="7_kvpfn"]
+[ext_resource type="PackedScene" uid="uid://cjp58634du344" path="res://Components/objects/upgrades/Upgrade.tscn" id="4_lbhrr"]
+[ext_resource type="Resource" uid="uid://cwwovcfxr5kig" path="res://Components/objects/upgrades/ghost_arm/GhostArm.tres" id="6_p57ef"]
+[ext_resource type="Resource" uid="uid://cbrjprdwj5rq2" path="res://Components/objects/upgrades/attack_behavior/vorpal_attack_upgrade.tres" id="7_kvpfn"]
 [ext_resource type="PackedScene" uid="uid://cqgk0gsohmovx" path="res://Components/Characters/NPCs/Ennemy1/Enemy1.tscn" id="7_u5sy4"]
-[ext_resource type="Resource" uid="uid://ff2yow6uroep" path="res://Components/Objects/Upgrades/elemental_touch/ElementalTouch.tres" id="8_gee14"]
-[ext_resource type="Script" uid="uid://215yfy3vrfrm" path="res://Components/Objects/Upgrades/attack_behavior/attack_behavior_upgrade.gd" id="8_vtaks"]
+[ext_resource type="Resource" uid="uid://ff2yow6uroep" path="res://Components/objects/upgrades/elemental_touch/ElementalTouch.tres" id="8_gee14"]
+[ext_resource type="Script" uid="uid://215yfy3vrfrm" path="res://Components/objects/upgrades/attack_behavior/attack_behavior_upgrade.gd" id="8_vtaks"]
 [ext_resource type="PackedScene" uid="uid://cvlbkmc4ia8ci" path="res://scenes/parkour_testV1.tscn" id="9_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://pi12nha5o2yq" path="res://Components/Characters/NPCs/Dummy/Dummy.tscn" id="10_vtaks"]
 

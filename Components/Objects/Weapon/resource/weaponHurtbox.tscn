@@ -2,8 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c4bgop16uw5v5" path="res://Components/objects/weapon/resource/weapon_hurtbox.gd" id="1_1nsk6"]
 
-
-[node name="WeaponHurtbox" type="Area3D"]
+[node name="WeaponHurtbox" type="Area3D" unique_id=498123204]
 script = ExtResource("1_1nsk6")
 
 [connection signal="area_entered" from="." to="." method="_on_collision_area_entered"]
