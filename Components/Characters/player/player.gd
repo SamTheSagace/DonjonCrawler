@@ -3,8 +3,8 @@ class_name Player
 
 @export var sensitivity: float = 5.0
 @export var skin: SkinContent
-@export var WEAPON_MANAGER: WeaponManager
-@export var WEAPON_ACTION: WeaponAction
+@export var weapon_manager: WeaponManager
+@export var weapon_action: WeaponAction
 @export var stateMachine: StateMachineCombat
 @onready var head = $Head
 @onready var spring_arm = $Head/SpringArm3D
@@ -22,18 +22,18 @@ var status_weapon_modifiers: Array[StatusDefinition] = []
 func _ready():
 	whoami = "Player"
 	super._ready()
-	assert(stateMachine != null && WEAPON_MANAGER != null && WEAPON_ACTION != null)
+	assert(stateMachine != null && weapon_manager != null && weapon_action != null)
 	spring_arm.spring_length = SPRING_LENGTH_2
 	_set_layers()
 
 func _process(_delta: float) -> void:
 	super._process(_delta)
 	wants_to_attack = Input.is_action_pressed("left_click")
-	wants_to_parry = Input.is_action_pressed("right_clic")
+	wants_to_parry = Input.is_action_pressed("right_click")
 	camera_auto_switch()
 
 func _physics_process(delta: float):
-	MOVEMENT_COMPONENT.handle_physics(delta)
+	movement_component.handle_physics(delta)
 
 func _set_layers():
 	if spring_arm.spring_length == SPRING_LENGTH_1:

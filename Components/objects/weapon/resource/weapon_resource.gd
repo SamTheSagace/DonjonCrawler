@@ -13,10 +13,8 @@ extends Resource
 
 @export var scene_weapon: PackedScene
 
-func _ready():
-	assert(scene_weapon != null)
-
 func instantiate_weapon(handler: Character) -> BaseWeapon:
+	assert(scene_weapon != null, "WeaponResource has no scene_weapon assigned")
 	var weapon := scene_weapon.instantiate() as BaseWeapon
 	assert(weapon != null,
 		"Scene must inherit BaseWeapon")

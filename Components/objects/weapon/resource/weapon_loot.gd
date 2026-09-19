@@ -14,7 +14,7 @@ func _ready() -> void:
 
 
 func _on_touch_loot(player: Player):
-	var weapon_manager = player.WEAPON_MANAGER
+	var weapon_manager = player.weapon_manager
 	weapon_manager.weapon_resource = weapon_ressource.duplicate(true)
 	weapon_manager.weapon_match()
 	self.global_position += Vector3(0, 1, 0)

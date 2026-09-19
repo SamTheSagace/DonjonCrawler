@@ -42,7 +42,7 @@ func _ready():
 func _process(delta):
 	super._process(delta)
 	%Info.text = "Health: %s\nStunned: %s\nStatus: %s" % [
-			HEALTH_COMPONENT.health,
+			health_component.health,
 			is_stunned(),
 			StatusType.get_statuses_string(status_inflicted),
 		]
@@ -55,7 +55,7 @@ func _process(delta):
 		EnemyState.CHASE: _chase_state()
 		EnemyState.ATTACK: _attack_state()
 		EnemyState.CHARGE: _charge_state()
-	if HEALTH_COMPONENT.health <= 0:
+	if health_component.health <= 0:
 		reset()
 
 func _physics_process(delta):
@@ -94,7 +94,7 @@ func timer_decay(delta: float):
 func reset():
 	self.position = Vector3(0, self.position.y, 0)
 	status_inflicted = []
-	HEALTH_COMPONENT.health = HEALTH_COMPONENT.Max_health
+	health_component.health = health_component.Max_health
 
 func finish_animation(value: String):
 	if value == "sword_charge":

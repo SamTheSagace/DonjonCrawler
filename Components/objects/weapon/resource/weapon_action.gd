@@ -3,7 +3,7 @@ class_name WeaponAction
 
 @export var hand_anim: HandAnimation
 @export var weapon_storage: WeaponManager
-@onready var CHARACTER = weapon_storage.CHARACTER
+@onready var character = weapon_storage.character
 
 signal attack_started(is_attack: bool)
 
@@ -29,7 +29,6 @@ func start_charge():
 	hand_anim._on_chargeInput(weapon_storage.weapon_resource)
 
 func start_attack():
-	print(weapon_storage.weapon.attack_definition.behavior.get_script().get_global_name())
 	attack_finished = false
 	attack_started.emit(true)
 	weapon_storage.weapon.set_attacking()
@@ -52,18 +51,16 @@ func start_parry():
 	hand_anim._on_parryInput(weapon_storage.weapon_resource)
 
 func attack_Hit(hitbox: HitboxComponent):
-	if (hitbox == CHARACTER.HITBOX):
+	if (hitbox == character.hitbox):
 		return
 	var attack = Attack.new()
-	attack.attacker = CHARACTER
+	attack.attacker = character
 	var statuses = weapon_storage.weapon_resource.statuses
 	if (statuses.size() > 0):
 		for status: StatusDefinition in statuses:
 			if (status == null):
 				statuses.erase(status)
-			# else:
-			# 	print(status.type)
 	attack.weapon_resource = weapon_storage.weapon_resource.duplicate(true)
-	if (CHARACTER is Player):
-		attack.weapon_resource.statuses.append_array(CHARACTER.status_weapon_modifiers)
+	if (character is Player):
+		attack.weapon_resource.statuses.append_array(character.status_weapon_modifiers)
 	hitbox.damage(attack)

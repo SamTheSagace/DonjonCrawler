@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://dqk37xiv1iifh"]
 
-[ext_resource type="Script" uid="uid://cjgclp7afgioh" path="res://Components/Objects/Weapon/resource/base_weapon.gd" id="1_fg3i5"]
-[ext_resource type="PackedScene" uid="uid://c218h3icmcb80" path="res://Components/Objects/Weapon/sword/sword.glb" id="2_drqx1"]
-[ext_resource type="Resource" uid="uid://b2s6yquystoys" path="res://Components/Objects/Weapon/sword/base_attack_definition.tres" id="2_kgtl1"]
+[ext_resource type="Script" uid="uid://cjgclp7afgioh" path="res://Components/objects/weapon/resource/base_weapon.gd" id="1_fg3i5"]
+[ext_resource type="PackedScene" uid="uid://c218h3icmcb80" path="res://Components/objects/weapon/sword/sword.glb" id="2_drqx1"]
+[ext_resource type="Resource" uid="uid://b2s6yquystoys" path="res://Components/objects/weapon/sword/base_attack_definition.tres" id="2_kgtl1"]
 
 [node name="ghostSword" type="Node3D" unique_id=1006676393]
 script = ExtResource("1_fg3i5")

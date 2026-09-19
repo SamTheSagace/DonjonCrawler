@@ -3,7 +3,7 @@ class_name WeaponManager
 
 @export var weapon_resource: WeaponResource
 @export var hand_anim: HandAnimation
-@export var CHARACTER: Character
+@export var character: Character
 
 signal weapon_equipped(weapon: BaseWeapon)
 
@@ -28,7 +28,7 @@ func weapon_match():
 
 func update_weapon():
 	clean_up_weapon()
-	weapon = weapon_resource.instantiate_weapon(CHARACTER)
+	weapon = weapon_resource.instantiate_weapon(character)
 	hand.add_child(weapon)
 	weapon_equipped.emit(weapon)
 

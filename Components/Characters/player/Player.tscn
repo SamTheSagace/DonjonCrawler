@@ -30,31 +30,31 @@
 [sub_resource type="LabelSettings" id="LabelSettings_2g87s"]
 font_size = 83
 
-[node name="Player" type="CharacterBody3D" unique_id=31202077 node_paths=PackedStringArray("skin", "WEAPON_MANAGER", "WEAPON_ACTION", "stateMachine", "HEALTH_COMPONENT", "MOVEMENT_COMPONENT", "HITBOX")]
+[node name="Player" type="CharacterBody3D" unique_id=31202077 node_paths=PackedStringArray("skin", "weapon_manager", "weapon_action", "stateMachine", "health_component", "movement_component", "hitbox")]
 script = ExtResource("1_2h2ij")
 skin = NodePath("WorldModel/body/BodySkin")
-WEAPON_MANAGER = NodePath("WeaponManager")
-WEAPON_ACTION = NodePath("WeaponAction")
+weapon_manager = NodePath("WeaponManager")
+weapon_action = NodePath("WeaponAction")
 stateMachine = NodePath("StateMachineCombat")
 SPEED = 10.0
-HEALTH_COMPONENT = NodePath("HealthComponent")
-MOVEMENT_COMPONENT = NodePath("Movement")
-HITBOX = NodePath("HitboxComponent")
+health_component = NodePath("HealthComponent")
+movement_component = NodePath("Movement")
+hitbox = NodePath("HitboxComponent")
 
-[node name="WeaponManager" parent="." unique_id=1262555556 node_paths=PackedStringArray("hand_anim", "CHARACTER") instance=ExtResource("3_6m33q")]
+[node name="WeaponManager" parent="." unique_id=1262555556 node_paths=PackedStringArray("hand_anim", "character") instance=ExtResource("3_6m33q")]
 weapon_resource = ExtResource("10_mtylk")
 hand_anim = NodePath("../WorldModel/body/HandAnimation")
-CHARACTER = NodePath("..")
+character = NodePath("..")
 
 [node name="WeaponAction" parent="." unique_id=1452111762 node_paths=PackedStringArray("hand_anim", "weapon_storage") instance=ExtResource("4_w27o6")]
 hand_anim = NodePath("../WorldModel/body/HandAnimation")
 weapon_storage = NodePath("../WeaponManager")
 
-[node name="StateMachineCombat" type="Node" parent="." unique_id=1660029610 node_paths=PackedStringArray("WEAPON_MANAGER", "WEAPON_ACTION", "HEALTH_COMPONENT")]
+[node name="StateMachineCombat" type="Node" parent="." unique_id=1660029610 node_paths=PackedStringArray("weapon_manager", "weapon_action", "health_component")]
 script = ExtResource("3_dsj48")
-WEAPON_MANAGER = NodePath("../WeaponManager")
-WEAPON_ACTION = NodePath("../WeaponAction")
-HEALTH_COMPONENT = NodePath("../HealthComponent")
+weapon_manager = NodePath("../WeaponManager")
+weapon_action = NodePath("../WeaponAction")
+health_component = NodePath("../HealthComponent")
 
 [node name="Parry" type="Node" parent="StateMachineCombat" unique_id=917185237]
 script = ExtResource("4_mikml")
@@ -71,9 +71,9 @@ script = ExtResource("4_fl5x8")
 [node name="Attack" type="Node" parent="StateMachineCombat" unique_id=513149893]
 script = ExtResource("6_o6wjn")
 
-[node name="PlayerDamageReceiver" parent="." unique_id=787278926 node_paths=PackedStringArray("SMC", "CHARACTER") instance=ExtResource("11_27ntm")]
+[node name="PlayerDamageReceiver" parent="." unique_id=787278926 node_paths=PackedStringArray("SMC", "character") instance=ExtResource("11_27ntm")]
 SMC = NodePath("../StateMachineCombat")
-CHARACTER = NodePath("..")
+character = NodePath("..")
 
 [node name="Movement" type="Node3D" parent="." unique_id=1793409437 node_paths=PackedStringArray("player")]
 script = ExtResource("9_305y5")

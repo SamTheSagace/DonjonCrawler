@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cmapvqiwmugpu"]
 
-[ext_resource type="Script" uid="uid://b4teft2fvtc8h" path="res://Components/Objects/Weapon/resource/attack/weapon_hurtbox_attack.gd" id="1_lm4xa"]
-[ext_resource type="PackedScene" uid="uid://clwgv660wr2ck" path="res://Components/Objects/Weapon/resource/weaponHurtbox.tscn" id="2_ibku3"]
+[ext_resource type="Script" uid="uid://b4teft2fvtc8h" path="res://Components/objects/weapon/resource/attack/weapon_hurtbox_attack.gd" id="1_lm4xa"]
+[ext_resource type="PackedScene" uid="uid://clwgv660wr2ck" path="res://Components/objects/weapon/resource/weaponHurtbox.tscn" id="2_ibku3"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8cde2"]
 size = Vector3(0.03, 2.3, 2.5497437)

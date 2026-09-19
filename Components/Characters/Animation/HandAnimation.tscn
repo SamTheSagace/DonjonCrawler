@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://b1d7vo8xmj4pk"]
 
 [ext_resource type="Script" uid="uid://ckvaxhv803tay" path="res://Components/Characters/Animation/hand_animation.gd" id="1_dcn3l"]
-[ext_resource type="Script" uid="uid://itdatuplf2nj" path="res://Components/Objects/Weapon/Animations/model_anim.gd" id="2_dcjn0"]
-[ext_resource type="PackedScene" uid="uid://c218h3icmcb80" path="res://Components/Objects/Weapon/sword/sword.glb" id="3_kh1vq"]
+[ext_resource type="Script" uid="uid://itdatuplf2nj" path="res://Components/objects/weapon/animations/model_anim.gd" id="2_dcjn0"]
+[ext_resource type="PackedScene" uid="uid://c218h3icmcb80" path="res://Components/objects/weapon/sword/sword.glb" id="3_kh1vq"]
 
 [sub_resource type="Animation" id="Animation_bkrd4"]
 length = 0.001
@@ -96,10 +96,10 @@ tracks/0/path = NodePath(".:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.16666667, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(-0.060399726, -0.67158073, -1.3431458), Vector3(-0.061086524, -0.9023352, -1.3439035), Vector3(-0.061086524, 2.687807, -1.3439035)]
+"values": [Vector3(-0.060399726, -0.67158073, -1.3431458), Vector3(-0.061086524, 2.687807, -1.3439035)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -108,10 +108,10 @@ tracks/1/path = NodePath(".:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.16666667, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0.29284102, 0, 0.09284496), Vector3(0.29284102, 0, 0.09284496), Vector3(-0.182, 0, -0.547)]
+"values": [Vector3(0.29284102, 0, 0.09284496), Vector3(-0.182, 0, -0.547)]
 }
 
 [sub_resource type="Animation" id="Animation_vo34w"]

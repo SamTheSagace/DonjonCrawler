@@ -3,7 +3,7 @@ class_name PlayerDamageReceiver
 
 var PLAYER: Player:
 	get:
-		return CHARACTER as Player
+		return character as Player
 
 @export var SMC: StateMachineCombat
 

@@ -1,17 +1,17 @@
 extends Node
 class_name DamageReceiver
 
-@export var CHARACTER: Character
+@export var character: Character
 
-var HITBOX: HitboxComponent
+var hitbox: HitboxComponent
 var HEALTH: HealthComponent
 
 func _ready() -> void:
-	assert(CHARACTER != null)
-	HITBOX = CHARACTER.HITBOX
-	HEALTH = CHARACTER.HEALTH_COMPONENT
-	HITBOX.hit_taken.connect(resolve_attack)
+	assert(character != null)
+	hitbox = character.hitbox
+	HEALTH = character.health_component
+	hitbox.hit_taken.connect(resolve_attack)
 
 func resolve_attack(attack: Attack) -> void:
-	CHARACTER._resolve_status_inflicted(attack)
+	character._resolve_status_inflicted(attack)
 	HEALTH.handle_attack(attack)

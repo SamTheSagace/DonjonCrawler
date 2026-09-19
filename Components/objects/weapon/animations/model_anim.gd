@@ -10,7 +10,7 @@ func _on_chargeInput(weapon_resource: WeaponResource):
 		expectType.RANGED:
 			print("ranged")
 		_:
-			play("sword_charge")
+			play("sword_horizontal_charge")
 
 func _on_attackInput(weapon_resource: WeaponResource):
 	var type := weapon_resource.weapon_superType
@@ -21,7 +21,7 @@ func _on_attackInput(weapon_resource: WeaponResource):
 		expectType.RANGED:
 			print("ranged")
 		_:
-			play("sword_slash")
+			play("sword_horizontal_slash")
 
 func _on_parryInput(weapon_resource: WeaponResource):
 	var type := weapon_resource.weapon_superType

@@ -6,9 +6,9 @@ var FINALSPEED: float
 @export var JUMP_VELOCITY := 5.5
 @export var SNEAK_SPEED := 0.5
 @export var SPRINT_SPEED := 1.5
-@export var HEALTH_COMPONENT: HealthComponent
-@export var MOVEMENT_COMPONENT: MovementComponent
-@export var HITBOX: HitboxComponent
+@export var health_component: HealthComponent
+@export var movement_component: MovementComponent
+@export var hitbox: HitboxComponent
 
 var wants_to_attack := false
 var wants_to_parry := false
@@ -28,11 +28,11 @@ var status_inflicted: Array[StatusDefinition] = []
 var whoami := "character"
 
 func _ready():
-	assert(HEALTH_COMPONENT != null && HITBOX != null)
-	HEALTH_COMPONENT.set_max_health(MAX_HEALTH)
+	assert(health_component != null && hitbox != null)
+	health_component.set_max_health(MAX_HEALTH)
 	FINALSPEED = SPEED
-	if MOVEMENT_COMPONENT != null:
-		MOVEMENT_COMPONENT.set_stats(SPEED, JUMP_VELOCITY, SNEAK_SPEED, SPRINT_SPEED)
+	if movement_component != null:
+		movement_component.set_stats(SPEED, JUMP_VELOCITY, SNEAK_SPEED, SPRINT_SPEED)
 
 func _process(_delta: float) -> void:
 	_resolve_status_decay(_delta)
@@ -52,7 +52,7 @@ func _resolve_knockback(attack: Attack):
 		knockback_velocity = knockack_direction.normalized() * knockbackPower
 
 func _resolve_status_damage(value: float, status: StatusType.List):
-	HEALTH_COMPONENT.handle_damage(value, status)
+	health_component.handle_damage(value, status)
 
 func add_status(status: StatusDefinition):
 	var incoming := status.duplicate(true)

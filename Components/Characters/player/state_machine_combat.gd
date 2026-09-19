@@ -1,10 +1,10 @@
 extends StateMachine
 class_name StateMachineCombat
 
-@export var WEAPON_MANAGER: WeaponManager
-@export var WEAPON_ACTION: WeaponAction
+@export var weapon_manager: WeaponManager
+@export var weapon_action: WeaponAction
 
-@export var HEALTH_COMPONENT: HealthComponent
+@export var health_component: HealthComponent
 
 func combat_state() -> StateCombat:
 	return current_state as StateCombat
@@ -36,9 +36,9 @@ func child_state():
 		node.character = character
 		node.state_machine = self
 
-		node.weapon_manager = WEAPON_MANAGER
-		node.health_component = HEALTH_COMPONENT
-		node.weapon_action = WEAPON_ACTION
+		node.weapon_manager = weapon_manager
+		node.health_component = health_component
+		node.weapon_action = weapon_action
 		assert(node.weapon_manager != null && node.health_component != null)
 		states[state_id] = node
 

@@ -17,10 +17,10 @@ script = ExtResource("1_34j08")
 weapon_manager = NodePath("WeaponManager")
 weapon_action = NodePath("WeaponAction")
 
-[node name="WeaponManager" parent="." unique_id=99890068 node_paths=PackedStringArray("hand_anim", "CHARACTER") instance=ExtResource("1_1ujru")]
+[node name="WeaponManager" parent="." unique_id=99890068 node_paths=PackedStringArray("hand_anim", "character") instance=ExtResource("1_1ujru")]
 weapon_resource = ExtResource("3_fnie5")
 hand_anim = NodePath("../arm/HandAnimation")
-CHARACTER = NodePath("..")
+character = NodePath("..")
 
 [node name="WeaponAction" parent="." unique_id=1452111762 node_paths=PackedStringArray("hand_anim", "weapon_storage") instance=ExtResource("2_is7yy")]
 hand_anim = NodePath("../arm/HandAnimation")
