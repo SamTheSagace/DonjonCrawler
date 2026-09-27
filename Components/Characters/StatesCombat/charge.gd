@@ -2,7 +2,7 @@ extends StateCombat
 
 
 func enter(_msg := {}):
-	weapon_manager.start_charge()
+	weapon_action.start_charge()
 	pass
 
 func update(_delta: float):

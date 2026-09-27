@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bnng8tgexpjp2"]
+
+[ext_resource type="Script" uid="uid://c8snkm21asmo" path="res://Components/objects/weapon/resource/attack/attack_hitbox_behavior.gd" id="1_ahqqs"]
+
+[node name="AttackHitboxBehavior" type="Node3D" unique_id=47907212]
+script = ExtResource("1_ahqqs")

@@ -10,22 +10,22 @@ const IDLE_DELAY := 0.2
 func enter(_msg := {}):
 	elapsed = 0.0
 	idle_delay_timer = 0.0
-	weapon_manager.start_parry()
+	weapon_action.start_parry()
 
 func update(delta: float):
 	elapsed += delta
 	if !character.wants_to_parry:
 		if character.wants_to_attack:
-			weapon_manager.go_to_idle()
+			weapon_action.go_to_idle()
 			state_machine.transition_to(StateMachineCombat.CombatState.CHARGE)
 			return
-		if weapon_manager.parry_finished:
-			weapon_manager.go_to_idle()
+		if weapon_action.parry_finished:
+			weapon_action.go_to_idle()
 			idle_delay_timer = 0.0
 			state_machine.transition_to(StateMachineCombat.CombatState.IDLE)
 			return
 	if character.wants_to_attack:
-		weapon_manager.go_to_idle()
+		weapon_action.go_to_idle()
 		state_machine.transition_to(StateMachineCombat.CombatState.CHARGE)
 		return
 

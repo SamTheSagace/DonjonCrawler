@@ -5,15 +5,16 @@
 [ext_resource type="PackedScene" uid="uid://b70j3rwyul5qq" path="res://Components/Characters/Generics/damager_receiver.tscn" id="2_6n3fv"]
 [ext_resource type="Script" uid="uid://dwcj5rig36ply" path="res://Components/Characters/player/state_machine_combat.gd" id="2_80bfm"]
 [ext_resource type="PackedScene" uid="uid://bkcotb4wiqh2g" path="res://Components/Characters/Generics/HitboxComponent.tscn" id="2_310ak"]
-[ext_resource type="PackedScene" uid="uid://3s7hon3kcce0" path="res://Components/Objects/Weapon/WeaponManager.tscn" id="3_5ya66"]
+[ext_resource type="PackedScene" uid="uid://3s7hon3kcce0" path="res://Components/objects/weapon/weapon_manager.tscn" id="3_5ya66"]
 [ext_resource type="Script" uid="uid://cjvbat62s5t88" path="res://Components/Characters/StatesCombat/parry.gd" id="3_6n3fv"]
-[ext_resource type="Resource" uid="uid://c73x0ieajhcws" path="res://Components/Objects/Weapon/sword/sword.tres" id="4_4h2bd"]
+[ext_resource type="Resource" uid="uid://c73x0ieajhcws" path="res://Components/objects/weapon/sword/sword.tres" id="4_4h2bd"]
 [ext_resource type="Script" uid="uid://c2m6y23faseph" path="res://Components/Characters/StatesCombat/cast.gd" id="4_lm3eu"]
 [ext_resource type="Script" uid="uid://50og77v5isdf" path="res://Components/Characters/StatesCombat/charge.gd" id="5_nta42"]
 [ext_resource type="Script" uid="uid://c4kpkspvywtdj" path="res://Components/Characters/StatesCombat/combat_idle.gd" id="6_gqo3k"]
 [ext_resource type="PackedScene" uid="uid://c1tdw8tv4ntro" path="res://assets/Models/disguise-glasses.glb" id="6_o0vjk"]
 [ext_resource type="Script" uid="uid://cjx5odish7rue" path="res://Components/Characters/StatesCombat/attack_state.gd" id="7_0quxv"]
 [ext_resource type="Script" uid="uid://2ger1cq2sfsm" path="res://Components/Characters/NPCs/Dummy/body_animation.gd" id="8_1v2vy"]
+[ext_resource type="PackedScene" uid="uid://xhjh1riv10ok" path="res://Components/objects/weapon/resource/WeaponAction.tscn" id="10_6n3fv"]
 [ext_resource type="PackedScene" uid="uid://b1d7vo8xmj4pk" path="res://Components/Characters/Animation/HandAnimation.tscn" id="13_dshi3"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1v2vy"]
@@ -83,20 +84,27 @@ _data = {
 &"damageTaken": SubResource("Animation_0qu2q")
 }
 
-[node name="Enemy1" type="CharacterBody3D" unique_id=1320624076 node_paths=PackedStringArray("weapon_manager", "HEALTH_COMPONENT", "HITBOX")]
+[node name="Enemy1" type="CharacterBody3D" unique_id=1320624076 node_paths=PackedStringArray("weapon_manager", "health_component", "hitbox")]
 script = ExtResource("1_4h2bd")
 weapon_manager = NodePath("WeaponManager")
 SPEED = 4.0
-HEALTH_COMPONENT = NodePath("HealthComponent")
-HITBOX = NodePath("HitboxComponent")
+health_component = NodePath("HealthComponent")
+hitbox = NodePath("HitboxComponent")
 
-[node name="DamagerReceiver" parent="." unique_id=570540522 node_paths=PackedStringArray("CHARACTER") instance=ExtResource("2_6n3fv")]
-CHARACTER = NodePath("..")
+[node name="WeaponManager" parent="." unique_id=1395439372 node_paths=PackedStringArray("hand_anim", "character") instance=ExtResource("3_5ya66")]
+weapon_resource = ExtResource("4_4h2bd")
+hand_anim = NodePath("../WorldModel/Body/HandAnimation")
+character = NodePath("..")
 
-[node name="StateMachineCombat" type="Node" parent="." unique_id=1558641969 node_paths=PackedStringArray("WEAPON_MANAGER", "HEALTH_COMPONENT")]
+[node name="WeaponAction" parent="." unique_id=1452111762 node_paths=PackedStringArray("hand_anim", "weapon_storage") instance=ExtResource("10_6n3fv")]
+hand_anim = NodePath("../WorldModel/Body/HandAnimation")
+weapon_storage = NodePath("../WeaponManager")
+
+[node name="StateMachineCombat" type="Node" parent="." unique_id=1558641969 node_paths=PackedStringArray("weapon_manager", "weapon_action", "health_component")]
 script = ExtResource("2_80bfm")
-WEAPON_MANAGER = NodePath("../WeaponManager")
-HEALTH_COMPONENT = NodePath("../HealthComponent")
+weapon_manager = NodePath("../WeaponManager")
+weapon_action = NodePath("../WeaponAction")
+health_component = NodePath("../HealthComponent")
 
 [node name="Parry" type="Node" parent="StateMachineCombat" unique_id=709002687]
 script = ExtResource("3_6n3fv")
@@ -121,6 +129,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HitboxComponent" unique_id=1085966595]
 shape = SubResource("CapsuleShape3D_1v2vy")
 
+[node name="DamagerReceiver" parent="." unique_id=570540522 node_paths=PackedStringArray("character") instance=ExtResource("2_6n3fv")]
+character = NodePath("..")
+
 [node name="Name" type="Label3D" parent="." unique_id=188212300]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 2.2900643, 0)
 pixel_size = 0.009
@@ -133,11 +144,6 @@ pixel_size = 0.009
 text = "eee
 e
 e"
-
-[node name="WeaponManager" parent="." unique_id=1395439372 node_paths=PackedStringArray("hand_anim", "CHARACTER") instance=ExtResource("3_5ya66")]
-weapon_resource = ExtResource("4_4h2bd")
-hand_anim = NodePath("../WorldModel/Body/HandAnimation")
-CHARACTER = NodePath("..")
 
 [node name="WorldModel" type="Node3D" parent="." unique_id=1489945488]
 

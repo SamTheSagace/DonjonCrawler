@@ -3,12 +3,12 @@ class_name Character
 @export var MAX_HEALTH := 60
 @export var SPEED := 5.0
 var FINALSPEED: float
-@export var JUMP_VELOCITY := 4.5
+@export var JUMP_VELOCITY := 5.5
 @export var SNEAK_SPEED := 0.5
 @export var SPRINT_SPEED := 1.5
-@export var HEALTH_COMPONENT: HealthComponent
-@export var MOVEMENT_COMPONENT: MovementComponent
-@export var HITBOX: HitboxComponent
+@export var health_component: HealthComponent
+@export var movement_component: MovementComponent
+@export var hitbox: HitboxComponent
 
 var wants_to_attack := false
 var wants_to_parry := false
@@ -25,14 +25,14 @@ func is_slowed() -> bool:
 	return FINALSPEED < SPEED
 
 var status_inflicted: Array[StatusDefinition] = []
-var whoami:= "character"
+var whoami := "character"
 
 func _ready():
-	assert(HEALTH_COMPONENT != null && HITBOX != null)
-	HEALTH_COMPONENT.set_max_health(MAX_HEALTH)
+	assert(health_component != null && hitbox != null)
+	health_component.set_max_health(MAX_HEALTH)
 	FINALSPEED = SPEED
-	if MOVEMENT_COMPONENT != null:
-		MOVEMENT_COMPONENT.set_stats(SPEED, JUMP_VELOCITY, SNEAK_SPEED, SPRINT_SPEED)
+	if movement_component != null:
+		movement_component.set_stats(SPEED, JUMP_VELOCITY, SNEAK_SPEED, SPRINT_SPEED)
 
 func _process(_delta: float) -> void:
 	_resolve_status_decay(_delta)
@@ -52,21 +52,21 @@ func _resolve_knockback(attack: Attack):
 		knockback_velocity = knockack_direction.normalized() * knockbackPower
 
 func _resolve_status_damage(value: float, status: StatusType.List):
-	HEALTH_COMPONENT.handle_damage(value, status)
+	health_component.handle_damage(value, status)
 
 func add_status(status: StatusDefinition):
 	var incoming := status.duplicate(true)
 	for s: StatusDefinition in status_inflicted:
 		if s.type == incoming.type:
 			s.merge_from(incoming)
-			s.apply(self )
+			s.apply(self)
 			return
 	status_inflicted.append(incoming)
-	incoming.apply(self )
+	incoming.apply(self)
 
 func _resolve_status_inflicted(attack: Attack):
 	var statuses = attack.weapon_resource.statuses
-	if(statuses != null && statuses.size() > 0):
+	if (statuses != null && statuses.size() > 0):
 		for status: StatusDefinition in statuses:
 			add_status(status)
 
@@ -82,7 +82,7 @@ func _resolve_status_decay(_delta: float):
 	for status: StatusDefinition in status_inflicted:
 		status.duration -= _delta
 		if status.duration > 0:
-			status.tick(self , _delta)
+			status.tick(self, _delta)
 		else:
-			status._clean_up(self )
+			status._clean_up(self)
 			status_inflicted.erase(status)

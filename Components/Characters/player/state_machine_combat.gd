@@ -1,8 +1,10 @@
 extends StateMachine
 class_name StateMachineCombat
 
-@export var WEAPON_MANAGER: WeaponManager
-@export var HEALTH_COMPONENT: HealthComponent
+@export var weapon_manager: WeaponManager
+@export var weapon_action: WeaponAction
+
+@export var health_component: HealthComponent
 
 func combat_state() -> StateCombat:
 	return current_state as StateCombat
@@ -28,15 +30,16 @@ const COMBAT_STATE_NAMES := {
 func child_state():
 	for state_id in CombatState.values():
 		var node_name = COMBAT_STATE_NAMES[state_id]
-		var node:StateCombat = get_node_or_null(node_name)
+		var node: StateCombat = get_node_or_null(node_name)
 		assert(node != null, "Missing state node: %s" % node_name)
 		assert(node is State, "%s must extend State" % node_name)
 		node.character = character
 		node.state_machine = self
 
-		node.weapon_manager = WEAPON_MANAGER
-		node.health_component = HEALTH_COMPONENT
-		assert(node.weapon_manager !=null && node.health_component !=null)
+		node.weapon_manager = weapon_manager
+		node.health_component = health_component
+		node.weapon_action = weapon_action
+		assert(node.weapon_manager != null && node.health_component != null)
 		states[state_id] = node
 
 func transition_to(state_id: int, msg := {}):
@@ -53,6 +56,6 @@ func transition_to(state_id: int, msg := {}):
 func enter_initial_state():
 	transition_to(initial_state)
 
-func _resolve_attack(attack:Attack):
+func _resolve_attack(attack: Attack):
 	if combat_state():
 		combat_state().resolve_on_hit(attack)
